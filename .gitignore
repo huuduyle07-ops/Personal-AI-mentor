@@ -8,3 +8,15 @@ wheels/
 
 # Virtual environments
 .venv
+.env
+
+data/
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Local tooling and reproducible research outputs
+.uv-cache/
+.pytest_cache/
+experiments/router/artifacts/

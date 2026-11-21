@@ -1,0 +1,209 @@
+{
+  "seed": 42,
+  "samples_per_family": 20,
+  "labels": [
+    "RULE",
+    "CLARIFY",
+    "LLM",
+    "DEFER"
+  ],
+  "split_sizes": {
+    "train": 240,
+    "validation": 80,
+    "test": 160
+  },
+  "split_families": {
+    "train": [
+      "archive_review",
+      "daily_review",
+      "fatigue",
+      "goal_creation",
+      "learning_strategy",
+      "long_term",
+      "missing_minutes",
+      "motivation",
+      "negative_minutes",
+      "optional_material",
+      "quiz_reply",
+      "terse_help"
+    ],
+    "validation": [
+      "excess_minutes",
+      "later_planning",
+      "schedule_control",
+      "work_conflict"
+    ],
+    "test": [
+      "competing_tasks",
+      "future_schedule",
+      "recovery_approval",
+      "reflection",
+      "report_total",
+      "terse_done",
+      "unknown_command",
+      "weekly_reflection"
+    ]
+  },
+  "selected_C": 0.5,
+  "validation_macro_f1": 0.1,
+  "training_seconds_including_selection": 1.2815346999559551,
+  "peak_python_allocated_bytes": 5855934,
+  "memory_limitation": "tracemalloc excludes native allocations; not total process or GPU memory",
+  "artifact_bytes": 138300,
+  "environment": {
+    "python": "3.11.9",
+    "sklearn": "1.9.1",
+    "platform": "Windows-10-10.0.26300-SP0"
+  },
+  "rule": {
+    "accuracy": 1.0,
+    "macro_f1": 1.0,
+    "classification_report": {
+      "RULE": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 40.0
+      },
+      "CLARIFY": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 40.0
+      },
+      "LLM": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 40.0
+      },
+      "DEFER": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 40.0
+      },
+      "accuracy": 1.0,
+      "macro avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 160.0
+      },
+      "weighted avg": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 160.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        40,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        40,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        40,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        40
+      ]
+    ],
+    "latency_ms": {
+      "median": 0.0028,
+      "p95": 0.0041
+    }
+  },
+  "baseline": {
+    "accuracy": 0.625,
+    "macro_f1": 0.5595238095238095,
+    "classification_report": {
+      "RULE": {
+        "precision": 1.0,
+        "recall": 0.5,
+        "f1-score": 0.6666666666666666,
+        "support": 40.0
+      },
+      "CLARIFY": {
+        "precision": 0.4,
+        "recall": 1.0,
+        "f1-score": 0.5714285714285714,
+        "support": 40.0
+      },
+      "LLM": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 40.0
+      },
+      "DEFER": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 40.0
+      },
+      "accuracy": 0.625,
+      "macro avg": {
+        "precision": 0.6,
+        "recall": 0.625,
+        "f1-score": 0.5595238095238095,
+        "support": 160.0
+      },
+      "weighted avg": {
+        "precision": 0.6,
+        "recall": 0.625,
+        "f1-score": 0.5595238095238095,
+        "support": 160.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        20,
+        20,
+        0,
+        0
+      ],
+      [
+        0,
+        40,
+        0,
+        0
+      ],
+      [
+        0,
+        40,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        40
+      ]
+    ],
+    "latency_ms": {
+      "median": 2.21095,
+      "p95": 5.5391
+    }
+  },
+  "limitations": [
+    "Synthetic inputs only; no real-user efficacy claims",
+    "Metadata contains strong routing cues",
+    "No LSTM, Mamba, distillation, or critic has been trained or evaluated"
+  ]
+}
