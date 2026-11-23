@@ -127,10 +127,11 @@ class CheckinScheduler:
                     continue
                 code, retry_at = None, None
                 try:
-                    message = ("Midday check-in: use /report for today's total minutes, /quiz for the vocabulary demo, "
-                               "or /recover if your schedule changed. A missed reply is not a failure.")
+                    message = ("How is studying going today? Tell me your total so far, for example "
+                               "“today's total is 20 minutes”. If something got in the way, you can tell me that too.")
                     if slot == "evening":
-                        message = "Evening review (KST)\n" + daily_review(self.store.summary(user_id, day))
+                        message = ("Evening review (KST)\n" + daily_review(self.store.summary(user_id, day))
+                                   + "\nHow did today go? You can reply here with your total or ask for a smaller target.")
                     await asyncio.wait_for(self.send(user_id, message), timeout=20)
                     status = "delivered"
                 except DeliveryError as exc:

@@ -51,7 +51,7 @@ Các tên cũ `DISCORD_BOT_TOKEN` và `GUILD_ID` vẫn được chấp nhận n�
 4. Khởi động bot. Bot đồng bộ lệnh toàn cục để sử dụng trong máy chủ và DM, đồng thời đồng bộ lệnh riêng cho máy chủ phát triển nếu đã cấu hình. Có thể cần chờ một thời gian để lệnh toàn cục xuất hiện trên Discord.
 5. Mọi lệnh đều kiểm tra ID người dùng đã cấu hình. Phải chủ động bật check-in. Nếu Discord chặn DM, sau lần thử gửi, `/checkins action:status` sẽ hiển thị `blocked`; hãy cho phép DM trước khung giờ gửi tiếp theo.
 
-Không cần các privileged intent Message Content, Members hay Presence. Bot không theo dõi tin nhắn thông thường. Phản hồi lệnh chỉ hiển thị với người thực hiện lệnh (ephemeral); tin nhắn theo lịch chỉ được gửi đến DM của người dùng đã cấu hình. Xem [tài liệu tương tác của discord.py](https://discordpy.readthedocs.io/en/stable/interactions/api.html) để biết hành vi tương tác của nền tảng.
+Người dùng được phép có thể nhắn riêng cho bot, chẳng hạn “Tiến độ hôm nay của tôi?”. Không cần các privileged intent Message Content, Members hay Presence. Phản hồi lệnh chỉ hiển thị với người thực hiện. Tin nhắn theo lịch được gửi qua DM khi người dùng đã đăng ký. Xem ví dụ tiếng Việt và các bước xác nhận, phê duyệt trong [hướng dẫn thử DM](docs/DISCORD_DM_DEMO.md).
 
 ## Lệnh và kịch bản trình diễn
 

@@ -1,0 +1,103 @@
+{
+  "version": "0.1",
+  "config": {
+    "version": "0.1",
+    "split_seed": 6101,
+    "persona_seed": 6102,
+    "behavior_seed": 6103,
+    "augmentation_seed": 6104,
+    "personas_per_family": 24,
+    "episodes_per_persona": 2,
+    "episode_days": 28,
+    "history_days": 14,
+    "report_window_start": "18:00",
+    "report_window_end": "23:00",
+    "model_seeds": [
+      7,
+      19,
+      43
+    ],
+    "hidden_sizes": [
+      16,
+      32
+    ],
+    "epochs": 30,
+    "batch_size": 256,
+    "learning_rate": 0.01,
+    "logistic_C": [
+      0.1,
+      1.0,
+      10.0
+    ],
+    "shuffle_seed": 6105,
+    "robustness_seed": 6106,
+    "cpu_threads": 1
+  },
+  "family_split": {
+    "train": [
+      "deadline_ramp",
+      "obligation_pulses",
+      "steady_cadence",
+      "weekly_peak",
+      "rotating_shift",
+      "late_reporting"
+    ],
+    "validation": [
+      "routine_relocation",
+      "study_cycle",
+      "alternating_duty"
+    ],
+    "test": [
+      "persistent_workload",
+      "interruption_blocks",
+      "weekend_obligations"
+    ]
+  },
+  "files": {
+    "train": "f120840e8dbbdaa486b26ce4724d021efc7337141ffc03f12b0fc58646ad281b",
+    "train_pairs": "1f8099d6fbaed27b30ee199b52c5f234ea869ad2e3e77d693443c8f8dc34a9bd",
+    "validation": "2003bb2630367ab08537fa899dcb943ba4cf3ed85c4dcead4a77dd8d5463cbea",
+    "validation_pairs": "2919944f5af8ecac00f900b9d7994a35ffae67049f38a2bf9af25bffc5c176a5",
+    "test": "37df5fb4d332859faa19d751cea3d2fda0d13cc6069bf3296bc26ff42a960acc",
+    "test_pairs": "1834f200500077d88a93caf3c964db9b64022ab30112cbf9488767f7857be3a5"
+  },
+  "counts": {
+    "train": {
+      "families": 6,
+      "personas": 144,
+      "episodes": 288,
+      "samples": 4032
+    },
+    "train_pairs": {
+      "families": 6,
+      "personas": 144,
+      "episodes": 288,
+      "samples": 288
+    },
+    "validation": {
+      "families": 3,
+      "personas": 72,
+      "episodes": 144,
+      "samples": 2016
+    },
+    "validation_pairs": {
+      "families": 3,
+      "personas": 72,
+      "episodes": 144,
+      "samples": 144
+    },
+    "test": {
+      "families": 3,
+      "personas": 72,
+      "episodes": 144,
+      "samples": 2016
+    },
+    "test_pairs": {
+      "families": 3,
+      "personas": 72,
+      "episodes": 144,
+      "samples": 144
+    }
+  },
+  "sealing": "Process-level test embargo; no cryptographic access control. Training loads train/validation only."
+}

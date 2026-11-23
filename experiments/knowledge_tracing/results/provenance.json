@@ -1,0 +1,187 @@
+{
+  "version": "0.1",
+  "config": {
+    "dataset_id": "bihungba1101/slam-en-es-knowledge-tracing",
+    "revision": "44c6826ebbfb7ac7f0af5d181b5f1a65cf4f5304",
+    "learners": 100,
+    "seed": 42,
+    "split_fractions": [
+      0.7,
+      0.15,
+      0.15
+    ],
+    "sequence_lengths": [
+      16,
+      32,
+      64
+    ],
+    "hidden_size": 32,
+    "batch_size": 256,
+    "epochs": 12,
+    "patience": 3,
+    "learning_rate": 0.003,
+    "weight_decay": 0.0001,
+    "threads": 2,
+    "logistic_c": [
+      0.1,
+      1.0,
+      10.0
+    ],
+    "statistical_strength": [
+      2.0,
+      10.0,
+      30.0
+    ],
+    "threshold": 0.5,
+    "selection_metric": "brier",
+    "device": "cpu",
+    "ablations": [
+      "shuffled",
+      "no_correctness",
+      "no_time",
+      "no_metadata"
+    ]
+  },
+  "provenance": {
+    "dataset_id": "bihungba1101/slam-en-es-knowledge-tracing",
+    "revision": "44c6826ebbfb7ac7f0af5d181b5f1a65cf4f5304",
+    "license": "CC BY-NC 4.0",
+    "copyright": "2016 Duolingo, Inc.",
+    "source_doi": "10.7910/DVN/8SWHNO",
+    "evidence_sha256": {
+      "README.md": "58e0e41008f5489f395ced84a670ac15466cd86f98542ebfd5b7ddc9c0d14e8b",
+      "LICENSE.md": "9397609dbece8d487b8a2b4f81c357fe9356cbda5a9e6683d035dd4659c182d1",
+      "CITING.md": "6bb792421a2e8f297cb3a40bf94bc4951fe483141ef69db6568f0bf7232861f1",
+      "convert_to_hf.py": "6e198c87c1cfe1b60cc9fedb9d7e8d4c447a6b216653f5e32cd6c3c504db3d01"
+    },
+    "schemas": {
+      "train": "user_id: string\ninteraction_index: int32\nexercise_id: string\nprompt: string\ncountry: string\nclient: string\nsession: string\nformat: string\ndays: double\nresponse_time_seconds: double\ntoken_ids: list<element: string>\n  child 0, element: string\nreference_tokens: list<element: string>\n  child 0, element: string\npos_tags: list<element: string>\n  child 0, element: string\nmorphological_features: list<element: string>\n  child 0, element: string\ndependency_relations: list<element: string>\n  child 0, element: string\ndependency_heads: list<element: int32>\n  child 0, element: int32\ntoken_labels: list<element: int8>\n  child 0, element: int8\ntoken_accuracy: float\ncorrect: int8\nprompt_available: bool",
+      "validation": "user_id: string\ninteraction_index: int32\nexercise_id: string\nprompt: string\ncountry: string\nclient: string\nsession: string\nformat: string\ndays: double\nresponse_time_seconds: double\ntoken_ids: list<element: string>\n  child 0, element: string\nreference_tokens: list<element: string>\n  child 0, element: string\npos_tags: list<element: string>\n  child 0, element: string\nmorphological_features: list<element: string>\n  child 0, element: string\ndependency_relations: list<element: string>\n  child 0, element: string\ndependency_heads: list<element: int32>\n  child 0, element: int32\ntoken_labels: list<element: int8>\n  child 0, element: int8\ntoken_accuracy: float\ncorrect: int8\nprompt_available: bool",
+      "test": "user_id: string\ninteraction_index: int32\nexercise_id: string\nprompt: string\ncountry: string\nclient: string\nsession: string\nformat: string\ndays: double\nresponse_time_seconds: double\ntoken_ids: list<element: string>\n  child 0, element: string\nreference_tokens: list<element: string>\n  child 0, element: string\npos_tags: list<element: string>\n  child 0, element: string\nmorphological_features: list<element: string>\n  child 0, element: string\ndependency_relations: list<element: string>\n  child 0, element: string\ndependency_heads: list<element: int32>\n  child 0, element: int32\ntoken_labels: list<element: int8>\n  child 0, element: int8\ntoken_accuracy: float\ncorrect: int8\nprompt_available: bool"
+    },
+    "universe_learners": 2593,
+    "source_rows": {
+      "train": 824012,
+      "validation": 115770,
+      "test": 114586
+    },
+    "sampling": "smallest SHA256(sample:seed:original_user_id) over union of source IDs",
+    "selection_sha256": "d7843e78803df32510f9833b737eeab8905e12fc7ccbf5777690c84a441a14e7",
+    "projected_columns": [
+      "user_id",
+      "interaction_index",
+      "days",
+      "correct",
+      "response_time_seconds",
+      "session",
+      "format"
+    ],
+    "ordering": {
+      "learners": 100,
+      "equal_day_transitions": 29909,
+      "cross_partition_transitions": 200,
+      "local_index_gaps": 0,
+      "ordering": "official train -> validation -> test; original file order within each"
+    },
+    "network_bytes_this_run": 3527852,
+    "full_parquet_bytes": 40122310,
+    "memory": {
+      "start_rss_mb": 57.640625,
+      "sampled_peak_rss_mb": 104.33984375,
+      "elapsed_seconds": 482.1792170999106,
+      "sampling_interval_seconds": 0.02,
+      "scope": "whole Python process, not isolated model or Python allocations"
+    }
+  },
+  "splits": {
+    "train": {
+      "learners": 70,
+      "interactions": 29706,
+      "prediction_examples": 29636,
+      "positive_rate_all_interactions": 0.710866491617855,
+      "positive_rate_prediction_targets": 0.7105209879875827,
+      "missing": {
+        "user_id": 0,
+        "interaction_index": 0,
+        "days": 0,
+        "correct": 0,
+        "response_time_seconds": 575,
+        "session": 0,
+        "format": 0
+      },
+      "relative_days_min": 0.003,
+      "relative_days_max": 29.751,
+      "learner_span_days_min_median_max": [
+        2.023,
+        15.301000000000002,
+        28.679
+      ],
+      "source_partition_counts": {
+        "train": 23102,
+        "validation": 3306,
+        "test": 3298
+      }
+    },
+    "validation": {
+      "learners": 15,
+      "interactions": 5203,
+      "prediction_examples": 5188,
+      "positive_rate_all_interactions": 0.693446088794926,
+      "positive_rate_prediction_targets": 0.6929452582883577,
+      "missing": {
+        "user_id": 0,
+        "interaction_index": 0,
+        "days": 0,
+        "correct": 0,
+        "response_time_seconds": 1,
+        "session": 0,
+        "format": 0
+      },
+      "relative_days_min": 0.004,
+      "relative_days_max": 28.188,
+      "learner_span_days_min_median_max": [
+        2.952,
+        15.352,
+        27.939999999999998
+      ],
+      "source_partition_counts": {
+        "train": 3996,
+        "validation": 557,
+        "test": 650
+      }
+    },
+    "test": {
+      "learners": 15,
+      "interactions": 6943,
+      "prediction_examples": 6928,
+      "positive_rate_all_interactions": 0.7220221806135676,
+      "positive_rate_prediction_targets": 0.7218533487297921,
+      "missing": {
+        "user_id": 0,
+        "interaction_index": 0,
+        "days": 0,
+        "correct": 0,
+        "response_time_seconds": 1,
+        "session": 0,
+        "format": 0
+      },
+      "relative_days_min": 0.003,
+      "relative_days_max": 29.169,
+      "learner_span_days_min_median_max": [
+        4.181,
+        18.116,
+        29.166
+      ],
+      "source_partition_counts": {
+        "train": 5536,
+        "validation": 732,
+        "test": 675
+      }
+    }
+  },
+  "files": {
+    "train.jsonl": "2fc74527ed89dbb406b658ed0fa9431cc76ebbd6dba72d43caf56b7f320bc9c1",
+    "validation.jsonl": "5c487fa38af21f6b8e35726e301a6fe4df9d8ecb7f70267e1691cf4fa54878c5",
+    "test.jsonl": "65bb0cf488fe2114b486d71d9a2e4179ea163b859a949898397b78487d84f12d"
+  }
+}

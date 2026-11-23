@@ -1,0 +1,25 @@
+{
+  "offline_preprocessing_split_hashes_match": true,
+  "unchanged_artifact_replay_all_nontiming_results_exactly_match": true,
+  "original_learner_ids_absent_from_report_text_and_json": true,
+  "source_and_model_hashes_match_frozen_selection": true,
+  "root_suite": {
+    "passed": 86,
+    "skipped_optional_experiments": 2,
+    "existing_warnings": 1
+  },
+  "previous_temporal_suite": {
+    "passed": 8
+  },
+  "knowledge_tracing_suite": {
+    "passed": 22
+  },
+  "model_artifacts": "local only, Git-ignored",
+  "replay_resources": {
+    "start_rss_mb": 348.21484375,
+    "sampled_peak_rss_mb": 464.44140625,
+    "elapsed_seconds": 120.96784960001241,
+    "sampling_interval_seconds": 0.02,
+    "scope": "whole Python process, not isolated model or Python allocations"
+  }
+}

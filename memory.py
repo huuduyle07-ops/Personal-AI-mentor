@@ -59,6 +59,21 @@ MIGRATIONS = [
 ]
 
 
+# Additive DM feature tables share the existing v2 goal/event contract.
+# Install them transactionally for both new and already-migrated v2 databases.
+DM_TABLES = (
+    """CREATE TABLE IF NOT EXISTS dm_receipts (
+        id INTEGER PRIMARY KEY, message_id INTEGER UNIQUE NOT NULL, user_id INTEGER NOT NULL)""",
+    """CREATE TABLE IF NOT EXISTS dm_drafts (
+        user_id INTEGER PRIMARY KEY, day TEXT NOT NULL, receipt_id INTEGER NOT NULL REFERENCES dm_receipts(id),
+        actions TEXT NOT NULL, report_id INTEGER, revision INTEGER NOT NULL)""",
+    """CREATE TABLE IF NOT EXISTS recovery_moves (
+        proposal_id INTEGER PRIMARY KEY REFERENCES recovery_proposals(id),
+        report_id INTEGER, next_day TEXT NOT NULL, next_title TEXT NOT NULL,
+        next_target INTEGER NOT NULL, next_revision INTEGER NOT NULL)""",
+)
+
+
 def migrate(db):
     db.execute("BEGIN IMMEDIATE")
     try:
@@ -70,6 +85,8 @@ def migrate(db):
                 if statement.strip():
                     db.execute(statement)
             db.execute(f"PRAGMA user_version = {index + 1}")
+        for statement in DM_TABLES:
+            db.execute(statement)
         db.commit()
     except BaseException:
         db.rollback()

@@ -1,0 +1,56 @@
+{
+  "mode": "live",
+  "model": "qwen3.5:4b",
+  "timeout_seconds": 60.0,
+  "count": 39,
+  "intent_set_accuracy": 0.9744,
+  "intent_accuracy_by_language": {
+    "en": 1.0,
+    "vi": 0.9231,
+    "ko": 1.0
+  },
+  "slot_precision": 0.9394,
+  "slot_recall": 0.9394,
+  "invalid_action_rate_after_validation": 0.0,
+  "clarify_precision": 0.875,
+  "clarify_recall": 1.0,
+  "fallback_count": 0,
+  "safe_fallback_rate": null,
+  "latency_ms": {
+    "median": 0.072,
+    "p95": 1819.843
+  },
+  "backend_attempt_ms": {
+    "median": 992.448,
+    "p95": 9440.989
+  },
+  "outcomes": {
+    "rule": 27,
+    "ollama": 12
+  },
+  "errors": [
+    {
+      "id": "dm35",
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "ollama"
+    },
+    {
+      "id": "dm36",
+      "returned": [
+        {
+          "intent": "REQUEST_RECOVERY",
+          "when": "tomorrow"
+        },
+        {
+          "intent": "REPORT_OBSTACLE",
+          "reason": "tired"
+        }
+      ],
+      "source": "ollama"
+    }
+  ]
+}

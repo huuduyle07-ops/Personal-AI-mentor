@@ -51,7 +51,9 @@ Legacy `DISCORD_BOT_TOKEN` and `GUILD_ID` aliases are accepted when the canonica
 4. Start the bot. It synchronizes global commands for server and DM interactions, plus optional development-guild commands. Global command availability can take time to propagate.
 5. Every command checks the configured user ID. Enable check-ins explicitly. If Discord blocks DMs, `/checkins action:status` shows `blocked`; permit DMs before the next scheduled slot.
 
-Message Content, Members, and Presence privileged intents are unnecessary. Ordinary messages are not monitored. Replies are ephemeral; scheduled messages go only to the configured user's DMs. See the [discord.py interaction reference](https://discordpy.readthedocs.io/en/stable/interactions/api.html) for platform interaction behavior.
+Open a one-to-one DM with PM and type “how am I doing?” or “today's total is 20 minutes”. Only the configured user's private text messages reach the interpreter. Slash replies remain ephemeral. DM conversations use the direct-messages gateway intent. Discord supplies text in DMs with the app without the privileged Message Content intent. [Discord gateway documentation](https://docs.discord.com/developers/events/gateway#message-content-intent)
+
+For the three-language SOL-AIM demo, draft confirmations, one-off moves to tomorrow and offline operation, see the [manual DM live-test guide](docs/DISCORD_DM_DEMO.md). The [synthetic evaluation](experiments/conversation/README.md) includes real local Ollama and unavailable-backend runs.
 
 ## Commands and demonstration
 
@@ -75,6 +77,7 @@ Use the following with a synthetic Korean learning goal. Slash-command option na
 | `core.py` | Existing GoalStore API, daily plan snapshots, report revisions, daily review |
 | `memory.py` | Transactional SQLite migrations, append-only events, filtered history |
 | `bot.py` | Authorized slash commands, private replies, DM adapter and background loop |
+| `dm_intents.py`, `conversation.py` | Whole-message parsing, structured proposal validation, SQLite-backed confirmations and idempotent dispatch |
 | `scheduler.py` | Opt-in configuration, persistent daily slots, restart recovery and delivery accounting |
 | `verification.py` | Predefined vocabulary questions and immutable attempt history |
 | `recovery.py` | Deterministic daily proposals and atomic approval/rejection/cancellation |

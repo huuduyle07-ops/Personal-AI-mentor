@@ -1,0 +1,87 @@
+{
+  "mode": "unavailable",
+  "model": null,
+  "timeout_seconds": 10,
+  "count": 39,
+  "intent_set_accuracy": 0.8462,
+  "intent_accuracy_by_language": {
+    "en": 0.8462,
+    "vi": 0.8462,
+    "ko": 0.8462
+  },
+  "slot_precision": 1.0,
+  "slot_recall": 0.8182,
+  "invalid_action_rate_after_validation": 0.0,
+  "clarify_precision": 0.5385,
+  "clarify_recall": 1.0,
+  "fallback_count": 12,
+  "safe_fallback_rate": 1.0,
+  "latency_ms": {
+    "median": 0.053,
+    "p95": 2047.327
+  },
+  "backend_attempt_ms": {
+    "median": 2031.882,
+    "p95": 2048.976
+  },
+  "outcomes": {
+    "rule": 27,
+    "unavailable_or_invalid": 12
+  },
+  "errors": [
+    {
+      "id": "dm31",
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid"
+    },
+    {
+      "id": "dm32",
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid"
+    },
+    {
+      "id": "dm33",
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid"
+    },
+    {
+      "id": "dm34",
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid"
+    },
+    {
+      "id": "dm35",
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid"
+    },
+    {
+      "id": "dm36",
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid"
+    }
+  ]
+}

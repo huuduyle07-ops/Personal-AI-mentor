@@ -1,6 +1,6 @@
 """Goal domain and SQLite unit of work; no Discord or inference dependencies."""
 import sqlite3
-from contextlib import closing, contextmanager
+from contextlib import closing, contextmanager, nullcontext
 from pathlib import Path
 
 from memory import migrate, record
@@ -33,6 +33,16 @@ class GoalStore:
         )
         return db.execute("SELECT * FROM daily_goals WHERE user_id=? AND day=?", (user_id, day)).fetchone()
 
+    @contextmanager
+    def transaction(self, db=None):
+        """Join the caller's atomic operation, or own a new write transaction."""
+        if db is not None:
+            yield db
+            return
+        with self.connect() as connection:
+            connection.execute("BEGIN IMMEDIATE")
+            yield connection
+
     def set_goal(self, user_id, title, target_minutes, day=None):
         if not isinstance(title, str) or not 1 <= len(title.strip()) <= 200:
             raise ValueError("Goal title must contain 1 to 200 characters")
@@ -55,10 +65,10 @@ class GoalStore:
             record(db, user_id, day, "goal_set", {"previous": dict(old) if old else None,
                    "title": title, "target_minutes": target_minutes})
 
-    def report(self, user_id, day, minutes):
+    def report(self, user_id, day, minutes, *, db=None):
         valid_day(day)
         valid_minutes(minutes)
-        with self.connect() as db:
+        with self.transaction(db) as db:
             self.plan(db, user_id, day)
             db.execute(
                 """INSERT INTO reports VALUES(?,?,?) ON CONFLICT(user_id,day)
@@ -71,9 +81,9 @@ class GoalStore:
             record(db, user_id, day, "progress_reported", {"minutes": minutes, "report_id": result.lastrowid})
             return result.lastrowid
 
-    def summary(self, user_id, day):
+    def summary(self, user_id, day, *, db=None):
         valid_day(day)
-        with self.connect() as db:
+        with (self.connect() if db is None else nullcontext(db)) as db:
             if not db.execute("SELECT 1 FROM goals WHERE user_id=?", (user_id,)).fetchone():
                 return None
             plan = self.plan(db, user_id, day)

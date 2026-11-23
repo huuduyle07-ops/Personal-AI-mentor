@@ -16,10 +16,9 @@ class Verification:
     def __init__(self, store):
         self.store = store
 
-    def start(self, user_id, day):
+    def start(self, user_id, day, *, db=None):
         valid_day(day)
-        with self.store.connect() as db:
-            db.execute("BEGIN IMMEDIATE")
+        with self.store.transaction(db) as db:
             report = db.execute(
                 "SELECT id FROM progress_events WHERE user_id=? AND day=? ORDER BY id DESC LIMIT 1",
                 (user_id, day),
@@ -49,12 +48,11 @@ class Verification:
             record(db, user_id, day, "quiz_offered", {"attempt_id": result.lastrowid, "question_id": question_id}, "system")
             return {"id": result.lastrowid, **QUESTIONS[question_id]}
 
-    def answer(self, user_id, day, attempt_id, answer):
+    def answer(self, user_id, day, attempt_id, answer, *, db=None):
         valid_day(day)
         if not isinstance(answer, str) or not 1 <= len(answer.strip()) <= 100:
             raise ValueError("Answer must contain 1 to 100 characters")
-        with self.store.connect() as db:
-            db.execute("BEGIN IMMEDIATE")
+        with self.store.transaction(db) as db:
             attempt = db.execute(
                 "SELECT * FROM verification_attempts WHERE id=? AND user_id=? AND day=?",
                 (attempt_id, user_id, day),

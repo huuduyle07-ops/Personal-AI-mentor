@@ -1,0 +1,21 @@
+{
+  "dataset_id": "bihungba1101/slam-en-es-knowledge-tracing",
+  "revision": "44c6826ebbfb7ac7f0af5d181b5f1a65cf4f5304",
+  "learners": 100,
+  "seed": 42,
+  "split_fractions": [0.7, 0.15, 0.15],
+  "sequence_lengths": [16, 32, 64],
+  "hidden_size": 32,
+  "batch_size": 256,
+  "epochs": 12,
+  "patience": 3,
+  "learning_rate": 0.003,
+  "weight_decay": 0.0001,
+  "threads": 2,
+  "logistic_c": [0.1, 1.0, 10.0],
+  "statistical_strength": [2.0, 10.0, 30.0],
+  "threshold": 0.5,
+  "selection_metric": "brier",
+  "device": "cpu",
+  "ablations": ["shuffled", "no_correctness", "no_time", "no_metadata"]
+}

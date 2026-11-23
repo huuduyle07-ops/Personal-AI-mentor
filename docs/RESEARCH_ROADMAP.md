@@ -1,6 +1,6 @@
 # Personal Accountability AI
 
-[Tiếng Việt](README.vi.md) | [English](README.md)
+[English](RESEARCH_ROADMAP.md) | [한국어](RESEARCH_ROADMAP.ko.md) | [Tiếng Việt](RESEARCH_ROADMAP.vi.md)
 
 ![Python Versions](https://img.shields.io/badge/Python-3.11-blue)
 
