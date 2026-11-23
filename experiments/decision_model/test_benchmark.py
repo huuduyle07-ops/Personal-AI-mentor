@@ -7,6 +7,15 @@ from datetime import datetime, timedelta
 import numpy as np
 import pytest
 
+np = pytest.importorskip(
+    "numpy",
+    reason="Use the isolated decision_model uv environment"
+)
+
+torch = pytest.importorskip(
+    "torch",
+    reason="Use the isolated decision_model uv environment"
+)
 torch = pytest.importorskip("torch", reason="Use the isolated decision_model uv project for these tests")
 
 from experiments.decision_model.data import family_split, generate_partition, load_config, load_partition, samples_from_episode

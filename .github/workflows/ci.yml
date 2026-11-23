@@ -37,4 +37,4 @@ jobs:
         run: uv run --locked python -m compileall -q .
 
       - name: Run application tests
-        run: uv run --locked python -m pytest -q -rs
+        run: uv run --locked python -m pytest tests/ -q -rs
