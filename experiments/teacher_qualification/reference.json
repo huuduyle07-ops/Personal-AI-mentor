@@ -1,0 +1,122 @@
+[
+  {
+    "family": "01-origami-total", "i": ["REPORT_PROGRESS"], "s": {"minutes": 26, "date": "today"}, "verbatim": ["goal"],
+    "en": ["I folded origami for 26 minutes today.", ["folded origami for 26 minutes"], {"minutes":"26 minutes","date":"today","goal":"origami"}],
+    "vi": ["Hôm nay mình gấp giấy origami được 26 phút.", ["gấp giấy origami được 26 phút"], {"minutes":"26 phút","date":"Hôm nay","goal":"origami"}],
+    "ko": ["오늘 종이접기를 26분 했어요.", ["종이접기를 26분 했어요"], {"minutes":"26분","date":"오늘","goal":"종이접기"}]
+  },
+  {
+    "family": "02-power-cut", "i": ["REPORT_OBSTACLE"], "verbatim": ["reason"],
+    "en": ["The power went out, so I couldn't practice.", ["The power went out, so I couldn't practice"], {"reason":"The power went out"}],
+    "vi": ["Mất điện nên mình không tập được.", ["Mất điện nên mình không tập được"], {"reason":"Mất điện"}],
+    "ko": ["정전 때문에 연습을 못 했어요.", ["정전 때문에 연습을 못 했어요"], {"reason":"정전"}]
+  },
+  {
+    "family": "03-ceramics-smaller-target", "i": ["REQUEST_RECOVERY"], "s": {"target": 21, "date": "tomorrow"}, "verbatim": ["goal"],
+    "en": ["Could we lower tomorrow's ceramics target to 21 minutes?", ["lower tomorrow's ceramics target to 21 minutes"], {"target":"21 minutes","date":"tomorrow","goal":"ceramics"}],
+    "vi": ["Mai giảm mục tiêu làm gốm xuống còn 21 phút được không?", ["giảm mục tiêu làm gốm xuống còn 21 phút"], {"target":"21 phút","date":"Mai","goal":"làm gốm"}],
+    "ko": ["내일 도예 목표를 21분으로 낮출 수 있을까요?", ["도예 목표를 21분으로 낮출 수"], {"target":"21분","date":"내일","goal":"도예"}]
+  },
+  {
+    "family": "04-knitting-prior-day-query", "i": ["QUERY_PROGRESS"], "s": {"date": "yesterday"}, "verbatim": ["goal"],
+    "en": ["How much knitting did I log yesterday?", ["How much knitting did I log"], {"date":"yesterday","goal":"knitting"}],
+    "vi": ["Hôm qua mình đã ghi được bao nhiêu thời gian đan len?", ["đã ghi được bao nhiêu thời gian đan len"], {"date":"Hôm qua","goal":"đan len"}],
+    "ko": ["어제 뜨개질을 몇 분 했다고 기록했죠?", ["뜨개질을 몇 분 했다고 기록했죠"], {"date":"어제","goal":"뜨개질"}]
+  },
+  {
+    "family": "05-music-theory-quiz", "i": ["REQUEST_VERIFICATION"], "verbatim": ["goal"],
+    "en": ["Quiz me on music theory to check what I remember.", ["Quiz me on music theory"], {"goal":"music theory"}],
+    "vi": ["Đố mình vài câu về nhạc lý để xem còn nhớ gì nhé.", ["Đố mình vài câu về nhạc lý"], {"goal":"nhạc lý"}],
+    "ko": ["음악 이론을 얼마나 기억하는지 퀴즈로 확인해 주세요.", ["퀴즈로 확인해 주세요"], {"goal":"음악 이론"}]
+  },
+  {
+    "family": "06-approval-without-state", "i": ["APPROVE_ADJUSTMENT", "CLARIFY"], "s": {"proposal": "P-317"}, "m": ["pending"],
+    "en": ["I approve adjustment P-317.", ["I approve adjustment P-317", "adjustment P-317"], {"proposal":"P-317"}],
+    "vi": ["Mình duyệt đề xuất điều chỉnh P-317.", ["duyệt đề xuất điều chỉnh P-317", "đề xuất điều chỉnh P-317"], {"proposal":"P-317"}],
+    "ko": ["조정 제안 P-317을 승인할게요.", ["P-317을 승인할게요", "조정 제안 P-317"], {"proposal":"P-317"}]
+  },
+  {
+    "family": "07-matching-rejection", "i": ["REJECT_ADJUSTMENT"], "s": {"proposal": "P-84"}, "pending": "P-84",
+    "en": ["Please reject adjustment P-84.", ["reject adjustment P-84"], {"proposal":"P-84"}],
+    "vi": ["Mình từ chối đề xuất điều chỉnh P-84 nhé.", ["từ chối đề xuất điều chỉnh P-84"], {"proposal":"P-84"}],
+    "ko": ["조정 제안 P-84는 거절할게요.", ["P-84는 거절할게요"], {"proposal":"P-84"}]
+  },
+  {
+    "family": "08-weekend-small-talk", "i": ["GENERAL_CONVERSATION"],
+    "en": ["Hope your weekend was restful!", ["Hope your weekend was restful"], {}],
+    "vi": ["Hy vọng cuối tuần bạn được nghỉ ngơi!", ["Hy vọng cuối tuần bạn được nghỉ ngơi"], {}],
+    "ko": ["주말 잘 쉬었길 바라요!", ["주말 잘 쉬었길 바라요"], {}]
+  },
+  {
+    "family": "09-report-then-verify", "i": ["REPORT_PROGRESS", "REQUEST_VERIFICATION"], "s": {"minutes": 33, "date": "today"}, "verbatim": ["goal"],
+    "en": ["I studied botany for 33 minutes today. Could you quiz me?", ["studied botany for 33 minutes", "Could you quiz me"], {"minutes":"33 minutes","date":"today","goal":"botany"}],
+    "vi": ["Hôm nay mình học thực vật học 33 phút. Cho mình làm bài kiểm tra nhé?", ["học thực vật học 33 phút", "làm bài kiểm tra"], {"minutes":"33 phút","date":"Hôm nay","goal":"thực vật học"}],
+    "ko": ["오늘 식물학을 33분 공부했어요. 퀴즈를 내 주실래요?", ["식물학을 33분 공부했어요","퀴즈를 내 주실래요"], {"minutes":"33분","date":"오늘","goal":"식물학"}]
+  },
+  {
+    "family": "10-progress-versus-recovery-target", "i": ["REPORT_PROGRESS", "REQUEST_RECOVERY"], "s": {"minutes": 17, "target": 23, "date": "today"},
+    "en": ["Today I did 17 minutes. Can we lower the target to 23 minutes?", ["I did 17 minutes","lower the target to 23 minutes"], {"minutes":"17 minutes","target":"23 minutes","date":"Today"}],
+    "vi": ["Hôm nay mình làm được 17 phút. Hạ mục tiêu xuống 23 phút được không?", ["làm được 17 phút","Hạ mục tiêu xuống 23 phút"], {"minutes":"17 phút","target":"23 phút","date":"Hôm nay"}],
+    "ko": ["오늘 17분 했어요. 목표를 23분으로 낮춰도 될까요?", ["17분 했어요","목표를 23분으로 낮춰도"], {"minutes":"17분","target":"23분","date":"오늘"}]
+  },
+  {
+    "family": "11-date-correction", "i": ["REPORT_PROGRESS"], "s": {"minutes": 38, "date": "yesterday"},
+    "en": ["I did 38 minutes today—sorry, that was yesterday.", ["I did 38 minutes"], {"minutes":"38 minutes","date":"yesterday"}],
+    "vi": ["Mình làm được 38 phút hôm nay—à nhầm, hôm qua mới đúng.", ["làm được 38 phút"], {"minutes":"38 phút","date":"hôm qua"}],
+    "ko": ["오늘 38분 했어요. 아, 오늘이 아니라 어제였어요.", ["38분 했어요"], {"minutes":"38분","date":"어제"}]
+  },
+  {
+    "family": "12-duration-correction", "i": ["REPORT_PROGRESS"], "s": {"minutes": 46},
+    "en": ["Log 64 minutes—scratch that, 46 minutes is my actual total.", ["46 minutes is my actual total"], {"minutes":"46 minutes"}],
+    "vi": ["Ghi 64 phút nhé—khoan, tổng thực tế là 46 phút.", ["tổng thực tế là 46 phút"], {"minutes":"46 phút"}],
+    "ko": ["64분으로 기록해 주세요. 아니, 실제로 한 건 총 46분이에요.", ["실제로 한 건 총 46분이에요"], {"minutes":"46분"}]
+  },
+  {
+    "family": "13-which-art-goal", "i": ["REPORT_PROGRESS", "CLARIFY"], "s": {"minutes": 19}, "m": ["goal"], "a": true,
+    "en": ["I did 19 minutes, but I'm unsure whether to log it under sketching or painting.", ["I did 19 minutes","under sketching or painting"], {"minutes":"19 minutes"}],
+    "vi": ["Mình làm được 19 phút, nhưng chưa biết nên ghi vào phác họa hay hội họa.", ["làm được 19 phút","phác họa hay hội họa"], {"minutes":"19 phút"}],
+    "ko": ["19분 했는데 스케치랑 회화 중 어느 목표에 기록할지 모르겠어요.", ["19분 했는데","스케치랑 회화 중 어느 목표"], {"minutes":"19분"}]
+  },
+  {
+    "family": "14-obstacle-and-unsized-recovery", "i": ["REPORT_OBSTACLE", "REQUEST_RECOVERY", "CLARIFY"], "s": {"date":"today"}, "verbatim": ["reason"], "m": ["target"],
+    "en": ["My bus broke down, so I need a lower target today.", ["My bus broke down","need a lower target today","a lower target"], {"reason":"My bus broke down","date":"today"}],
+    "vi": ["Xe buýt bị hỏng nên hôm nay mình cần giảm mục tiêu.", ["Xe buýt bị hỏng","hôm nay mình cần giảm mục tiêu","giảm mục tiêu"], {"reason":"Xe buýt bị hỏng","date":"hôm nay"}],
+    "ko": ["버스가 고장 나서 오늘 목표를 낮춰야 해요.", ["버스가 고장 나서","오늘 목표를 낮춰야 해요","목표를 낮춰야"], {"reason":"버스가 고장","date":"오늘"}]
+  },
+  {
+    "family": "15-unsupported-outbound-message", "i": ["CLARIFY"], "m": ["request"],
+    "en": ["Send a text to my pottery instructor saying I'll be late.", ["Send a text to my pottery instructor"], {}],
+    "vi": ["Nhắn tin cho thầy dạy gốm bảo mình sẽ đến muộn nhé.", ["Nhắn tin cho thầy dạy gốm"], {}],
+    "ko": ["도예 선생님께 늦는다고 문자 보내 주세요.", ["문자 보내 주세요"], {}]
+  },
+  {
+    "family": "16-target-with-two-dates", "i": ["REQUEST_RECOVERY", "CLARIFY"], "s": {"target": 24}, "m": ["date"], "a": true,
+    "en": ["Reduce the target to 24 minutes, either tomorrow or the day after tomorrow. I haven't decided.", ["Reduce the target to 24 minutes","either tomorrow or the day after tomorrow"], {"target":"24 minutes"}],
+    "vi": ["Giảm mục tiêu xuống 24 phút vào ngày mai hoặc ngày kia, mình chưa quyết.", ["Giảm mục tiêu xuống 24 phút","ngày mai hoặc ngày kia"], {"target":"24 phút"}],
+    "ko": ["목표를 24분으로 줄이고 싶은데 내일 할지 모레 할지 아직 못 정했어요.", ["목표를 24분으로 줄이고","내일 할지 모레 할지"], {"target":"24분"}]
+  },
+  {
+    "family": "17-anchored-calendar-query", "i": ["QUERY_PROGRESS"], "s": {"date": "2026-11-22"},
+    "en": ["What's my recorded total for the day before yesterday?", ["What's my recorded total"], {"date":"the day before yesterday"}],
+    "vi": ["Tổng thời gian đã ghi hôm kia là bao nhiêu?", ["Tổng thời gian đã ghi hôm kia là bao nhiêu"], {"date":"hôm kia"}],
+    "ko": ["그저께 기록된 총 시간이 얼마죠?", ["기록된 총 시간이 얼마죠"], {"date":"그저께"}]
+  },
+  {
+    "family": "18-rejected-other-id", "i": ["REJECT_ADJUSTMENT", "CLARIFY"], "s": {"proposal": "P-206"}, "m": ["pending"], "pending": "P-260",
+    "en": ["Reject adjustment P-206, please.", ["Reject adjustment P-206","P-206"], {"proposal":"P-206"}],
+    "vi": ["Bác đề xuất điều chỉnh P-206 giúp mình.", ["Bác đề xuất điều chỉnh P-206","P-206"], {"proposal":"P-206"}],
+    "ko": ["조정 제안 P-206은 거절해 주세요.", ["P-206은 거절해 주세요","P-206"], {"proposal":"P-206"}]
+  },
+  {
+    "family": "19-hours-and-chapter-count", "i": ["REPORT_PROGRESS", "QUERY_PROGRESS"], "s": {"minutes": 60, "date": "today"},
+    "en": ["I studied 3 chapters for 1 hour today. What's my total for today?", ["studied 3 chapters for 1 hour","What's my total for today"], {"minutes":"1 hour","date":"today"}],
+    "vi": ["Hôm nay mình học 3 chương trong 1 giờ. Tổng thời gian hôm nay là bao nhiêu?", ["học 3 chương trong 1 giờ","Tổng thời gian hôm nay là bao nhiêu"], {"minutes":"1 giờ","date":"Hôm nay"}],
+    "ko": ["오늘 3개 장을 1시간 공부했어요. 오늘 총 몇 분 했죠?", ["3개 장을 1시간 공부했어요","오늘 총 몇 분 했죠"], {"minutes":"1시간","date":"오늘"}]
+  },
+  {
+    "family": "20-matching-approval", "i": ["APPROVE_ADJUSTMENT"], "s": {"proposal": "P-93"}, "pending": "P-93",
+    "en": ["Yes, I approve the proposed adjustment P-93.", ["I approve the proposed adjustment P-93"], {"proposal":"P-93"}],
+    "vi": ["Ừ, mình đồng ý với đề xuất điều chỉnh P-93.", ["đồng ý với đề xuất điều chỉnh P-93"], {"proposal":"P-93"}],
+    "ko": ["네, 조정 제안 P-93을 승인합니다.", ["P-93을 승인합니다"], {"proposal":"P-93"}]
+  }
+]

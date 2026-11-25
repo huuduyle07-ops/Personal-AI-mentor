@@ -1,0 +1,17 @@
+{
+  "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+  "revision": "fe8a4ea1ffedaf415f4da2f062534de366a451e6",
+  "seed": 42,
+  "sequence_length": 256,
+  "rank": 8,
+  "alpha": 16,
+  "dropout": 0.05,
+  "targets": ["q_proj", "v_proj"],
+  "gradient_accumulation": 8,
+  "microbatch_size": 1,
+  "learning_rate": 0.0002,
+  "smoke_steps": 10,
+  "sft_steps": 48,
+  "validate_every": 16,
+  "max_new_tokens": 80
+}
