@@ -1,0 +1,10 @@
+/artifacts/
+/.venv/
+*.safetensors
+*.bin
+*.gguf
+*.pt
+*.jsonl
+*.parquet
+*.tar.gz
+checkpoint-*/

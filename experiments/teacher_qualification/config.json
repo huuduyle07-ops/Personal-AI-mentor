@@ -1,0 +1,19 @@
+{
+  "endpoint": "http://127.0.0.1:11435",
+  "other_endpoint": "http://127.0.0.1:11434",
+  "models": ["qwen3.5:4b", "qwen3.5:9b"],
+  "options": {"num_ctx": 2048, "num_predict": 256, "temperature": 0, "seed": 42},
+  "think": false,
+  "parallel_requests": 1,
+  "keep_alive": "2m",
+  "server_startup_timeout_s": 60,
+  "ollama_vulkan": false,
+  "timeout_s": 90,
+  "sample_interval_s": 0.5,
+  "minimum_preload_available_mib": 4096,
+  "minimum_running_available_mib": 1536,
+  "minimum_running_available_commit_mib": 2048,
+  "paging_read_mib_s": 32,
+  "paging_headroom_mib": 3072,
+  "pressure_samples": 3
+}
