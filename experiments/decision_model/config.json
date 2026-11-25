@@ -1,0 +1,22 @@
+{
+  "version": "0.1",
+  "split_seed": 6101,
+  "persona_seed": 6102,
+  "behavior_seed": 6103,
+  "augmentation_seed": 6104,
+  "personas_per_family": 24,
+  "episodes_per_persona": 2,
+  "episode_days": 28,
+  "history_days": 14,
+  "report_window_start": "18:00",
+  "report_window_end": "23:00",
+  "model_seeds": [7, 19, 43],
+  "hidden_sizes": [16, 32],
+  "epochs": 30,
+  "batch_size": 256,
+  "learning_rate": 0.01,
+  "logistic_C": [0.1, 1.0, 10.0],
+  "shuffle_seed": 6105,
+  "robustness_seed": 6106,
+  "cpu_threads": 1
+}

@@ -2,6 +2,8 @@
 
 This package is research infrastructure. Production does not import it or load its model. All examples are synthetic and no Discord records are read.
 
+The [experiment audit](AUDIT.md) reproduces seed 42, explains validation collapse, checks split/label integrity, and compares the original encoding with a mixed ColumnTransformer across ten fixed seeds. See [audit_results.json](audit_results.json) for the measured snapshot. Production routing remains unchanged.
+
 ## Hypothesis and baseline
 
 Hypothesis: TF-IDF plus logistic regression may generalize across held-out accountability scenario families well enough to justify further research. The reference baseline is the production deterministic RuleRouter. Variables changed in this experiment are the routing policy and validation-selected regularization strength; both policies receive the same observable metadata and text.

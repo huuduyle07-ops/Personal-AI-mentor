@@ -12,6 +12,10 @@ def now_kst():
     return datetime.now(KST)
 
 
+def following_day(day):
+    return (date.fromisoformat(day) + timedelta(days=1)).isoformat()
+
+
 def valid_day(day):
     if not isinstance(day, str) or date.fromisoformat(day).isoformat() != day:
         raise ValueError("Use an ISO date: YYYY-MM-DD")

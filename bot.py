@@ -1,6 +1,7 @@
 """Discord slash-command integration. Importing this module performs no I/O."""
 import asyncio
 import logging
+import sqlite3
 from typing import Literal
 
 import discord
@@ -8,13 +9,15 @@ from discord import app_commands
 from dotenv import load_dotenv
 
 from config import Config
+from conversation import Conversation
+from dm_replies import AdjustmentPrompt
 from core import GoalStore, daily_review
 from llm_adapter import OllamaAdapter
 from memory import Memory, record
 from recovery import Recovery
 from router import AuditedRouter, Route, RoutingInput
 from scheduler import CheckinScheduler, DeliveryError
-from time_utils import now_kst
+from time_utils import KST, now_kst
 from verification import Verification
 
 log = logging.getLogger(__name__)
@@ -38,15 +41,47 @@ class PrivateTree(app_commands.CommandTree):
 
 class PersonalBot(discord.Client):
     def __init__(self, config, store):
-        super().__init__(intents=discord.Intents(guilds=True), allowed_mentions=discord.AllowedMentions.none())
+        super().__init__(intents=discord.Intents(guilds=True, dm_messages=True), max_messages=None,
+                         allowed_mentions=discord.AllowedMentions.none())
         self.config, self.store = config, store
         self.tree = PrivateTree(self)
         self.scheduler = CheckinScheduler(store, config.allowed_user_id, self.send_checkin)
         self.routing = AuditedRouter(store)
         self.verification, self.recovery = Verification(store), Recovery(store)
         self.memory, self.inference = Memory(store), OllamaAdapter(config)
+        self.conversation = Conversation(store, config.allowed_user_id, self.inference,
+                                         self.recovery, self.verification, today)
         self.scheduler_task = None
         register_commands(self)
+
+    async def on_message(self, message):
+        if (message.author.bot or message.author.id != self.config.allowed_user_id
+                or message.guild is not None or message.channel.type != discord.ChannelType.private
+                or message.type not in {discord.MessageType.default, discord.MessageType.reply}
+                or not message.content.strip()):
+            return
+        day = message.created_at.astimezone(KST).date().isoformat()
+        reply_to = message.reference.message_id if message.type == discord.MessageType.reply and message.reference else None
+        try:
+            reply = await self.conversation.receive(message.author.id, message.id, message.content, day, reply_to=reply_to)
+        except Exception as exc:
+            log.warning("DM processing failed (%s)", type(exc).__name__)
+            reply = "I couldn't process that request. Check today's progress before trying again."
+        if reply:
+            try:
+                body = reply.text if isinstance(reply, AdjustmentPrompt) else reply
+                sent = await message.channel.send(discord.utils.escape_markdown(body)[:2000],
+                                                  allowed_mentions=discord.AllowedMentions.none())
+                if isinstance(reply, AdjustmentPrompt):
+                    # Bind consent to a Discord-issued reply ID only after confirmed delivery.
+                    # The numbered approval path also works after an uncertain delivery.
+                    with self.store.connect() as db:
+                        record(db, message.author.id, day, "dm_approval_prompt",
+                               {"proposal_id": reply.proposal_id, "message_id": sent.id}, "system")
+            except discord.HTTPException as exc:
+                log.warning("DM reply delivery failed (%s)", type(exc).__name__)
+            except sqlite3.Error:
+                log.warning("DM approval prompt binding failed; numbered approval is available")
 
     async def setup_hook(self):
         # Global commands make slash interactions available in bot DMs too.

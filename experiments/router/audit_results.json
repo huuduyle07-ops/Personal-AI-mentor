@@ -1,0 +1,3868 @@
+{
+  "protocol": {
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      42,
+      73,
+      101,
+      2026,
+      2027
+    ],
+    "C_grid": [
+      0.5,
+      2.0,
+      8.0
+    ],
+    "samples_per_family": 20,
+    "labels": [
+      "RULE",
+      "CLARIFY",
+      "LLM",
+      "DEFER"
+    ],
+    "models": [
+      "unchanged serialized char TF-IDF + LR",
+      "ColumnTransformer char TF-IDF + OHE + imputed/scaled minutes + LR"
+    ],
+    "selection": "validation macro-F1 only; ties prefer smaller C; all models frozen before test phase",
+    "status": "post-hoc diagnostic comparison; existing seed-42 test was already exposed",
+    "source_hashes_before": {
+      "bot.py": "5132464b0cc4645f862fc263a56ec661e97ec98304bed39d663f3c64a65f60d8",
+      "check.py": "f35033cc512325a2fd4ee53fa0353fb84466ef84c1d410ede7f514e61325bb7f",
+      "config.py": "bb7f1d40c74f09e39365fec2b93896ddb92d21a39da13d70861a210605549df5",
+      "core.py": "e0854e4c0e2a2fb1a13bc4613a9f29e8c106489601a95c585f1ac1b1115a9ca2",
+      "experiments\\router\\__init__.py": "7a3c7a72977bbe3ad7384ab8323dce1de749786d89f501a9fe3d4c1cc0da4f42",
+      "experiments\\router\\audit.py": "fc9f9bbcb71afb81127edd96c35780c9796a11784b6a972e707c55dec2e7dec2",
+      "experiments\\router\\baseline.py": "e32031ea3a3e04012fd7d28324d9b62293fed326c19522999dd45a5178608b66",
+      "experiments\\router\\dataset.py": "49189cd39b91b4bf4c8d0a353c765cef4b03c04e9322a05e7bb5447ac1aaeafd",
+      "experiments\\router\\mixed_baseline.py": "2c7f91376ad82384c6a11cc7bf3706fa409143dfbd0b789435f03edc9ab3bd09",
+      "experiments\\router\\run.py": "9c693bfc6adba47d6c4605ff2bcdc3b24dca2859046e1444780b2282725b7c3c",
+      "experiments\\router\\test_audit.py": "a7d2e39ead1ea62ebfc06cf53a36dda971c35ac8db9fa6c5fc8a3c758c7d4573",
+      "llm_adapter.py": "ddcd679c067b07675f314d51f3d54d493047b78fc29d7373da23a464cd1ccd4f",
+      "memory.py": "43b4cf285f66bbe33974a748a93018bbec174a925bd4585a8c3f5d363f6accfd",
+      "pyproject.toml": "45abbe64257bfea0b96e78743d918fb631f0ef9d25f87f9cf54ab58ec8d78128",
+      "recovery.py": "55ad7fb2ba9f95521290bca6813ae735e71d17fec24e947a296960320c41a7eb",
+      "router.py": "23060cdbf4c33cb40c3030adc9072851433aa1d48ce35419d7450416fd801340",
+      "scheduler.py": "80ff7ac66255ef19f93a353c283c8d174a1995d69c1faaedbde60239ecf8ea20",
+      "time_utils.py": "b4ee14fc1a1f5c3915e6a27e49b479b0bd0ba14d6b6cf7a78bc08c41de3ab350",
+      "uv.lock": "9497844a5f3e39a6299fdd0d922d17547c21bd5043ba651b03b47b050e9d2e26",
+      "verification.py": "302ae0eed8e7eb58a034c244fe86aa98d6a4cdb214a58caaa25e22ab22477957"
+    },
+    "environment": {
+      "python": "3.11.9",
+      "sklearn": "1.9.1",
+      "platform": "Windows-10-10.0.26300-SP0"
+    }
+  },
+  "summary": {
+    "rule": {
+      "validation_accuracy": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "validation_macro_f1": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "test_accuracy": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "test_macro_f1": {
+        "mean": 1.0,
+        "sd": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "test_recall_RULE": {
+        "mean": 1.0,
+        "sd": 0.0
+      },
+      "test_recall_CLARIFY": {
+        "mean": 1.0,
+        "sd": 0.0
+      },
+      "test_recall_LLM": {
+        "mean": 1.0,
+        "sd": 0.0
+      },
+      "test_recall_DEFER": {
+        "mean": 1.0,
+        "sd": 0.0
+      },
+      "pooled_test_confusion_matrix": [
+        [
+          400,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          400,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          400,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          400
+        ]
+      ]
+    },
+    "serialized": {
+      "validation_accuracy": {
+        "mean": 0.54375,
+        "sd": 0.19572248635930073,
+        "min": 0.25,
+        "max": 0.75
+      },
+      "validation_macro_f1": {
+        "mean": 0.45720152895945165,
+        "sd": 0.21013485101420548,
+        "min": 0.1,
+        "max": 0.6666666666666666
+      },
+      "test_accuracy": {
+        "mean": 0.583125,
+        "sd": 0.1441284270094634,
+        "min": 0.34375,
+        "max": 0.79375
+      },
+      "test_macro_f1": {
+        "mean": 0.536360017988956,
+        "sd": 0.1515888123993469,
+        "min": 0.30952380952380953,
+        "max": 0.7514592355488608
+      },
+      "test_recall_RULE": {
+        "mean": 0.2675,
+        "sd": 0.25056879738351745
+      },
+      "test_recall_CLARIFY": {
+        "mean": 0.9,
+        "sd": 0.31622776601683794
+      },
+      "test_recall_LLM": {
+        "mean": 0.3275,
+        "sd": 0.3338433598094904
+      },
+      "test_recall_DEFER": {
+        "mean": 0.8375,
+        "sd": 0.23607025790358824
+      },
+      "pooled_test_confusion_matrix": [
+        [
+          107,
+          280,
+          13,
+          0
+        ],
+        [
+          40,
+          360,
+          0,
+          0
+        ],
+        [
+          60,
+          203,
+          131,
+          6
+        ],
+        [
+          40,
+          5,
+          20,
+          335
+        ]
+      ]
+    },
+    "mixed": {
+      "validation_accuracy": {
+        "mean": 0.66625,
+        "sd": 0.23482041010099614,
+        "min": 0.25,
+        "max": 1.0
+      },
+      "validation_macro_f1": {
+        "mean": 0.6377579737335834,
+        "sd": 0.22840584506248407,
+        "min": 0.25,
+        "max": 1.0
+      },
+      "test_accuracy": {
+        "mean": 0.724375,
+        "sd": 0.16500341957735973,
+        "min": 0.375,
+        "max": 0.875
+      },
+      "test_macro_f1": {
+        "mean": 0.7121969696969697,
+        "sd": 0.1719670827016171,
+        "min": 0.35,
+        "max": 0.8666666666666667
+      },
+      "test_recall_RULE": {
+        "mean": 0.6,
+        "sd": 0.21081851067789195
+      },
+      "test_recall_CLARIFY": {
+        "mean": 0.45,
+        "sd": 0.3689323936863109
+      },
+      "test_recall_LLM": {
+        "mean": 0.8475,
+        "sd": 0.33633027748859534
+      },
+      "test_recall_DEFER": {
+        "mean": 1.0,
+        "sd": 0.0
+      },
+      "pooled_test_confusion_matrix": [
+        [
+          240,
+          160,
+          0,
+          0
+        ],
+        [
+          140,
+          180,
+          80,
+          0
+        ],
+        [
+          0,
+          61,
+          339,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          400
+        ]
+      ]
+    }
+  },
+  "seed42": {
+    "seed": 42,
+    "integrity": {
+      "family_counts": {
+        "train": 12,
+        "validation": 4,
+        "test": 8
+      },
+      "row_counts": {
+        "train": 240,
+        "validation": 80,
+        "test": 160
+      },
+      "families": {
+        "train": [
+          "archive_review",
+          "daily_review",
+          "fatigue",
+          "goal_creation",
+          "learning_strategy",
+          "long_term",
+          "missing_minutes",
+          "motivation",
+          "negative_minutes",
+          "optional_material",
+          "quiz_reply",
+          "terse_help"
+        ],
+        "validation": [
+          "excess_minutes",
+          "later_planning",
+          "schedule_control",
+          "work_conflict"
+        ],
+        "test": [
+          "competing_tasks",
+          "future_schedule",
+          "recovery_approval",
+          "reflection",
+          "report_total",
+          "terse_done",
+          "unknown_command",
+          "weekly_reflection"
+        ]
+      },
+      "class_counts": {
+        "train": {
+          "CLARIFY": 60,
+          "DEFER": 60,
+          "LLM": 60,
+          "RULE": 60
+        },
+        "validation": {
+          "LLM": 20,
+          "DEFER": 20,
+          "RULE": 20,
+          "CLARIFY": 20
+        },
+        "test": {
+          "DEFER": 40,
+          "RULE": 40,
+          "CLARIFY": 40,
+          "LLM": 40
+        }
+      },
+      "pairwise_overlap": {
+        "train/validation": {
+          "families": [],
+          "exact_text_count": 0,
+          "numeric_normalized_template_count": 0,
+          "encoded_input_count": 0
+        },
+        "train/test": {
+          "families": [],
+          "exact_text_count": 0,
+          "numeric_normalized_template_count": 0,
+          "encoded_input_count": 0
+        },
+        "validation/test": {
+          "families": [],
+          "exact_text_count": 0,
+          "numeric_normalized_template_count": 0,
+          "encoded_input_count": 0
+        }
+      },
+      "label_mismatches": [],
+      "note": "Rule agreement is a contract check, not independent human adjudication of labels"
+    },
+    "serialized": {
+      "selected_C": 0.5,
+      "validation": {
+        "accuracy": 0.25,
+        "macro_f1": 0.1,
+        "confusion_matrix": [
+          [
+            0,
+            20,
+            0,
+            0
+          ],
+          [
+            0,
+            20,
+            0,
+            0
+          ],
+          [
+            0,
+            20,
+            0,
+            0
+          ],
+          [
+            0,
+            20,
+            0,
+            0
+          ]
+        ],
+        "per_class": {
+          "RULE": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 20.0
+          },
+          "CLARIFY": {
+            "precision": 0.25,
+            "recall": 1.0,
+            "f1-score": 0.4,
+            "support": 20.0
+          },
+          "LLM": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 20.0
+          },
+          "DEFER": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 20.0
+          },
+          "accuracy": 0.25,
+          "macro avg": {
+            "precision": 0.0625,
+            "recall": 0.25,
+            "f1-score": 0.1,
+            "support": 80.0
+          },
+          "weighted avg": {
+            "precision": 0.0625,
+            "recall": 0.25,
+            "f1-score": 0.1,
+            "support": 80.0
+          }
+        }
+      },
+      "candidates": [
+        {
+          "C": 0.5,
+          "validation": {
+            "accuracy": 0.25,
+            "macro_f1": 0.1,
+            "confusion_matrix": [
+              [
+                0,
+                20,
+                0,
+                0
+              ],
+              [
+                0,
+                20,
+                0,
+                0
+              ],
+              [
+                0,
+                20,
+                0,
+                0
+              ],
+              [
+                0,
+                20,
+                0,
+                0
+              ]
+            ],
+            "per_class": {
+              "RULE": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 20.0
+              },
+              "CLARIFY": {
+                "precision": 0.25,
+                "recall": 1.0,
+                "f1-score": 0.4,
+                "support": 20.0
+              },
+              "LLM": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 20.0
+              },
+              "DEFER": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 20.0
+              },
+              "accuracy": 0.25,
+              "macro avg": {
+                "precision": 0.0625,
+                "recall": 0.25,
+                "f1-score": 0.1,
+                "support": 80.0
+              },
+              "weighted avg": {
+                "precision": 0.0625,
+                "recall": 0.25,
+                "f1-score": 0.1,
+                "support": 80.0
+              }
+            }
+          }
+        },
+        {
+          "C": 2.0,
+          "validation": {
+            "accuracy": 0.25,
+            "macro_f1": 0.1,
+            "confusion_matrix": [
+              [
+                0,
+                20,
+                0,
+                0
+              ],
+              [
+                0,
+                20,
+                0,
+                0
+              ],
+              [
+                0,
+                20,
+                0,
+                0
+              ],
+              [
+                0,
+                20,
+                0,
+                0
+              ]
+            ],
+            "per_class": {
+              "RULE": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 20.0
+              },
+              "CLARIFY": {
+                "precision": 0.25,
+                "recall": 1.0,
+                "f1-score": 0.4,
+                "support": 20.0
+              },
+              "LLM": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 20.0
+              },
+              "DEFER": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 20.0
+              },
+              "accuracy": 0.25,
+              "macro avg": {
+                "precision": 0.0625,
+                "recall": 0.25,
+                "f1-score": 0.1,
+                "support": 80.0
+              },
+              "weighted avg": {
+                "precision": 0.0625,
+                "recall": 0.25,
+                "f1-score": 0.1,
+                "support": 80.0
+              }
+            }
+          }
+        },
+        {
+          "C": 8.0,
+          "validation": {
+            "accuracy": 0.25,
+            "macro_f1": 0.1,
+            "confusion_matrix": [
+              [
+                0,
+                20,
+                0,
+                0
+              ],
+              [
+                0,
+                20,
+                0,
+                0
+              ],
+              [
+                0,
+                20,
+                0,
+                0
+              ],
+              [
+                0,
+                20,
+                0,
+                0
+              ]
+            ],
+            "per_class": {
+              "RULE": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 20.0
+              },
+              "CLARIFY": {
+                "precision": 0.25,
+                "recall": 1.0,
+                "f1-score": 0.4,
+                "support": 20.0
+              },
+              "LLM": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 20.0
+              },
+              "DEFER": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 20.0
+              },
+              "accuracy": 0.25,
+              "macro avg": {
+                "precision": 0.0625,
+                "recall": 0.25,
+                "f1-score": 0.1,
+                "support": 80.0
+              },
+              "weighted avg": {
+                "precision": 0.0625,
+                "recall": 0.25,
+                "f1-score": 0.1,
+                "support": 80.0
+              }
+            }
+          }
+        }
+      ],
+      "validation_families": [
+        {
+          "family": "excess_minutes",
+          "true_label": "CLARIFY",
+          "rows": 20,
+          "prediction_counts": {
+            "CLARIFY": 20
+          },
+          "example": {
+            "text": "The total exceeds a day for exercise 514",
+            "command": "report",
+            "minutes": 2000,
+            "non_urgent": false,
+            "priority": "GENERAL"
+          }
+        },
+        {
+          "family": "later_planning",
+          "true_label": "DEFER",
+          "rows": 20,
+          "prediction_counts": {
+            "CLARIFY": 20
+          },
+          "example": {
+            "text": "Help plan next month after project 9932 when there is time",
+            "command": null,
+            "minutes": null,
+            "non_urgent": true,
+            "priority": "GENERAL"
+          }
+        },
+        {
+          "family": "schedule_control",
+          "true_label": "RULE",
+          "rows": 20,
+          "prediction_counts": {
+            "CLARIFY": 20
+          },
+          "example": {
+            "text": "Pause my scheduled reminder number 7428",
+            "command": "checkins",
+            "minutes": null,
+            "non_urgent": false,
+            "priority": "GENERAL"
+          }
+        },
+        {
+          "family": "work_conflict",
+          "true_label": "LLM",
+          "rows": 20,
+          "prediction_counts": {
+            "CLARIFY": 20
+          },
+          "example": {
+            "text": "My work shift changed and I need help planning Korean lesson 2170",
+            "command": null,
+            "minutes": null,
+            "non_urgent": false,
+            "priority": "GENERAL"
+          }
+        }
+      ],
+      "test": {
+        "accuracy": 0.625,
+        "macro_f1": 0.5595238095238095,
+        "confusion_matrix": [
+          [
+            20,
+            20,
+            0,
+            0
+          ],
+          [
+            0,
+            40,
+            0,
+            0
+          ],
+          [
+            0,
+            40,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            40
+          ]
+        ],
+        "per_class": {
+          "RULE": {
+            "precision": 1.0,
+            "recall": 0.5,
+            "f1-score": 0.6666666666666666,
+            "support": 40.0
+          },
+          "CLARIFY": {
+            "precision": 0.4,
+            "recall": 1.0,
+            "f1-score": 0.5714285714285714,
+            "support": 40.0
+          },
+          "LLM": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 40.0
+          },
+          "DEFER": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 40.0
+          },
+          "accuracy": 0.625,
+          "macro avg": {
+            "precision": 0.6,
+            "recall": 0.625,
+            "f1-score": 0.5595238095238095,
+            "support": 160.0
+          },
+          "weighted avg": {
+            "precision": 0.6,
+            "recall": 0.625,
+            "f1-score": 0.5595238095238095,
+            "support": 160.0
+          }
+        }
+      },
+      "test_families": [
+        {
+          "family": "competing_tasks",
+          "true_label": "LLM",
+          "rows": 20,
+          "prediction_counts": {
+            "CLARIFY": 20
+          },
+          "example": {
+            "text": "Help me balance coursework and vocabulary project 4956 this week",
+            "command": null,
+            "minutes": null,
+            "non_urgent": false,
+            "priority": "GENERAL"
+          }
+        },
+        {
+          "family": "future_schedule",
+          "true_label": "DEFER",
+          "rows": 20,
+          "prediction_counts": {
+            "DEFER": 20
+          },
+          "example": {
+            "text": "Think about next semester timetable option 6888 at a convenient time",
+            "command": null,
+            "minutes": null,
+            "non_urgent": true,
+            "priority": "GENERAL"
+          }
+        },
+        {
+          "family": "recovery_approval",
+          "true_label": "RULE",
+          "rows": 20,
+          "prediction_counts": {
+            "RULE": 20
+          },
+          "example": {
+            "text": "Approve proposed daily adjustment 6543",
+            "command": "adjust",
+            "minutes": null,
+            "non_urgent": false,
+            "priority": "GENERAL"
+          }
+        },
+        {
+          "family": "reflection",
+          "true_label": "LLM",
+          "rows": 20,
+          "prediction_counts": {
+            "CLARIFY": 20
+          },
+          "example": {
+            "text": "Can you help interpret my difficulty with Korean practice set 3335",
+            "command": null,
+            "minutes": null,
+            "non_urgent": false,
+            "priority": "GENERAL"
+          }
+        },
+        {
+          "family": "report_total",
+          "true_label": "RULE",
+          "rows": 20,
+          "prediction_counts": {
+            "CLARIFY": 20
+          },
+          "example": {
+            "text": "Logging 5155 minutes of Korean study today",
+            "command": "report",
+            "minutes": 30,
+            "non_urgent": false,
+            "priority": "GENERAL"
+          }
+        },
+        {
+          "family": "terse_done",
+          "true_label": "CLARIFY",
+          "rows": 20,
+          "prediction_counts": {
+            "CLARIFY": 20
+          },
+          "example": {
+            "text": "done9440",
+            "command": null,
+            "minutes": null,
+            "non_urgent": false,
+            "priority": "GENERAL"
+          }
+        },
+        {
+          "family": "unknown_command",
+          "true_label": "CLARIFY",
+          "rows": 20,
+          "prediction_counts": {
+            "CLARIFY": 20
+          },
+          "example": {
+            "text": "Try my unsupported operation number 7579",
+            "command": "invented",
+            "minutes": null,
+            "non_urgent": false,
+            "priority": "GENERAL"
+          }
+        },
+        {
+          "family": "weekly_reflection",
+          "true_label": "DEFER",
+          "rows": 20,
+          "prediction_counts": {
+            "DEFER": 20
+          },
+          "example": {
+            "text": "Review my weekly learning pattern for week 5279 whenever convenient",
+            "command": null,
+            "minutes": null,
+            "non_urgent": true,
+            "priority": "GENERAL"
+          }
+        }
+      ]
+    },
+    "mixed": {
+      "selected_C": 0.5,
+      "validation": {
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "confusion_matrix": [
+          [
+            20,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            20,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            20,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            20
+          ]
+        ],
+        "per_class": {
+          "RULE": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 20.0
+          },
+          "CLARIFY": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 20.0
+          },
+          "LLM": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 20.0
+          },
+          "DEFER": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 20.0
+          },
+          "accuracy": 1.0,
+          "macro avg": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 80.0
+          },
+          "weighted avg": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 80.0
+          }
+        }
+      },
+      "candidates": [
+        {
+          "C": 0.5,
+          "validation": {
+            "accuracy": 1.0,
+            "macro_f1": 1.0,
+            "confusion_matrix": [
+              [
+                20,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                20,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                20,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                20
+              ]
+            ],
+            "per_class": {
+              "RULE": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 20.0
+              },
+              "CLARIFY": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 20.0
+              },
+              "LLM": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 20.0
+              },
+              "DEFER": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 20.0
+              },
+              "accuracy": 1.0,
+              "macro avg": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 80.0
+              },
+              "weighted avg": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 80.0
+              }
+            }
+          }
+        },
+        {
+          "C": 2.0,
+          "validation": {
+            "accuracy": 0.75,
+            "macro_f1": 0.6666666666666666,
+            "confusion_matrix": [
+              [
+                20,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                20,
+                0,
+                0
+              ],
+              [
+                0,
+                20,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                20
+              ]
+            ],
+            "per_class": {
+              "RULE": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 20.0
+              },
+              "CLARIFY": {
+                "precision": 0.5,
+                "recall": 1.0,
+                "f1-score": 0.6666666666666666,
+                "support": 20.0
+              },
+              "LLM": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 20.0
+              },
+              "DEFER": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 20.0
+              },
+              "accuracy": 0.75,
+              "macro avg": {
+                "precision": 0.625,
+                "recall": 0.75,
+                "f1-score": 0.6666666666666666,
+                "support": 80.0
+              },
+              "weighted avg": {
+                "precision": 0.625,
+                "recall": 0.75,
+                "f1-score": 0.6666666666666666,
+                "support": 80.0
+              }
+            }
+          }
+        },
+        {
+          "C": 8.0,
+          "validation": {
+            "accuracy": 0.75,
+            "macro_f1": 0.6666666666666666,
+            "confusion_matrix": [
+              [
+                20,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                20,
+                0,
+                0
+              ],
+              [
+                0,
+                20,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                20
+              ]
+            ],
+            "per_class": {
+              "RULE": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 20.0
+              },
+              "CLARIFY": {
+                "precision": 0.5,
+                "recall": 1.0,
+                "f1-score": 0.6666666666666666,
+                "support": 20.0
+              },
+              "LLM": {
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1-score": 0.0,
+                "support": 20.0
+              },
+              "DEFER": {
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1-score": 1.0,
+                "support": 20.0
+              },
+              "accuracy": 0.75,
+              "macro avg": {
+                "precision": 0.625,
+                "recall": 0.75,
+                "f1-score": 0.6666666666666666,
+                "support": 80.0
+              },
+              "weighted avg": {
+                "precision": 0.625,
+                "recall": 0.75,
+                "f1-score": 0.6666666666666666,
+                "support": 80.0
+              }
+            }
+          }
+        }
+      ],
+      "validation_families": [
+        {
+          "family": "excess_minutes",
+          "true_label": "CLARIFY",
+          "rows": 20,
+          "prediction_counts": {
+            "CLARIFY": 20
+          },
+          "example": {
+            "text": "The total exceeds a day for exercise 514",
+            "command": "report",
+            "minutes": 2000,
+            "non_urgent": false,
+            "priority": "GENERAL"
+          }
+        },
+        {
+          "family": "later_planning",
+          "true_label": "DEFER",
+          "rows": 20,
+          "prediction_counts": {
+            "DEFER": 20
+          },
+          "example": {
+            "text": "Help plan next month after project 9932 when there is time",
+            "command": null,
+            "minutes": null,
+            "non_urgent": true,
+            "priority": "GENERAL"
+          }
+        },
+        {
+          "family": "schedule_control",
+          "true_label": "RULE",
+          "rows": 20,
+          "prediction_counts": {
+            "RULE": 20
+          },
+          "example": {
+            "text": "Pause my scheduled reminder number 7428",
+            "command": "checkins",
+            "minutes": null,
+            "non_urgent": false,
+            "priority": "GENERAL"
+          }
+        },
+        {
+          "family": "work_conflict",
+          "true_label": "LLM",
+          "rows": 20,
+          "prediction_counts": {
+            "LLM": 20
+          },
+          "example": {
+            "text": "My work shift changed and I need help planning Korean lesson 2170",
+            "command": null,
+            "minutes": null,
+            "non_urgent": false,
+            "priority": "GENERAL"
+          }
+        }
+      ],
+      "test": {
+        "accuracy": 0.61875,
+        "macro_f1": 0.571969696969697,
+        "confusion_matrix": [
+          [
+            20,
+            20,
+            0,
+            0
+          ],
+          [
+            20,
+            0,
+            20,
+            0
+          ],
+          [
+            0,
+            1,
+            39,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            40
+          ]
+        ],
+        "per_class": {
+          "RULE": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1-score": 0.5,
+            "support": 40.0
+          },
+          "CLARIFY": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 40.0
+          },
+          "LLM": {
+            "precision": 0.6610169491525424,
+            "recall": 0.975,
+            "f1-score": 0.7878787878787878,
+            "support": 40.0
+          },
+          "DEFER": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 40.0
+          },
+          "accuracy": 0.61875,
+          "macro avg": {
+            "precision": 0.5402542372881356,
+            "recall": 0.61875,
+            "f1-score": 0.571969696969697,
+            "support": 160.0
+          },
+          "weighted avg": {
+            "precision": 0.5402542372881356,
+            "recall": 0.61875,
+            "f1-score": 0.571969696969697,
+            "support": 160.0
+          }
+        }
+      },
+      "test_families": [
+        {
+          "family": "competing_tasks",
+          "true_label": "LLM",
+          "rows": 20,
+          "prediction_counts": {
+            "LLM": 20
+          },
+          "example": {
+            "text": "Help me balance coursework and vocabulary project 4956 this week",
+            "command": null,
+            "minutes": null,
+            "non_urgent": false,
+            "priority": "GENERAL"
+          }
+        },
+        {
+          "family": "future_schedule",
+          "true_label": "DEFER",
+          "rows": 20,
+          "prediction_counts": {
+            "DEFER": 20
+          },
+          "example": {
+            "text": "Think about next semester timetable option 6888 at a convenient time",
+            "command": null,
+            "minutes": null,
+            "non_urgent": true,
+            "priority": "GENERAL"
+          }
+        },
+        {
+          "family": "recovery_approval",
+          "true_label": "RULE",
+          "rows": 20,
+          "prediction_counts": {
+            "RULE": 20
+          },
+          "example": {
+            "text": "Approve proposed daily adjustment 6543",
+            "command": "adjust",
+            "minutes": null,
+            "non_urgent": false,
+            "priority": "GENERAL"
+          }
+        },
+        {
+          "family": "reflection",
+          "true_label": "LLM",
+          "rows": 20,
+          "prediction_counts": {
+            "LLM": 19,
+            "CLARIFY": 1
+          },
+          "example": {
+            "text": "Can you help interpret my difficulty with Korean practice set 3335",
+            "command": null,
+            "minutes": null,
+            "non_urgent": false,
+            "priority": "GENERAL"
+          }
+        },
+        {
+          "family": "report_total",
+          "true_label": "RULE",
+          "rows": 20,
+          "prediction_counts": {
+            "CLARIFY": 20
+          },
+          "example": {
+            "text": "Logging 5155 minutes of Korean study today",
+            "command": "report",
+            "minutes": 30,
+            "non_urgent": false,
+            "priority": "GENERAL"
+          }
+        },
+        {
+          "family": "terse_done",
+          "true_label": "CLARIFY",
+          "rows": 20,
+          "prediction_counts": {
+            "LLM": 20
+          },
+          "example": {
+            "text": "done9440",
+            "command": null,
+            "minutes": null,
+            "non_urgent": false,
+            "priority": "GENERAL"
+          }
+        },
+        {
+          "family": "unknown_command",
+          "true_label": "CLARIFY",
+          "rows": 20,
+          "prediction_counts": {
+            "RULE": 20
+          },
+          "example": {
+            "text": "Try my unsupported operation number 7579",
+            "command": "invented",
+            "minutes": null,
+            "non_urgent": false,
+            "priority": "GENERAL"
+          }
+        },
+        {
+          "family": "weekly_reflection",
+          "true_label": "DEFER",
+          "rows": 20,
+          "prediction_counts": {
+            "DEFER": 20
+          },
+          "example": {
+            "text": "Review my weekly learning pattern for week 5279 whenever convenient",
+            "command": null,
+            "minutes": null,
+            "non_urgent": true,
+            "priority": "GENERAL"
+          }
+        }
+      ]
+    },
+    "rule": {
+      "validation": {
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "confusion_matrix": [
+          [
+            20,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            20,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            20,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            20
+          ]
+        ],
+        "per_class": {
+          "RULE": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 20.0
+          },
+          "CLARIFY": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 20.0
+          },
+          "LLM": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 20.0
+          },
+          "DEFER": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 20.0
+          },
+          "accuracy": 1.0,
+          "macro avg": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 80.0
+          },
+          "weighted avg": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 80.0
+          }
+        }
+      },
+      "test": {
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "confusion_matrix": [
+          [
+            40,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            40,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            40,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            40
+          ]
+        ],
+        "per_class": {
+          "RULE": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 40.0
+          },
+          "CLARIFY": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 40.0
+          },
+          "LLM": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 40.0
+          },
+          "DEFER": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 40.0
+          },
+          "accuracy": 1.0,
+          "macro avg": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 160.0
+          },
+          "weighted avg": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 160.0
+          }
+        }
+      }
+    },
+    "encoding": {
+      "train_categories": {
+        "command": [
+          "<missing>",
+          "answer",
+          "report",
+          "setgoal",
+          "summary"
+        ],
+        "non_urgent": [
+          "False",
+          "True"
+        ],
+        "priority": [
+          "GENERAL"
+        ]
+      },
+      "unknown_categories": {
+        "validation": {
+          "command": [
+            "checkins"
+          ],
+          "non_urgent": [],
+          "priority": []
+        },
+        "test": {
+          "command": [
+            "adjust",
+            "invented"
+          ],
+          "non_urgent": [],
+          "priority": []
+        }
+      },
+      "distinct_routing_signatures": 13,
+      "numeric_text_vs_structured_minutes_disagreements": 20,
+      "report_total_rows": 20,
+      "train_minutes_counts": {
+        "-1": 20,
+        "None": 220
+      },
+      "priority_values": [
+        "GENERAL"
+      ]
+    },
+    "serialized_evidence": {
+      "validation": [
+        {
+          "family": "excess_minutes",
+          "true_label": "CLARIFY",
+          "rows": 20,
+          "prediction_counts": {
+            "CLARIFY": 20
+          },
+          "example": {
+            "text": "The total exceeds a day for exercise 514",
+            "command": "report",
+            "minutes": 2000,
+            "non_urgent": false,
+            "priority": "GENERAL"
+          },
+          "example_probabilities": {
+            "CLARIFY": 0.5741585628577097,
+            "DEFER": 0.09713873958772308,
+            "LLM": 0.15070303501568028,
+            "RULE": 0.17799966253888702
+          }
+        },
+        {
+          "family": "later_planning",
+          "true_label": "DEFER",
+          "rows": 20,
+          "prediction_counts": {
+            "CLARIFY": 20
+          },
+          "example": {
+            "text": "Help plan next month after project 9932 when there is time",
+            "command": null,
+            "minutes": null,
+            "non_urgent": true,
+            "priority": "GENERAL"
+          },
+          "example_probabilities": {
+            "CLARIFY": 0.35751181339366184,
+            "DEFER": 0.29433061419097817,
+            "LLM": 0.22778109012887923,
+            "RULE": 0.12037648228648068
+          },
+          "true_minus_clarify_score": {
+            "margin": -0.19446473246197213,
+            "intercept": -0.2474849075203484,
+            "metadata": 0.3695718170232272,
+            "text": -0.3165516419648519
+          },
+          "strongest_clarify_ngram_contributions": [
+            [
+              -0.08078806654803819,
+              " he"
+            ],
+            [
+              -0.08078806654803819,
+              " hel"
+            ],
+            [
+              -0.08078806654803819,
+              " help"
+            ],
+            [
+              -0.08078806654803819,
+              "elp"
+            ],
+            [
+              -0.08078806654803819,
+              "hel"
+            ],
+            [
+              -0.08078806654803819,
+              "help"
+            ],
+            [
+              -0.02507387529569058,
+              " ne"
+            ],
+            [
+              -0.02507387529569058,
+              " tim"
+            ]
+          ]
+        },
+        {
+          "family": "schedule_control",
+          "true_label": "RULE",
+          "rows": 20,
+          "prediction_counts": {
+            "CLARIFY": 20
+          },
+          "example": {
+            "text": "Pause my scheduled reminder number 7428",
+            "command": "checkins",
+            "minutes": null,
+            "non_urgent": false,
+            "priority": "GENERAL"
+          },
+          "example_probabilities": {
+            "CLARIFY": 0.43241651042806956,
+            "DEFER": 0.1326855148792899,
+            "LLM": 0.24959110236896245,
+            "RULE": 0.18530687232367815
+          },
+          "true_minus_clarify_score": {
+            "margin": -0.8473760481075787,
+            "intercept": -0.1898898478515219,
+            "metadata": -0.4509227093838994,
+            "text": -0.20656349087215622
+          },
+          "strongest_clarify_ngram_contributions": [
+            [
+              -0.04948170117828131,
+              "hed"
+            ],
+            [
+              -0.03986394726092776,
+              "ed "
+            ],
+            [
+              -0.03943626818125238,
+              " my"
+            ],
+            [
+              -0.03943626818125238,
+              " my "
+            ],
+            [
+              -0.03943626818125238,
+              "my "
+            ],
+            [
+              -0.010255220180972004,
+              "non"
+            ],
+            [
+              -0.008382649626506748,
+              "min"
+            ],
+            [
+              -0.007572045611115098,
+              "gen"
+            ]
+          ]
+        },
+        {
+          "family": "work_conflict",
+          "true_label": "LLM",
+          "rows": 20,
+          "prediction_counts": {
+            "CLARIFY": 20
+          },
+          "example": {
+            "text": "My work shift changed and I need help planning Korean lesson 2170",
+            "command": null,
+            "minutes": null,
+            "non_urgent": false,
+            "priority": "GENERAL"
+          },
+          "example_probabilities": {
+            "CLARIFY": 0.4062470202148113,
+            "DEFER": 0.13354480571576552,
+            "LLM": 0.29303781924600536,
+            "RULE": 0.1671703548234177
+          },
+          "true_minus_clarify_score": {
+            "margin": -0.3266597221487782,
+            "intercept": -0.16963575528101904,
+            "metadata": -0.41074692985666855,
+            "text": 0.2537229629889106
+          },
+          "strongest_clarify_ngram_contributions": [
+            [
+              -0.0937387395675643,
+              " he"
+            ],
+            [
+              -0.0937387395675643,
+              " hel"
+            ],
+            [
+              -0.0937387395675643,
+              " help"
+            ],
+            [
+              -0.0937387395675643,
+              "elp"
+            ],
+            [
+              -0.0937387395675643,
+              "hel"
+            ],
+            [
+              -0.0937387395675643,
+              "help"
+            ],
+            [
+              -0.029059518420827105,
+              " my"
+            ],
+            [
+              -0.029059518420827105,
+              " my "
+            ]
+          ]
+        }
+      ],
+      "test": [
+        {
+          "family": "competing_tasks",
+          "true_label": "LLM",
+          "rows": 20,
+          "prediction_counts": {
+            "CLARIFY": 20
+          },
+          "example": {
+            "text": "Help me balance coursework and vocabulary project 4956 this week",
+            "command": null,
+            "minutes": null,
+            "non_urgent": false,
+            "priority": "GENERAL"
+          },
+          "example_probabilities": {
+            "CLARIFY": 0.32253825240695616,
+            "DEFER": 0.13277023426682233,
+            "LLM": 0.29011901868950485,
+            "RULE": 0.2545724946367168
+          },
+          "true_minus_clarify_score": {
+            "margin": -0.1059304932567357,
+            "intercept": -0.16963575528101904,
+            "metadata": -0.4256391335685727,
+            "text": 0.48934439559285614
+          },
+          "strongest_clarify_ngram_contributions": [
+            [
+              -0.0973519577197821,
+              " he"
+            ],
+            [
+              -0.0973519577197821,
+              " hel"
+            ],
+            [
+              -0.0973519577197821,
+              " help"
+            ],
+            [
+              -0.0973519577197821,
+              "elp"
+            ],
+            [
+              -0.0973519577197821,
+              "hel"
+            ],
+            [
+              -0.0973519577197821,
+              "help"
+            ],
+            [
+              -0.009048926505700699,
+              "gen"
+            ],
+            [
+              -0.007805205044206328,
+              "se "
+            ]
+          ]
+        },
+        {
+          "family": "future_schedule",
+          "true_label": "DEFER",
+          "rows": 20,
+          "prediction_counts": {
+            "DEFER": 20
+          },
+          "example": {
+            "text": "Think about next semester timetable option 6888 at a convenient time",
+            "command": null,
+            "minutes": null,
+            "non_urgent": true,
+            "priority": "GENERAL"
+          },
+          "example_probabilities": {
+            "CLARIFY": 0.2602765501249685,
+            "DEFER": 0.44814160624317656,
+            "LLM": 0.17278281163654002,
+            "RULE": 0.1187990319953148
+          },
+          "true_minus_clarify_score": {
+            "margin": 0.543364547771892,
+            "intercept": -0.2474849075203484,
+            "metadata": 0.37254156142445055,
+            "text": 0.4183078938677897
+          },
+          "strongest_clarify_ngram_contributions": [
+            [
+              -0.04271795363616106,
+              " tim"
+            ],
+            [
+              -0.04271795363616106,
+              " time"
+            ],
+            [
+              -0.02522991156742421,
+              " at"
+            ],
+            [
+              -0.02522991156742421,
+              " at "
+            ],
+            [
+              -0.02522991156742421,
+              " ne"
+            ],
+            [
+              -0.02522991156742421,
+              "at "
+            ],
+            [
+              -0.023596870145170423,
+              " ti"
+            ],
+            [
+              -0.0074335920279877095,
+              "gen"
+            ]
+          ]
+        },
+        {
+          "family": "recovery_approval",
+          "true_label": "RULE",
+          "rows": 20,
+          "prediction_counts": {
+            "RULE": 20
+          },
+          "example": {
+            "text": "Approve proposed daily adjustment 6543",
+            "command": "adjust",
+            "minutes": null,
+            "non_urgent": false,
+            "priority": "GENERAL"
+          },
+          "example_probabilities": {
+            "CLARIFY": 0.31100896550423873,
+            "DEFER": 0.1339559089571559,
+            "LLM": 0.18532850255819822,
+            "RULE": 0.3697066229804071
+          },
+          "true_minus_clarify_score": {
+            "margin": 0.17288804050279644,
+            "intercept": -0.1898898478515219,
+            "metadata": -0.21235116189746986,
+            "text": 0.5751290502517877
+          },
+          "strongest_clarify_ngram_contributions": [
+            [
+              -0.03177535064129925,
+              "ed "
+            ],
+            [
+              -0.031434449811040696,
+              "ve "
+            ],
+            [
+              -0.008174384112571443,
+              "non"
+            ],
+            [
+              -0.006035639240395023,
+              "gen"
+            ],
+            [
+              -0.005615773730023614,
+              "=no"
+            ],
+            [
+              -0.005615773730023614,
+              "=non"
+            ],
+            [
+              -0.005615773730023614,
+              "=none"
+            ],
+            [
+              -0.005615773730023614,
+              "ne "
+            ]
+          ]
+        },
+        {
+          "family": "reflection",
+          "true_label": "LLM",
+          "rows": 20,
+          "prediction_counts": {
+            "CLARIFY": 20
+          },
+          "example": {
+            "text": "Can you help interpret my difficulty with Korean practice set 3335",
+            "command": null,
+            "minutes": null,
+            "non_urgent": false,
+            "priority": "GENERAL"
+          },
+          "example_probabilities": {
+            "CLARIFY": 0.380470324610878,
+            "DEFER": 0.2102050395451786,
+            "LLM": 0.2491785581255851,
+            "RULE": 0.16014607771835815
+          },
+          "true_minus_clarify_score": {
+            "margin": -0.4232384433734761,
+            "intercept": -0.16963575528101904,
+            "metadata": -0.3795704108658488,
+            "text": 0.12596772277339172
+          },
+          "strongest_clarify_ngram_contributions": [
+            [
+              -0.08676809112598795,
+              " he"
+            ],
+            [
+              -0.08676809112598795,
+              " hel"
+            ],
+            [
+              -0.08676809112598795,
+              " help"
+            ],
+            [
+              -0.08676809112598795,
+              "elp"
+            ],
+            [
+              -0.08676809112598795,
+              "hel"
+            ],
+            [
+              -0.08676809112598795,
+              "help"
+            ],
+            [
+              -0.026898579541900794,
+              " my"
+            ],
+            [
+              -0.026898579541900794,
+              " my "
+            ]
+          ]
+        },
+        {
+          "family": "report_total",
+          "true_label": "RULE",
+          "rows": 20,
+          "prediction_counts": {
+            "CLARIFY": 20
+          },
+          "example": {
+            "text": "Logging 5155 minutes of Korean study today",
+            "command": "report",
+            "minutes": 30,
+            "non_urgent": false,
+            "priority": "GENERAL"
+          },
+          "example_probabilities": {
+            "CLARIFY": 0.6397018224359033,
+            "DEFER": 0.0942448030791954,
+            "LLM": 0.1527486270762197,
+            "RULE": 0.1133047474086815
+          },
+          "true_minus_clarify_score": {
+            "margin": -1.7309210969634017,
+            "intercept": -0.1898898478515219,
+            "metadata": -1.2511903835307672,
+            "text": -0.28984086558111355
+          },
+          "strongest_clarify_ngram_contributions": [
+            [
+              -0.045229273933208775,
+              "=re"
+            ],
+            [
+              -0.045229273933208775,
+              "=rep"
+            ],
+            [
+              -0.045229273933208775,
+              "=repo"
+            ],
+            [
+              -0.045229273933208775,
+              "and=r"
+            ],
+            [
+              -0.045229273933208775,
+              "d=r"
+            ],
+            [
+              -0.045229273933208775,
+              "d=re"
+            ],
+            [
+              -0.045229273933208775,
+              "d=rep"
+            ],
+            [
+              -0.045229273933208775,
+              "epo"
+            ]
+          ]
+        },
+        {
+          "family": "terse_done",
+          "true_label": "CLARIFY",
+          "rows": 20,
+          "prediction_counts": {
+            "CLARIFY": 20
+          },
+          "example": {
+            "text": "done9440",
+            "command": null,
+            "minutes": null,
+            "non_urgent": false,
+            "priority": "GENERAL"
+          },
+          "example_probabilities": {
+            "CLARIFY": 0.4907460651694346,
+            "DEFER": 0.12813777488841796,
+            "LLM": 0.2035226763806049,
+            "RULE": 0.17759348356154253
+          }
+        },
+        {
+          "family": "unknown_command",
+          "true_label": "CLARIFY",
+          "rows": 20,
+          "prediction_counts": {
+            "CLARIFY": 20
+          },
+          "example": {
+            "text": "Try my unsupported operation number 7579",
+            "command": "invented",
+            "minutes": null,
+            "non_urgent": false,
+            "priority": "GENERAL"
+          },
+          "example_probabilities": {
+            "CLARIFY": 0.4303246753804913,
+            "DEFER": 0.14479368910876173,
+            "LLM": 0.23819116285726435,
+            "RULE": 0.1866904726534826
+          }
+        },
+        {
+          "family": "weekly_reflection",
+          "true_label": "DEFER",
+          "rows": 20,
+          "prediction_counts": {
+            "DEFER": 20
+          },
+          "example": {
+            "text": "Review my weekly learning pattern for week 5279 whenever convenient",
+            "command": null,
+            "minutes": null,
+            "non_urgent": true,
+            "priority": "GENERAL"
+          },
+          "example_probabilities": {
+            "CLARIFY": 0.25936945027223557,
+            "DEFER": 0.409619640339392,
+            "LLM": 0.17925982816165484,
+            "RULE": 0.15175108122671752
+          },
+          "true_minus_clarify_score": {
+            "margin": 0.45697552840779987,
+            "intercept": -0.2474849075203484,
+            "metadata": 0.45136065800077707,
+            "text": 0.2530997779273711
+          },
+          "strongest_clarify_ngram_contributions": [
+            [
+              -0.030535227480939092,
+              " my"
+            ],
+            [
+              -0.030535227480939092,
+              " my "
+            ],
+            [
+              -0.030535227480939092,
+              "my "
+            ],
+            [
+              -0.011699592457667999,
+              " re"
+            ],
+            [
+              -0.008996718952759837,
+              "gen"
+            ],
+            [
+              -0.005902328137872237,
+              "non"
+            ],
+            [
+              -0.005313607142991852,
+              "ene"
+            ],
+            [
+              -0.005313607142991852,
+              "ent"
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "per_seed": [
+    {
+      "seed": 0,
+      "serialized": {
+        "selected_C": 8.0,
+        "validation": {
+          "accuracy": 0.425,
+          "macro_f1": 0.33088235294117646,
+          "confusion_matrix": [
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              6,
+              0,
+              0,
+              14
+            ]
+          ]
+        },
+        "test": {
+          "accuracy": 0.79375,
+          "macro_f1": 0.7514592355488608,
+          "confusion_matrix": [
+            [
+              7,
+              33,
+              0,
+              0
+            ],
+            [
+              0,
+              40,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              40,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              40
+            ]
+          ]
+        },
+        "test_recall": {
+          "RULE": 0.175,
+          "CLARIFY": 1.0,
+          "LLM": 1.0,
+          "DEFER": 1.0
+        }
+      },
+      "mixed": {
+        "selected_C": 0.5,
+        "validation": {
+          "accuracy": 0.5,
+          "macro_f1": 0.5,
+          "confusion_matrix": [
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              20,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              20,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              20
+            ]
+          ]
+        },
+        "test": {
+          "accuracy": 0.875,
+          "macro_f1": 0.8666666666666667,
+          "confusion_matrix": [
+            [
+              40,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              20,
+              20,
+              0
+            ],
+            [
+              0,
+              0,
+              40,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              40
+            ]
+          ]
+        },
+        "test_recall": {
+          "RULE": 1.0,
+          "CLARIFY": 0.5,
+          "LLM": 1.0,
+          "DEFER": 1.0
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "serialized": {
+        "selected_C": 8.0,
+        "validation": {
+          "accuracy": 0.575,
+          "macro_f1": 0.4774043041747075,
+          "confusion_matrix": [
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              20,
+              0
+            ],
+            [
+              0,
+              7,
+              7,
+              6
+            ]
+          ]
+        },
+        "test": {
+          "accuracy": 0.625,
+          "macro_f1": 0.5595238095238095,
+          "confusion_matrix": [
+            [
+              20,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              40,
+              0,
+              0
+            ],
+            [
+              0,
+              40,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              40
+            ]
+          ]
+        },
+        "test_recall": {
+          "RULE": 0.5,
+          "CLARIFY": 1.0,
+          "LLM": 0.0,
+          "DEFER": 1.0
+        }
+      },
+      "mixed": {
+        "selected_C": 0.5,
+        "validation": {
+          "accuracy": 0.75,
+          "macro_f1": 0.6666666666666666,
+          "confusion_matrix": [
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              20,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              20
+            ]
+          ]
+        },
+        "test": {
+          "accuracy": 0.75,
+          "macro_f1": 0.75,
+          "confusion_matrix": [
+            [
+              20,
+              20,
+              0,
+              0
+            ],
+            [
+              20,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              40,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              40
+            ]
+          ]
+        },
+        "test_recall": {
+          "RULE": 0.5,
+          "CLARIFY": 0.5,
+          "LLM": 1.0,
+          "DEFER": 1.0
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "serialized": {
+        "selected_C": 0.5,
+        "validation": {
+          "accuracy": 0.75,
+          "macro_f1": 0.6666666666666666,
+          "confusion_matrix": [
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              20,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              20
+            ]
+          ]
+        },
+        "test": {
+          "accuracy": 0.625,
+          "macro_f1": 0.6249999999999999,
+          "confusion_matrix": [
+            [
+              20,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              40,
+              0,
+              0
+            ],
+            [
+              0,
+              20,
+              20,
+              0
+            ],
+            [
+              20,
+              0,
+              0,
+              20
+            ]
+          ]
+        },
+        "test_recall": {
+          "RULE": 0.5,
+          "CLARIFY": 1.0,
+          "LLM": 0.5,
+          "DEFER": 0.5
+        }
+      },
+      "mixed": {
+        "selected_C": 0.5,
+        "validation": {
+          "accuracy": 0.65,
+          "macro_f1": 0.6153846153846154,
+          "confusion_matrix": [
+            [
+              12,
+              8,
+              0,
+              0
+            ],
+            [
+              20,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              20,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              20
+            ]
+          ]
+        },
+        "test": {
+          "accuracy": 0.75,
+          "macro_f1": 0.7416666666666667,
+          "confusion_matrix": [
+            [
+              20,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              20,
+              20,
+              0
+            ],
+            [
+              0,
+              0,
+              40,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              40
+            ]
+          ]
+        },
+        "test_recall": {
+          "RULE": 0.5,
+          "CLARIFY": 0.5,
+          "LLM": 1.0,
+          "DEFER": 1.0
+        }
+      }
+    },
+    {
+      "seed": 3,
+      "serialized": {
+        "selected_C": 0.5,
+        "validation": {
+          "accuracy": 0.5,
+          "macro_f1": 0.375,
+          "confusion_matrix": [
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              20
+            ]
+          ]
+        },
+        "test": {
+          "accuracy": 0.56875,
+          "macro_f1": 0.4829963235294118,
+          "confusion_matrix": [
+            [
+              0,
+              27,
+              13,
+              0
+            ],
+            [
+              0,
+              40,
+              0,
+              0
+            ],
+            [
+              0,
+              29,
+              11,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              40
+            ]
+          ]
+        },
+        "test_recall": {
+          "RULE": 0.0,
+          "CLARIFY": 1.0,
+          "LLM": 0.275,
+          "DEFER": 1.0
+        }
+      },
+      "mixed": {
+        "selected_C": 0.5,
+        "validation": {
+          "accuracy": 0.25,
+          "macro_f1": 0.25,
+          "confusion_matrix": [
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              20,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              20
+            ]
+          ]
+        },
+        "test": {
+          "accuracy": 0.625,
+          "macro_f1": 0.6416666666666666,
+          "confusion_matrix": [
+            [
+              20,
+              20,
+              0,
+              0
+            ],
+            [
+              20,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              20,
+              20,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              40
+            ]
+          ]
+        },
+        "test_recall": {
+          "RULE": 0.5,
+          "CLARIFY": 0.5,
+          "LLM": 0.5,
+          "DEFER": 1.0
+        }
+      }
+    },
+    {
+      "seed": 4,
+      "serialized": {
+        "selected_C": 0.5,
+        "validation": {
+          "accuracy": 0.25,
+          "macro_f1": 0.16666666666666666,
+          "confusion_matrix": [
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              20
+            ],
+            [
+              20,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "test": {
+          "accuracy": 0.75,
+          "macro_f1": 0.7416666666666667,
+          "confusion_matrix": [
+            [
+              20,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              40,
+              0,
+              0
+            ],
+            [
+              20,
+              0,
+              20,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              40
+            ]
+          ]
+        },
+        "test_recall": {
+          "RULE": 0.5,
+          "CLARIFY": 1.0,
+          "LLM": 0.5,
+          "DEFER": 1.0
+        }
+      },
+      "mixed": {
+        "selected_C": 0.5,
+        "validation": {
+          "accuracy": 0.5,
+          "macro_f1": 0.5,
+          "confusion_matrix": [
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              20,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              20,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              20
+            ]
+          ]
+        },
+        "test": {
+          "accuracy": 0.875,
+          "macro_f1": 0.8666666666666667,
+          "confusion_matrix": [
+            [
+              40,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              20,
+              20,
+              0
+            ],
+            [
+              0,
+              0,
+              40,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              40
+            ]
+          ]
+        },
+        "test_recall": {
+          "RULE": 1.0,
+          "CLARIFY": 0.5,
+          "LLM": 1.0,
+          "DEFER": 1.0
+        }
+      }
+    },
+    {
+      "seed": 42,
+      "serialized": {
+        "selected_C": 0.5,
+        "validation": {
+          "accuracy": 0.25,
+          "macro_f1": 0.1,
+          "confusion_matrix": [
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              20,
+              0,
+              0
+            ]
+          ]
+        },
+        "test": {
+          "accuracy": 0.625,
+          "macro_f1": 0.5595238095238095,
+          "confusion_matrix": [
+            [
+              20,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              40,
+              0,
+              0
+            ],
+            [
+              0,
+              40,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              40
+            ]
+          ]
+        },
+        "test_recall": {
+          "RULE": 0.5,
+          "CLARIFY": 1.0,
+          "LLM": 0.0,
+          "DEFER": 1.0
+        }
+      },
+      "mixed": {
+        "selected_C": 0.5,
+        "validation": {
+          "accuracy": 1.0,
+          "macro_f1": 1.0,
+          "confusion_matrix": [
+            [
+              20,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              20,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              20
+            ]
+          ]
+        },
+        "test": {
+          "accuracy": 0.61875,
+          "macro_f1": 0.571969696969697,
+          "confusion_matrix": [
+            [
+              20,
+              20,
+              0,
+              0
+            ],
+            [
+              20,
+              0,
+              20,
+              0
+            ],
+            [
+              0,
+              1,
+              39,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              40
+            ]
+          ]
+        },
+        "test_recall": {
+          "RULE": 0.5,
+          "CLARIFY": 0.0,
+          "LLM": 0.975,
+          "DEFER": 1.0
+        }
+      }
+    },
+    {
+      "seed": 73,
+      "serialized": {
+        "selected_C": 0.5,
+        "validation": {
+          "accuracy": 0.75,
+          "macro_f1": 0.6666666666666666,
+          "confusion_matrix": [
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              20,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              20
+            ]
+          ]
+        },
+        "test": {
+          "accuracy": 0.625,
+          "macro_f1": 0.5595238095238095,
+          "confusion_matrix": [
+            [
+              0,
+              40,
+              0,
+              0
+            ],
+            [
+              0,
+              40,
+              0,
+              0
+            ],
+            [
+              0,
+              20,
+              20,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              40
+            ]
+          ]
+        },
+        "test_recall": {
+          "RULE": 0.0,
+          "CLARIFY": 1.0,
+          "LLM": 0.5,
+          "DEFER": 1.0
+        }
+      },
+      "mixed": {
+        "selected_C": 0.5,
+        "validation": {
+          "accuracy": 0.75,
+          "macro_f1": 0.6666666666666666,
+          "confusion_matrix": [
+            [
+              20,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              20,
+              0
+            ],
+            [
+              0,
+              0,
+              20,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              20
+            ]
+          ]
+        },
+        "test": {
+          "accuracy": 0.875,
+          "macro_f1": 0.8666666666666667,
+          "confusion_matrix": [
+            [
+              20,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              40,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              40,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              40
+            ]
+          ]
+        },
+        "test_recall": {
+          "RULE": 0.5,
+          "CLARIFY": 1.0,
+          "LLM": 1.0,
+          "DEFER": 1.0
+        }
+      }
+    },
+    {
+      "seed": 101,
+      "serialized": {
+        "selected_C": 0.5,
+        "validation": {
+          "accuracy": 0.4875,
+          "macro_f1": 0.4935897435897436,
+          "confusion_matrix": [
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              20,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              19,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              20
+            ]
+          ]
+        },
+        "test": {
+          "accuracy": 0.34375,
+          "macro_f1": 0.3160493827160494,
+          "confusion_matrix": [
+            [
+              20,
+              20,
+              0,
+              0
+            ],
+            [
+              40,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              34,
+              0,
+              6
+            ],
+            [
+              0,
+              5,
+              0,
+              35
+            ]
+          ]
+        },
+        "test_recall": {
+          "RULE": 0.5,
+          "CLARIFY": 0.0,
+          "LLM": 0.0,
+          "DEFER": 0.875
+        }
+      },
+      "mixed": {
+        "selected_C": 8.0,
+        "validation": {
+          "accuracy": 0.5125,
+          "macro_f1": 0.5121951219512195,
+          "confusion_matrix": [
+            [
+              1,
+              19,
+              0,
+              0
+            ],
+            [
+              20,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              20,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              20
+            ]
+          ]
+        },
+        "test": {
+          "accuracy": 0.375,
+          "macro_f1": 0.35,
+          "confusion_matrix": [
+            [
+              20,
+              20,
+              0,
+              0
+            ],
+            [
+              40,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              40,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              40
+            ]
+          ]
+        },
+        "test_recall": {
+          "RULE": 0.5,
+          "CLARIFY": 0.0,
+          "LLM": 0.0,
+          "DEFER": 1.0
+        }
+      }
+    },
+    {
+      "seed": 2026,
+      "serialized": {
+        "selected_C": 0.5,
+        "validation": {
+          "accuracy": 0.7,
+          "macro_f1": 0.6284722222222222,
+          "confusion_matrix": [
+            [
+              16,
+              4,
+              0,
+              0
+            ],
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              20
+            ]
+          ]
+        },
+        "test": {
+          "accuracy": 0.5,
+          "macro_f1": 0.45833333333333326,
+          "confusion_matrix": [
+            [
+              0,
+              40,
+              0,
+              0
+            ],
+            [
+              0,
+              40,
+              0,
+              0
+            ],
+            [
+              20,
+              0,
+              20,
+              0
+            ],
+            [
+              0,
+              0,
+              20,
+              20
+            ]
+          ]
+        },
+        "test_recall": {
+          "RULE": 0.0,
+          "CLARIFY": 1.0,
+          "LLM": 0.5,
+          "DEFER": 0.5
+        }
+      },
+      "mixed": {
+        "selected_C": 2.0,
+        "validation": {
+          "accuracy": 1.0,
+          "macro_f1": 1.0,
+          "confusion_matrix": [
+            [
+              20,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              20,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              20
+            ]
+          ]
+        },
+        "test": {
+          "accuracy": 0.625,
+          "macro_f1": 0.6,
+          "confusion_matrix": [
+            [
+              20,
+              20,
+              0,
+              0
+            ],
+            [
+              40,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              40,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              40
+            ]
+          ]
+        },
+        "test_recall": {
+          "RULE": 0.5,
+          "CLARIFY": 0.0,
+          "LLM": 1.0,
+          "DEFER": 1.0
+        }
+      }
+    },
+    {
+      "seed": 2027,
+      "serialized": {
+        "selected_C": 0.5,
+        "validation": {
+          "accuracy": 0.75,
+          "macro_f1": 0.6666666666666666,
+          "confusion_matrix": [
+            [
+              20,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              20,
+              0,
+              0
+            ],
+            [
+              20,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              20
+            ]
+          ]
+        },
+        "test": {
+          "accuracy": 0.375,
+          "macro_f1": 0.30952380952380953,
+          "confusion_matrix": [
+            [
+              0,
+              40,
+              0,
+              0
+            ],
+            [
+              0,
+              40,
+              0,
+              0
+            ],
+            [
+              20,
+              20,
+              0,
+              0
+            ],
+            [
+              20,
+              0,
+              0,
+              20
+            ]
+          ]
+        },
+        "test_recall": {
+          "RULE": 0.0,
+          "CLARIFY": 1.0,
+          "LLM": 0.0,
+          "DEFER": 0.5
+        }
+      },
+      "mixed": {
+        "selected_C": 0.5,
+        "validation": {
+          "accuracy": 0.75,
+          "macro_f1": 0.6666666666666666,
+          "confusion_matrix": [
+            [
+              20,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              20,
+              0
+            ],
+            [
+              0,
+              0,
+              20,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              20
+            ]
+          ]
+        },
+        "test": {
+          "accuracy": 0.875,
+          "macro_f1": 0.8666666666666667,
+          "confusion_matrix": [
+            [
+              20,
+              20,
+              0,
+              0
+            ],
+            [
+              0,
+              40,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              40,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              40
+            ]
+          ]
+        },
+        "test_recall": {
+          "RULE": 0.5,
+          "CLARIFY": 1.0,
+          "LLM": 1.0,
+          "DEFER": 1.0
+        }
+      }
+    }
+  ],
+  "original_reproduction": {
+    "seed": 42,
+    "samples_per_family": 20,
+    "labels": [
+      "RULE",
+      "CLARIFY",
+      "LLM",
+      "DEFER"
+    ],
+    "split_sizes": {
+      "train": 240,
+      "validation": 80,
+      "test": 160
+    },
+    "split_families": {
+      "train": [
+        "archive_review",
+        "daily_review",
+        "fatigue",
+        "goal_creation",
+        "learning_strategy",
+        "long_term",
+        "missing_minutes",
+        "motivation",
+        "negative_minutes",
+        "optional_material",
+        "quiz_reply",
+        "terse_help"
+      ],
+      "validation": [
+        "excess_minutes",
+        "later_planning",
+        "schedule_control",
+        "work_conflict"
+      ],
+      "test": [
+        "competing_tasks",
+        "future_schedule",
+        "recovery_approval",
+        "reflection",
+        "report_total",
+        "terse_done",
+        "unknown_command",
+        "weekly_reflection"
+      ]
+    },
+    "selected_C": 0.5,
+    "validation_macro_f1": 0.1,
+    "training_seconds_including_selection": 1.0676241000182927,
+    "peak_python_allocated_bytes": 5856476,
+    "memory_limitation": "tracemalloc excludes native allocations; not total process or GPU memory",
+    "artifact_bytes": 138300,
+    "environment": {
+      "python": "3.11.9",
+      "sklearn": "1.9.1",
+      "platform": "Windows-10-10.0.26300-SP0"
+    },
+    "rule": {
+      "accuracy": 1.0,
+      "macro_f1": 1.0,
+      "classification_report": {
+        "RULE": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 40.0
+        },
+        "CLARIFY": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 40.0
+        },
+        "LLM": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 40.0
+        },
+        "DEFER": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 40.0
+        },
+        "accuracy": 1.0,
+        "macro avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 160.0
+        },
+        "weighted avg": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 160.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          40,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          40,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          40,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          40
+        ]
+      ],
+      "latency_ms": {
+        "median": 0.0038,
+        "p95": 0.0233
+      }
+    },
+    "baseline": {
+      "accuracy": 0.625,
+      "macro_f1": 0.5595238095238095,
+      "classification_report": {
+        "RULE": {
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1-score": 0.6666666666666666,
+          "support": 40.0
+        },
+        "CLARIFY": {
+          "precision": 0.4,
+          "recall": 1.0,
+          "f1-score": 0.5714285714285714,
+          "support": 40.0
+        },
+        "LLM": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 40.0
+        },
+        "DEFER": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 40.0
+        },
+        "accuracy": 0.625,
+        "macro avg": {
+          "precision": 0.6,
+          "recall": 0.625,
+          "f1-score": 0.5595238095238095,
+          "support": 160.0
+        },
+        "weighted avg": {
+          "precision": 0.6,
+          "recall": 0.625,
+          "f1-score": 0.5595238095238095,
+          "support": 160.0
+        }
+      },
+      "confusion_matrix": [
+        [
+          20,
+          20,
+          0,
+          0
+        ],
+        [
+          0,
+          40,
+          0,
+          0
+        ],
+        [
+          0,
+          40,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          40
+        ]
+      ],
+      "latency_ms": {
+        "median": 1.3775,
+        "p95": 2.2966
+      }
+    },
+    "limitations": [
+      "Synthetic inputs only; no real-user efficacy claims",
+      "Metadata contains strong routing cues",
+      "No LSTM, Mamba, distillation, or critic has been trained or evaluated"
+    ]
+  },
+  "sources_unchanged_during_comparison": true
+}

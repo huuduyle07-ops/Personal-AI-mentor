@@ -1,0 +1,39 @@
+{"id":"dm1","language":"en","text":"I studied Korean for 20 minutes today, but I'm tired and want to finish tomorrow.","expected":[{"intent":"REPORT_PROGRESS","minutes":20},{"intent":"REPORT_OBSTACLE","reason":"tired"},{"intent":"REQUEST_RECOVERY","when":"tomorrow"}]}
+{"id":"dm2","language":"vi","text":"Hôm nay tôi đã học tiếng Hàn 20 phút, nhưng tôi mệt và muốn học tiếp vào ngày mai.","expected":[{"intent":"REPORT_PROGRESS","minutes":20},{"intent":"REPORT_OBSTACLE","reason":"tired"},{"intent":"REQUEST_RECOVERY","when":"tomorrow"}]}
+{"id":"dm3","language":"ko","text":"오늘 한국어를 20분 공부했는데 피곤해서 내일 마저 하고 싶어요.","expected":[{"intent":"REPORT_PROGRESS","minutes":20},{"intent":"REPORT_OBSTACLE","reason":"tired"},{"intent":"REQUEST_RECOVERY","when":"tomorrow"}]}
+{"id":"dm4","language":"en","text":"Today's total is 0 minutes.","expected":[{"intent":"REPORT_PROGRESS","minutes":0}]}
+{"id":"dm5","language":"vi","text":"Mình đã học tiếng Hàn được 35 phút hôm nay.","expected":[{"intent":"REPORT_PROGRESS","minutes":35}]}
+{"id":"dm6","language":"ko","text":"오늘 18분 동안 한국어를 공부했어요.","expected":[{"intent":"REPORT_PROGRESS","minutes":18}]}
+{"id":"dm7","language":"en","text":"How much did I study yesterday?","expected":[{"intent":"QUERY_PROGRESS","day":"yesterday"}]}
+{"id":"dm8","language":"vi","text":"Tiến độ hôm nay của tôi?","expected":[{"intent":"QUERY_PROGRESS","day":"today"}]}
+{"id":"dm9","language":"ko","text":"어제 진도는?","expected":[{"intent":"QUERY_PROGRESS","day":"yesterday"}]}
+{"id":"dm10","language":"en","text":"I'm busy","expected":[{"intent":"REPORT_OBSTACLE","reason":"busy"}]}
+{"id":"dm11","language":"vi","text":"Mình hơi mệt","expected":[{"intent":"REPORT_OBSTACLE","reason":"tired"}]}
+{"id":"dm12","language":"ko","text":"너무 피곤해요","expected":[{"intent":"REPORT_OBSTACLE","reason":"tired"}]}
+{"id":"dm13","language":"en","text":"I need a smaller goal today","expected":[{"intent":"REQUEST_RECOVERY","when":"today"}]}
+{"id":"dm14","language":"vi","text":"Giảm mục tiêu hôm nay","expected":[{"intent":"REQUEST_RECOVERY","when":"today"}]}
+{"id":"dm15","language":"ko","text":"내일 나머지를 마저 끝내고 싶어요","expected":[{"intent":"REQUEST_RECOVERY","when":"tomorrow"}]}
+{"id":"dm16","language":"en","text":"I approve proposal #3","expected":[{"intent":"APPROVE_ADJUSTMENT","id":3}]}
+{"id":"dm17","language":"vi","text":"Từ chối #12","expected":[{"intent":"REJECT_ADJUSTMENT","id":12}]}
+{"id":"dm18","language":"ko","text":"승인 #7","expected":[{"intent":"APPROVE_ADJUSTMENT","id":7}]}
+{"id":"dm19","language":"en","text":"Test my vocabulary","expected":[{"intent":"REQUEST_VERIFICATION"}]}
+{"id":"dm20","language":"vi","text":"Kiểm tra từ vựng","expected":[{"intent":"REQUEST_VERIFICATION"}]}
+{"id":"dm21","language":"ko","text":"퀴즈 내줘","expected":[{"intent":"REQUEST_VERIFICATION"}]}
+{"id":"dm22","language":"en","text":"Hello!","expected":[{"intent":"GENERAL_CONVERSATION"}]}
+{"id":"dm23","language":"vi","text":"Xin chào","expected":[{"intent":"GENERAL_CONVERSATION"}]}
+{"id":"dm24","language":"ko","text":"감사합니다","expected":[{"intent":"GENERAL_CONVERSATION"}]}
+{"id":"dm25","language":"en","text":"If I studied 40 minutes tomorrow, would that be enough?","expected":[{"intent":"CLARIFY"}]}
+{"id":"dm26","language":"vi","text":"Tôi chưa học 20 phút, đừng ghi lại.","expected":[{"intent":"CLARIFY"}]}
+{"id":"dm27","language":"ko","text":"어제였는지 오늘이었는지 기억이 안 나요.","expected":[{"intent":"CLARIFY"}]}
+{"id":"dm28","language":"en","text":"I studied 25 minutes or maybe 40, I can't tell.","expected":[{"intent":"CLARIFY"}]}
+{"id":"dm29","language":"vi","text":"Phê duyệt cái đó đi, mà khoan đã.","expected":[{"intent":"CLARIFY"}]}
+{"id":"dm30","language":"ko","text":"목표를 영구적으로 900분으로 바꿔줘.","expected":[{"intent":"CLARIFY"}]}
+{"id":"dm31","language":"en","text":"I put in twenty minutes of Korean practice today.","expected":[{"intent":"REPORT_PROGRESS","minutes":20}]}
+{"id":"dm32","language":"vi","text":"Sáng nay mình ôn từ mới được mười lăm phút.","expected":[{"intent":"REPORT_PROGRESS","minutes":15}]}
+{"id":"dm33","language":"ko","text":"오늘 단어 복습에 삼십 분 썼어.","expected":[{"intent":"REPORT_PROGRESS","minutes":30}]}
+{"id":"dm34","language":"en","text":"Could you look up my total from the day before today?","expected":[{"intent":"QUERY_PROGRESS","day":"yesterday"}]}
+{"id":"dm35","language":"vi","text":"Bạn đố mình vài từ vựng được không?","expected":[{"intent":"REQUEST_VERIFICATION"}]}
+{"id":"dm36","language":"ko","text":"일이 밀려서 오늘은 계획을 좀 줄이고 싶어.","expected":[{"intent":"REPORT_OBSTACLE","reason":"busy"},{"intent":"REQUEST_RECOVERY","when":"today"}]}
+{"id":"dm37","language":"en","text":"Today's total is 1441 minutes","expected":[{"intent":"CLARIFY"}]}
+{"id":"dm38","language":"vi","text":"Hôm nay tôi học tiếng Hàn 12 phút và tôi bận","expected":[{"intent":"REPORT_PROGRESS","minutes":12},{"intent":"REPORT_OBSTACLE","reason":"busy"}]}
+{"id":"dm39","language":"ko","text":"오늘 진도 알려줘","expected":[{"intent":"QUERY_PROGRESS","day":"today"}]}

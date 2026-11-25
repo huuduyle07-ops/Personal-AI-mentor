@@ -51,7 +51,7 @@ uv --cache-dir .uv-cache run python bot.py
 4. 봇을 실행합니다. 서버와 DM에서 사용할 전역 명령어를 동기화하고, 개발용 서버를 지정했다면 해당 서버의 명령어도 동기화합니다. 전역 명령어가 Discord에 표시되기까지 시간이 걸릴 수 있습니다.
 5. 모든 명령어는 설정된 사용자 ID를 확인합니다. 예약 체크인은 직접 활성화해야 합니다. Discord가 DM을 차단하면 전송 시도 후 `/checkins action:status`에 `blocked`가 표시됩니다. 다음 예약 시간 전에 DM을 허용하세요.
 
-Message Content, Members, Presence 특권 인텐트는 필요하지 않습니다. 일반 메시지는 모니터링하지 않습니다. 명령어 응답은 실행한 사용자에게만 보이는 비공개 응답(ephemeral)이며, 예약 메시지는 설정된 사용자의 DM으로만 보냅니다. 플랫폼의 상호작용 방식은 [discord.py 상호작용 API 문서](https://discordpy.readthedocs.io/en/stable/interactions/api.html)를 참고하세요.
+허용된 사용자는 봇과의 1:1 DM에서 “오늘 진도 알려줘”처럼 말할 수 있습니다. Message Content, Members, Presence 특권 인텐트는 필요하지 않습니다. 명령어 응답은 실행한 사용자에게만 보이며 예약 메시지는 신청한 사용자의 DM으로 보냅니다. 한국어 예시와 확인·승인 절차는 [DM 시연 가이드](docs/DISCORD_DM_DEMO.md)를 참고하세요.
 
 ## 명령어 및 시연
 

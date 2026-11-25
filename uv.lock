@@ -786,6 +786,8 @@ dependencies = [
     { name = "aiohttp" },
     { name = "discord" },
     { name = "dotenv" },
+    { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
+    { name = "numpy", version = "2.5.5", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
     { name = "pytest" },
 ]
 
@@ -799,6 +801,7 @@ requires-dist = [
     { name = "aiohttp", specifier = ">=3.14.5" },
     { name = "discord", specifier = ">=2.3.2" },
     { name = "dotenv", specifier = ">=0.9.9" },
+    { name = "numpy", specifier = ">=2.4.6" },
     { name = "pytest", specifier = ">=9.2.0" },
     { name = "scikit-learn", marker = "extra == 'research'", specifier = ">=1.9.1" },
 ]
