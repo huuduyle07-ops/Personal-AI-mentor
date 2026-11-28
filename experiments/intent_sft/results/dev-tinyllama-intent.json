@@ -1,0 +1,325 @@
+{
+  "mode": "live",
+  "model": "tinyllama-intent",
+  "timeout_seconds": 60.0,
+  "evidence_guard": true,
+  "prompt_sha256": "d6f2449c8b8e",
+  "scenarios": "heldout.jsonl",
+  "count": 60,
+  "intent_set_accuracy": 0.8,
+  "intent_set_accuracy_ci95": [
+    0.7,
+    0.9
+  ],
+  "action_accuracy": 0.8,
+  "action_accuracy_ci95": [
+    0.7,
+    0.9
+  ],
+  "per_intent": {
+    "REPORT_PROGRESS": {
+      "support": 14,
+      "precision": 1.0,
+      "recall": 0.5714,
+      "f1": 0.7272
+    },
+    "QUERY_PROGRESS": {
+      "support": 8,
+      "precision": 1.0,
+      "recall": 0.75,
+      "f1": 0.8571
+    },
+    "REPORT_OBSTACLE": {
+      "support": 14,
+      "precision": 0.9231,
+      "recall": 0.8571,
+      "f1": 0.8889
+    },
+    "REQUEST_RECOVERY": {
+      "support": 10,
+      "precision": 0.875,
+      "recall": 0.7,
+      "f1": 0.7778
+    },
+    "REQUEST_VERIFICATION": {
+      "support": 5,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "GENERAL_CONVERSATION": {
+      "support": 4,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "CLARIFY": {
+      "support": 12,
+      "precision": 0.5789,
+      "recall": 0.9167,
+      "f1": 0.7097
+    }
+  },
+  "macro_f1": 0.8515,
+  "rejection_reasons": {
+    "invalid_evidence": 4
+  },
+  "intent_accuracy_by_language": {
+    "en": 0.8,
+    "ko": 0.8,
+    "vi": 0.8
+  },
+  "slot_precision": 0.9429,
+  "slot_recall": 0.7021,
+  "invalid_action_rate_after_validation": 0.0,
+  "clarify_precision": 0.5789,
+  "clarify_recall": 0.9167,
+  "fallback_count": 4,
+  "safe_fallback_rate": 1.0,
+  "latency_ms": {
+    "median": 323.144,
+    "p95": 596.031
+  },
+  "backend_attempt_ms": {
+    "median": 323.053,
+    "p95": 595.864
+  },
+  "outcomes": {
+    "ollama": 56,
+    "unavailable_or_invalid": 4
+  },
+  "errors": [
+    {
+      "id": "h02",
+      "text": "finally got through an hour of grammar drills",
+      "expected": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 60
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "h04",
+      "text": "my total for today ended up being 50 min",
+      "expected": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 50
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "ollama",
+      "reason": ""
+    },
+    {
+      "id": "h05",
+      "text": "zero studying today, sadly",
+      "expected": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 0
+        }
+      ],
+      "returned": [
+        {
+          "intent": "REPORT_OBSTACLE",
+          "reason": "busy"
+        }
+      ],
+      "source": "ollama",
+      "reason": ""
+    },
+    {
+      "id": "h06",
+      "text": "spent two hours on Korean today, I'm exhausted",
+      "expected": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 120
+        },
+        {
+          "intent": "REPORT_OBSTACLE",
+          "reason": "tired"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 120
+        }
+      ],
+      "source": "ollama",
+      "reason": ""
+    },
+    {
+      "id": "h17",
+      "text": "please move the remaining 15 minutes to tomorrow",
+      "expected": [
+        {
+          "intent": "REQUEST_RECOVERY",
+          "when": "tomorrow",
+          "remaining_minutes": 15
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "h28",
+      "text": "go ahead and approve whatever is pending",
+      "expected": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "REQUEST_RECOVERY",
+          "when": "tomorrow"
+        }
+      ],
+      "source": "ollama",
+      "reason": ""
+    },
+    {
+      "id": "h31",
+      "text": "아침에 단어 30분 외웠어요",
+      "expected": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 30
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "ollama",
+      "reason": ""
+    },
+    {
+      "id": "h34",
+      "text": "어제는 몇 분 했어요?",
+      "expected": [
+        {
+          "intent": "QUERY_PROGRESS",
+          "day": "yesterday"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "ollama",
+      "reason": ""
+    },
+    {
+      "id": "h45",
+      "text": "20분 공부했는데 피곤해서 나머지는 내일 할게요",
+      "expected": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 20
+        },
+        {
+          "intent": "REPORT_OBSTACLE",
+          "reason": "tired"
+        },
+        {
+          "intent": "REQUEST_RECOVERY",
+          "when": "tomorrow"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "h47",
+      "text": "hôm nay em học được một tiếng",
+      "expected": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 60
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "h50",
+      "text": "hôm qua mình học bao lâu?",
+      "expected": [
+        {
+          "intent": "QUERY_PROGRESS",
+          "day": "yesterday"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "ollama",
+      "reason": ""
+    },
+    {
+      "id": "h60",
+      "text": "mình học 20 phút nhưng mệt quá, mai học tiếp nhé",
+      "expected": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 20
+        },
+        {
+          "intent": "REPORT_OBSTACLE",
+          "reason": "tired"
+        },
+        {
+          "intent": "REQUEST_RECOVERY",
+          "when": "tomorrow"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 20
+        },
+        {
+          "intent": "REPORT_OBSTACLE",
+          "reason": "tired"
+        }
+      ],
+      "source": "ollama",
+      "reason": ""
+    }
+  ]
+}

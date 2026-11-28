@@ -1,0 +1,843 @@
+{
+  "mode": "live",
+  "model": "tinyllama",
+  "timeout_seconds": 60.0,
+  "evidence_guard": true,
+  "prompt_sha256": "d6f2449c8b8e",
+  "scenarios": "heldout_v2.jsonl",
+  "count": 45,
+  "intent_set_accuracy": 0.1556,
+  "intent_set_accuracy_ci95": [
+    0.0667,
+    0.2667
+  ],
+  "action_accuracy": 0.2444,
+  "action_accuracy_ci95": [
+    0.1333,
+    0.3778
+  ],
+  "per_intent": {
+    "REPORT_PROGRESS": {
+      "support": 8,
+      "precision": 0.7273,
+      "recall": 1.0,
+      "f1": 0.8421
+    },
+    "QUERY_PROGRESS": {
+      "support": 5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "REPORT_OBSTACLE": {
+      "support": 10,
+      "precision": 0.1667,
+      "recall": 0.1,
+      "f1": 0.125
+    },
+    "REQUEST_RECOVERY": {
+      "support": 7,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "REQUEST_VERIFICATION": {
+      "support": 5,
+      "precision": null,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "GENERAL_CONVERSATION": {
+      "support": 4,
+      "precision": null,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "CLARIFY": {
+      "support": 10,
+      "precision": 0.2059,
+      "recall": 0.7,
+      "f1": 0.3182
+    }
+  },
+  "macro_f1": 0.1836,
+  "rejection_reasons": {
+    "invalid_evidence": 30,
+    "invalid_schema": 3
+  },
+  "intent_accuracy_by_language": {
+    "en": 0.1429,
+    "ko": 0.1667,
+    "vi": 0.1667
+  },
+  "slot_precision": 0.2121,
+  "slot_recall": 0.2333,
+  "invalid_action_rate_after_validation": 0.0,
+  "clarify_precision": 0.2059,
+  "clarify_recall": 0.7,
+  "fallback_count": 33,
+  "safe_fallback_rate": 1.0,
+  "latency_ms": {
+    "median": 805.13,
+    "p95": 1238.822
+  },
+  "backend_attempt_ms": {
+    "median": 805.043,
+    "p95": 1238.757
+  },
+  "outcomes": {
+    "ollama": 12,
+    "unavailable_or_invalid": 33
+  },
+  "errors": [
+    {
+      "id": "v2_01",
+      "text": "knocked out 35 minutes of listening practice",
+      "expected": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 35
+        }
+      ],
+      "returned": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 35
+        },
+        {
+          "intent": "QUERY_PROGRESS",
+          "day": "today"
+        }
+      ],
+      "source": "ollama",
+      "reason": ""
+    },
+    {
+      "id": "v2_02",
+      "text": "just wrapped up a 20 min session",
+      "expected": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 20
+        }
+      ],
+      "returned": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 20
+        },
+        {
+          "intent": "QUERY_PROGRESS",
+          "day": "today"
+        },
+        {
+          "intent": "REPORT_OBSTACLE",
+          "reason": "busy"
+        },
+        {
+          "intent": "REQUEST_RECOVERY",
+          "when": "tomorrow"
+        }
+      ],
+      "source": "ollama",
+      "reason": ""
+    },
+    {
+      "id": "v2_03",
+      "text": "logged three hours at the library today",
+      "expected": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 180
+        }
+      ],
+      "returned": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 3
+        },
+        {
+          "intent": "QUERY_PROGRESS",
+          "day": "today"
+        },
+        {
+          "intent": "REPORT_OBSTACLE",
+          "reason": "busy"
+        }
+      ],
+      "source": "ollama",
+      "reason": ""
+    },
+    {
+      "id": "v2_04",
+      "text": "only got 5 minutes in because my shift ran late",
+      "expected": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 5
+        },
+        {
+          "intent": "REPORT_OBSTACLE",
+          "reason": "busy"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 5
+        },
+        {
+          "intent": "QUERY_PROGRESS",
+          "day": "today"
+        }
+      ],
+      "source": "ollama",
+      "reason": ""
+    },
+    {
+      "id": "v2_05",
+      "text": "how's my progress looking",
+      "expected": [
+        {
+          "intent": "QUERY_PROGRESS",
+          "day": "today"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "v2_06",
+      "text": "what was my total yesterday",
+      "expected": [
+        {
+          "intent": "QUERY_PROGRESS",
+          "day": "yesterday"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "v2_07",
+      "text": "I can barely keep my eyes open",
+      "expected": [
+        {
+          "intent": "REPORT_OBSTACLE",
+          "reason": "tired"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "v2_08",
+      "text": "I have a cold",
+      "expected": [
+        {
+          "intent": "REPORT_OBSTACLE",
+          "reason": "other"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "v2_09",
+      "text": "can today's goal be smaller",
+      "expected": [
+        {
+          "intent": "REQUEST_RECOVERY",
+          "when": "today"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "v2_10",
+      "text": "I'll finish the remaining part tomorrow",
+      "expected": [
+        {
+          "intent": "REQUEST_RECOVERY",
+          "when": "tomorrow"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "v2_11",
+      "text": "drill me on a few words",
+      "expected": [
+        {
+          "intent": "REQUEST_VERIFICATION"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_schema"
+    },
+    {
+      "id": "v2_12",
+      "text": "pop quiz please",
+      "expected": [
+        {
+          "intent": "REQUEST_VERIFICATION"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "v2_13",
+      "text": "can I get a vocab check",
+      "expected": [
+        {
+          "intent": "REQUEST_VERIFICATION"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_schema"
+    },
+    {
+      "id": "v2_14",
+      "text": "hey there",
+      "expected": [
+        {
+          "intent": "GENERAL_CONVERSATION"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "v2_15",
+      "text": "appreciate it",
+      "expected": [
+        {
+          "intent": "GENERAL_CONVERSATION"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "v2_17",
+      "text": "I plan to do 45 minutes on Saturday",
+      "expected": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 45
+        },
+        {
+          "intent": "QUERY_PROGRESS",
+          "day": "today"
+        },
+        {
+          "intent": "REPORT_OBSTACLE",
+          "reason": "tired"
+        },
+        {
+          "intent": "REQUEST_RECOVERY",
+          "when": "tomorrow"
+        }
+      ],
+      "source": "ollama",
+      "reason": ""
+    },
+    {
+      "id": "v2_18",
+      "text": "set my daily goal to 60 minutes",
+      "expected": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 60
+        },
+        {
+          "intent": "QUERY_PROGRESS",
+          "day": "today"
+        }
+      ],
+      "source": "ollama",
+      "reason": ""
+    },
+    {
+      "id": "v2_21",
+      "text": "exhausted after work, can we make today's target lighter?",
+      "expected": [
+        {
+          "intent": "REPORT_OBSTACLE",
+          "reason": "tired"
+        },
+        {
+          "intent": "REQUEST_RECOVERY",
+          "when": "today"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "v2_22",
+      "text": "출근 전에 15분 듣기 연습했어요",
+      "expected": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 15
+        }
+      ],
+      "returned": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 15
+        },
+        {
+          "intent": "QUERY_PROGRESS",
+          "day": "today"
+        }
+      ],
+      "source": "ollama",
+      "reason": ""
+    },
+    {
+      "id": "v2_23",
+      "text": "오늘 두 시간 공부했어요 진짜 힘들다",
+      "expected": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 120
+        },
+        {
+          "intent": "REPORT_OBSTACLE",
+          "reason": "tired"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 25
+        },
+        {
+          "intent": "QUERY_PROGRESS",
+          "day": "today"
+        },
+        {
+          "intent": "REPORT_OBSTACLE",
+          "reason": "tired"
+        },
+        {
+          "intent": "REQUEST_RECOVERY",
+          "when": "tomorrow"
+        }
+      ],
+      "source": "ollama",
+      "reason": ""
+    },
+    {
+      "id": "v2_24",
+      "text": "오늘 진도 어떻게 돼요?",
+      "expected": [
+        {
+          "intent": "QUERY_PROGRESS",
+          "day": "today"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "v2_25",
+      "text": "야근 때문에 시간이 없어요",
+      "expected": [
+        {
+          "intent": "REPORT_OBSTACLE",
+          "reason": "busy"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "v2_26",
+      "text": "감기에 걸렸어요",
+      "expected": [
+        {
+          "intent": "REPORT_OBSTACLE",
+          "reason": "other"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "v2_27",
+      "text": "오늘은 조금만 하고 싶어요",
+      "expected": [
+        {
+          "intent": "REQUEST_RECOVERY",
+          "when": "today"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "v2_28",
+      "text": "나머지는 내일로 미룰게요",
+      "expected": [
+        {
+          "intent": "REQUEST_RECOVERY",
+          "when": "tomorrow"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "v2_29",
+      "text": "단어 퀴즈 하나 내 주세요",
+      "expected": [
+        {
+          "intent": "REQUEST_VERIFICATION"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_schema"
+    },
+    {
+      "id": "v2_30",
+      "text": "안녕! 좋은 아침이에요",
+      "expected": [
+        {
+          "intent": "GENERAL_CONVERSATION"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "v2_32",
+      "text": "목표를 45분으로 바꿔 주세요",
+      "expected": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 45
+        },
+        {
+          "intent": "QUERY_PROGRESS",
+          "day": "today"
+        },
+        {
+          "intent": "REPORT_OBSTACLE",
+          "reason": "busy"
+        },
+        {
+          "intent": "REQUEST_RECOVERY",
+          "when": "tomorrow"
+        }
+      ],
+      "source": "ollama",
+      "reason": ""
+    },
+    {
+      "id": "v2_34",
+      "text": "mình vừa học xong 30 phút ngữ pháp",
+      "expected": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 30
+        }
+      ],
+      "returned": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 30
+        },
+        {
+          "intent": "QUERY_PROGRESS",
+          "day": "today"
+        },
+        {
+          "intent": "REPORT_OBSTACLE",
+          "reason": "tired"
+        },
+        {
+          "intent": "REQUEST_RECOVERY",
+          "when": "tomorrow"
+        }
+      ],
+      "source": "ollama",
+      "reason": ""
+    },
+    {
+      "id": "v2_35",
+      "text": "tối qua mình học bao nhiêu phút vậy?",
+      "expected": [
+        {
+          "intent": "QUERY_PROGRESS",
+          "day": "yesterday"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "v2_36",
+      "text": "hôm nay mình tiến bộ thế nào rồi?",
+      "expected": [
+        {
+          "intent": "QUERY_PROGRESS",
+          "day": "today"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "v2_37",
+      "text": "mệt quá trời luôn",
+      "expected": [
+        {
+          "intent": "REPORT_OBSTACLE",
+          "reason": "tired"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "v2_38",
+      "text": "tuần này mình bận lắm",
+      "expected": [
+        {
+          "intent": "REPORT_OBSTACLE",
+          "reason": "busy"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "v2_39",
+      "text": "cho mình mục tiêu nhẹ hơn hôm nay nhé",
+      "expected": [
+        {
+          "intent": "REQUEST_RECOVERY",
+          "when": "today"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "v2_40",
+      "text": "để mai mình học nốt phần còn lại",
+      "expected": [
+        {
+          "intent": "REQUEST_RECOVERY",
+          "when": "tomorrow"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "v2_41",
+      "text": "kiểm tra mình vài từ mới đi",
+      "expected": [
+        {
+          "intent": "REQUEST_VERIFICATION"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "v2_42",
+      "text": "chào bạn nha",
+      "expected": [
+        {
+          "intent": "GENERAL_CONVERSATION"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "CLARIFY"
+        }
+      ],
+      "source": "unavailable_or_invalid",
+      "reason": "invalid_evidence"
+    },
+    {
+      "id": "v2_45",
+      "text": "mình học 15 phút rồi nhưng bận quá",
+      "expected": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 15
+        },
+        {
+          "intent": "REPORT_OBSTACLE",
+          "reason": "busy"
+        }
+      ],
+      "returned": [
+        {
+          "intent": "REPORT_PROGRESS",
+          "minutes": 15
+        },
+        {
+          "intent": "QUERY_PROGRESS",
+          "day": "today"
+        }
+      ],
+      "source": "ollama",
+      "reason": ""
+    }
+  ]
+}

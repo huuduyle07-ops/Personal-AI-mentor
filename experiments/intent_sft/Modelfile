@@ -1,0 +1,13 @@
+# Fine-tuned TinyLlama for the bot's intent task. Same chat template as Ollama's own tinyllama,
+# which is also the template the model was trained with.
+FROM ./artifacts/fused
+TEMPLATE """<|system|>
+{{ .System }}</s>
+<|user|>
+{{ .Prompt }}</s>
+<|assistant|>
+"""
+PARAMETER stop <|system|>
+PARAMETER stop <|user|>
+PARAMETER stop <|assistant|>
+PARAMETER stop </s>

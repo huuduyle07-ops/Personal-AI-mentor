@@ -1,0 +1,2 @@
+tinyllama-intent:latest    973498f09a90    906 MB    100% GPU     2048       mlx         4 minutes from now    
+tinyllama:latest           2644915ede35    644 MB    100% GPU     2048       llamacpp    4 minutes from now    
