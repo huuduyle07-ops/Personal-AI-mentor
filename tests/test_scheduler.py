@@ -108,3 +108,14 @@ def test_concurrent_ticks_deduplicate(store):
 def test_invalid_schedule(store, value):
     with pytest.raises(ValueError):
         CheckinScheduler(store, USER, AsyncMock()).configure(USER, midday=value)
+
+
+def test_late_evening_slot_catches_up_after_midnight(store):
+    send = AsyncMock()
+    scheduler = CheckinScheduler(store, USER, send)
+    scheduler.configure(USER, evening="23:30", now=START)
+    asyncio.run(scheduler.tick(datetime(2026, 11, 23, 0, 30, tzinfo=KST)))
+    assert send.await_count == 1 and "Evening review" in send.call_args.args[1]
+    assert scheduler.status(USER)["deliveries"][0]["day"] == "2026-11-22"
+    asyncio.run(scheduler.tick(datetime(2026, 11, 23, 5, 31, tzinfo=KST)))  # window closed, no duplicate
+    assert send.await_count == 1

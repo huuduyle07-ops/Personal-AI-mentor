@@ -20,3 +20,8 @@ data/
 .uv-cache/
 .pytest_cache/
 experiments/router/artifacts/
+experiments/forgetting_curve/artifacts/
+
+# Local secrets and OS files
+.streamlit/secrets.toml
+.DS_Store

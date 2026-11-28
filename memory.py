@@ -59,7 +59,7 @@ MIGRATIONS = [
 ]
 
 
-# Additive DM feature tables share the existing v2 goal/event contract.
+# Additive DM feature and app state tables share the existing v2 goal/event contract.
 # Install them transactionally for both new and already-migrated v2 databases.
 DM_TABLES = (
     """CREATE TABLE IF NOT EXISTS dm_receipts (
@@ -71,6 +71,31 @@ DM_TABLES = (
         proposal_id INTEGER PRIMARY KEY REFERENCES recovery_proposals(id),
         report_id INTEGER, next_day TEXT NOT NULL, next_title TEXT NOT NULL,
         next_target INTEGER NOT NULL, next_revision INTEGER NOT NULL)""",
+    # Vocabulary the user added from their own notes, after confirming the extracted list.
+    """CREATE TABLE IF NOT EXISTS user_vocab (
+        id INTEGER PRIMARY KEY, user_id INTEGER NOT NULL, word TEXT NOT NULL, answers TEXT NOT NULL,
+        source TEXT NOT NULL, created_at TEXT NOT NULL, UNIQUE(user_id, word))""",
+    # At most one extracted list per user waits for confirmation; nothing reaches the deck before that.
+    """CREATE TABLE IF NOT EXISTS vocab_imports (
+        user_id INTEGER PRIMARY KEY, items TEXT NOT NULL, source TEXT NOT NULL, created_at TEXT NOT NULL)""",
+    # Check-in bandit parameters (LinUCB A matrix and b vector per action), stored as JSON.
+    """CREATE TABLE IF NOT EXISTS bandit_state (
+        user_id INTEGER NOT NULL, action TEXT NOT NULL, version INTEGER NOT NULL, A TEXT NOT NULL,
+        b TEXT NOT NULL, updates INTEGER NOT NULL, updated_at TEXT NOT NULL, PRIMARY KEY(user_id, action))""",
+    # Shadow mode: what happened after each real check-in (or planned silence), used to train the bandit.
+    # Stores the feature vector only, never message text.
+    """CREATE TABLE IF NOT EXISTS bandit_shadow (
+        id INTEGER PRIMARY KEY, user_id INTEGER NOT NULL, day TEXT NOT NULL, slot TEXT NOT NULL,
+        action TEXT NOT NULL, policy_choice TEXT NOT NULL, context TEXT NOT NULL, decided_at TEXT NOT NULL,
+        reward REAL, engaged INTEGER, resolved_at TEXT, UNIQUE(user_id, day, slot))""",
+    # Active production practice (English meaning -> typed Hangul). Kept apart from verification_attempts,
+    # so the passive recognition history that schedules words and personalizes the recall model never sees it.
+    """CREATE TABLE IF NOT EXISTS active_attempts (
+        id INTEGER PRIMARY KEY, user_id INTEGER NOT NULL, day TEXT NOT NULL, question_id TEXT NOT NULL,
+        mode TEXT NOT NULL DEFAULT 'active' CHECK(mode='active'), state TEXT NOT NULL DEFAULT 'pending',
+        given TEXT, created_at TEXT NOT NULL, answered_at TEXT)""",
+    # Small application key/value state, such as the last synced slash-command fingerprint.
+    """CREATE TABLE IF NOT EXISTS app_state (key TEXT PRIMARY KEY, value TEXT NOT NULL)""",
 )
 
 

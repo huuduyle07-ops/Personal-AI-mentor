@@ -1,0 +1,2 @@
+qwen3:1.7b               8f68893c685c    1.5 GB    100% GPU     4096       llamacpp    4 minutes from now    
+cpu-qwen3-0.6b:latest    33eba55aa3cf    1.0 GB    100% CPU     4096       llamacpp    4 minutes from now    

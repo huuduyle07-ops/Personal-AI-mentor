@@ -1,0 +1,145 @@
+{
+ "week5.md": [
+  [
+   "봄",
+   [
+    "spring"
+   ]
+  ],
+  [
+   "여름",
+   [
+    "summer"
+   ]
+  ],
+  [
+   "가을",
+   [
+    "autumn",
+    "fall"
+   ]
+  ],
+  [
+   "겨울",
+   [
+    "winter"
+   ]
+  ],
+  [
+   "비",
+   [
+    "rain"
+   ]
+  ],
+  [
+   "눈",
+   [
+    "snow"
+   ]
+  ],
+  [
+   "바람",
+   [
+    "wind"
+   ]
+  ]
+ ],
+ "phone_notes.txt": [
+  [
+   "기차",
+   [
+    "train"
+   ]
+  ],
+  [
+   "버스",
+   [
+    "bus"
+   ]
+  ],
+  [
+   "지하철",
+   [
+    "subway"
+   ]
+  ],
+  [
+   "택시",
+   [
+    "taxi"
+   ]
+  ],
+  [
+   "비행기",
+   [
+    "airplane"
+   ]
+  ]
+ ],
+ "flashcards.csv": [
+  [
+   "시장",
+   [
+    "market"
+   ]
+  ],
+  [
+   "은행",
+   [
+    "bank"
+   ]
+  ],
+  [
+   "병원",
+   [
+    "hospital"
+   ]
+  ],
+  [
+   "약국",
+   [
+    "pharmacy"
+   ]
+  ]
+ ],
+ "adjectives.md": [
+  [
+   "크다",
+   [
+    "to be big",
+    "be big",
+    "big"
+   ]
+  ],
+  [
+   "작다",
+   [
+    "to be small",
+    "be small",
+    "small"
+   ]
+  ],
+  [
+   "좋다",
+   [
+    "to be good",
+    "be good",
+    "good"
+   ]
+  ],
+  [
+   "나쁘다",
+   [
+    "bad",
+    "to be bad"
+   ]
+  ],
+  [
+   "예쁘다",
+   [
+    "pretty",
+    "to be pretty"
+   ]
+  ]
+ ]
+}

@@ -1,0 +1,51 @@
+{
+  "text": {
+    "overall": {
+      "files": 4,
+      "gold_pairs": 21,
+      "predicted_pairs": 21,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "korean_only_precision": 1.0,
+      "korean_only_recall": 1.0
+    },
+    "by_file": {
+      "week5.md": {
+        "predicted": 7,
+        "gold": 7,
+        "correct": 7,
+        "korean_correct": 7,
+        "missed": [],
+        "false_positives": []
+      },
+      "phone_notes.txt": {
+        "predicted": 5,
+        "gold": 5,
+        "correct": 5,
+        "korean_correct": 5,
+        "missed": [],
+        "false_positives": []
+      },
+      "flashcards.csv": {
+        "predicted": 4,
+        "gold": 4,
+        "correct": 4,
+        "korean_correct": 4,
+        "missed": [],
+        "false_positives": []
+      },
+      "adjectives.md": {
+        "predicted": 5,
+        "gold": 5,
+        "correct": 5,
+        "korean_correct": 5,
+        "missed": [],
+        "false_positives": []
+      }
+    }
+  },
+  "images": {
+    "skipped": "No labelled photos in images/."
+  }
+}

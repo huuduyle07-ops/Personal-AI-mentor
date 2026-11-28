@@ -1,0 +1,2 @@
+tinyllama:latest    2644915ede35    644 MB    100% GPU     2048       llamacpp    4 minutes from now     
+qwen3:1.7b          8f68893c685c    1.9 GB    100% CPU     4096       llamacpp    26 seconds from now    

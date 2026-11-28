@@ -1,0 +1,107 @@
+{
+  "text": {
+    "overall": {
+      "files": 5,
+      "gold_pairs": 27,
+      "predicted_pairs": 25,
+      "precision": 0.76,
+      "recall": 0.7037,
+      "f1": 0.7308,
+      "korean_only_precision": 0.96,
+      "korean_only_recall": 0.8889
+    },
+    "by_file": {
+      "lesson_food.md": {
+        "predicted": 6,
+        "gold": 6,
+        "correct": 6,
+        "korean_correct": 6,
+        "missed": [],
+        "false_positives": []
+      },
+      "textbook_table.md": {
+        "predicted": 5,
+        "gold": 5,
+        "correct": 0,
+        "korean_correct": 5,
+        "missed": [
+          "교실",
+          "선생님",
+          "숙제",
+          "시험",
+          "학생"
+        ],
+        "false_positives": [
+          [
+            "선생님",
+            [
+              "seonsaengnim"
+            ]
+          ],
+          [
+            "학생",
+            [
+              "haksaeng"
+            ]
+          ],
+          [
+            "교실",
+            [
+              "gyosil"
+            ]
+          ],
+          [
+            "숙제",
+            [
+              "sukje"
+            ]
+          ],
+          [
+            "시험",
+            [
+              "siheom"
+            ]
+          ]
+        ]
+      },
+      "anki_export.csv": {
+        "predicted": 5,
+        "gold": 5,
+        "correct": 5,
+        "korean_correct": 5,
+        "missed": [],
+        "false_positives": []
+      },
+      "quick_notes.txt": {
+        "predicted": 4,
+        "gold": 7,
+        "correct": 4,
+        "korean_correct": 4,
+        "missed": [
+          "사과",
+          "시험",
+          "학교"
+        ],
+        "false_positives": []
+      },
+      "verbs.md": {
+        "predicted": 5,
+        "gold": 4,
+        "correct": 4,
+        "korean_correct": 4,
+        "missed": [],
+        "false_positives": [
+          [
+            "가요",
+            [
+              "goes"
+            ]
+          ]
+        ]
+      }
+    }
+  },
+  "images": {
+    "skipped": "No labelled photos in images/."
+  }
+}

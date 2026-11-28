@@ -45,3 +45,14 @@ def test_invalid_goal(tmp_path):
 
     with pytest.raises(ValueError):
         store.set_goal(123, "Korean", -10)
+
+
+def test_blank_env_values_use_defaults(monkeypatch):
+    from config import Config
+    for name in ("DISCORD_TOKEN", "ALLOWED_USER_ID", "DISCORD_GUILD_ID", "OLLAMA_TIMEOUT", "MIDDAY_CHECKIN"):
+        monkeypatch.setenv(name, "")
+    monkeypatch.setenv("DISCORD_BOT_TOKEN", "legacy-token")
+    config = Config.from_env()
+    assert (config.allowed_user_id, config.guild_id, config.midday, config.token) == (0, 0, "12:00", "legacy-token")
+    with pytest.raises(ValueError, match="Set DISCORD_TOKEN and ALLOWED_USER_ID"):
+        Config(token="").require_discord()

@@ -45,6 +45,12 @@ def clarification(lang, text):
                "공부 시간을 기록할까요, 진도를 확인할까요, 아니면 계획을 조정할까요? 예를 들어 “오늘 20분 공부했어요”라고 보내 주세요.")
 
 
+def unchanged_total(lang, minutes):
+    return say(lang, f"{minutes} minutes is already recorded as today's total, so nothing changed.",
+               f"Tổng hôm nay đã là {minutes} phút rồi, không có gì thay đổi.",
+               f"오늘 총 {minutes}분이 이미 기록되어 있어요. 바뀐 것은 없어요.")
+
+
 def obstacle(lang, reason):
     return {"tired": say(lang, "tired", "mệt", "피곤함"), "busy": say(lang, "busy", "bận", "바쁨"),
             "other": say(lang, "other", "trở ngại khác", "기타 어려움")}[reason]
@@ -58,6 +64,15 @@ def domain_message(lang, error):
         return say(lang, message, "Không tìm thấy đề xuất đó đang chờ duyệt trong hôm nay.", "오늘 승인 대기 중인 해당 제안이 없어요.")
     if "already meets" in message or "no remaining target" in message:
         return say(lang, message, "Bạn đã đạt mục tiêu hôm nay. Không còn phút nào để chuyển.", "오늘 목표를 달성해 미룰 시간이 없어요.")
+    if message.startswith("Report progress first"):
+        # A flashcard quiz checks a logged study session, so it needs today's total; active practice doesn't.
+        return say(lang, "Flashcards check a study session you've logged, so tell me today's total first "
+                         "(for example “today's total is 20 minutes”), then say “quiz me” again. "
+                         "Want to practice right now? Say “quiz me in Korean”: that quiz doesn't need a log.",
+                   "Thẻ từ dùng để kiểm tra buổi học bạn đã ghi, nên hãy gửi tổng số phút hôm nay trước "
+                   "(ví dụ “hôm nay tôi học 20 phút”). Muốn luyện ngay? Hãy nói “kiểm tra chính tả”.",
+                   "단어 퀴즈는 기록한 공부를 확인하는 거라서, 오늘 공부한 총시간을 먼저 알려 주세요 "
+                   "(예: “오늘 20분 공부했어요”). 바로 연습하고 싶다면 “한글로 퀴즈”라고 해 주세요.")
     if "first" in message and ("total" in message or "progress" in message.lower()):
         return say(lang, message, "Bạn đã học bao nhiêu phút hôm nay? Hãy gửi tổng số phút trước.", "오늘 공부한 총시간을 먼저 알려 주세요.")
     if "fit tomorrow" in message:
@@ -102,10 +117,12 @@ def draft_reply(lang, actions, plan, prior, remaining, day, number):
                        ("오늘" if period == "today" else "어제") + " 진도 확인")
         parts.append(part)
     return say(lang, "Did I understand you correctly? You'd like me to " + ", and ".join(parts)
-               + f". Reply “confirm #{number}” or “discard #{number}”. Any plan change needs a separate approval.",
-               "Tôi hiểu là " + ", ".join(parts) + f". Đúng vậy không? Trả lời “xác nhận #{number}” để ghi nhận "
-               f"hoặc “hủy #{number}”. Bạn sẽ duyệt riêng trước khi kế hoạch thay đổi.",
-               "이렇게 이해했어요. " + ", ".join(parts) + f". 맞으면 “확인 #{number}”, 취소하려면 “취소 #{number}”라고 답해 주세요. 계획 변경은 별도로 승인해 주세요.")
+               + f". Reply yes to go ahead or no to cancel (or “confirm #{number}” / “discard #{number}”). "
+               "Any plan change needs a separate approval.",
+               "Tôi hiểu là " + ", ".join(parts) + f". Đúng vậy không? Trả lời “đúng” để ghi nhận hoặc “không” để hủy "
+               f"(hoặc “xác nhận #{number}” / “hủy #{number}”). Bạn sẽ duyệt riêng trước khi kế hoạch thay đổi.",
+               "이렇게 이해했어요. " + ", ".join(parts) + f". 맞으면 “네”, 아니면 “아니요”라고 답해 주세요 "
+               f"(또는 “확인 #{number}” / “취소 #{number}”). 계획 변경은 별도로 승인해 주세요.")
 
 
 def proposal_reply(lang, proposal):
@@ -117,7 +134,9 @@ def proposal_reply(lang, proposal):
     else:
         vi = f"Giảm mục tiêu hôm nay xuống {target} phút?"
         ko = f"오늘 목표를 {target}분으로 줄일까요?"
-    return say(lang, f"Proposal #{number}: {proposal['explanation']} Reply “approve #{number}” or “reject #{number}”.",
-               f"Đề xuất #{number}. {vi} Gửi “đồng ý #{number}” để duyệt hoặc “từ chối #{number}”. "
+    return say(lang, f"Proposal #{number}: {proposal['explanation']} Reply approve or reject "
+               f"(or “approve #{number}” / “reject #{number}”).",
+               f"Đề xuất #{number}. {vi} Gửi “đồng ý” để duyệt hoặc “không” để từ chối "
+               f"(hoặc “đồng ý #{number}” / “từ chối #{number}”). "
                "Bạn cũng có thể dùng Reply trên chính tin nhắn này và trả lời “được chứ” để duyệt.",
-               f"제안 #{number}. {ko} “승인 #{number}” 또는 “거절 #{number}”라고 답해 주세요.")
+               f"제안 #{number}. {ko} “승인” 또는 “거절”이라고 답해 주세요 (또는 “승인 #{number}” / “거절 #{number}”).")

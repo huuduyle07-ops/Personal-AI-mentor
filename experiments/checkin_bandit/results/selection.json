@@ -1,0 +1,19 @@
+{
+  "linucb": {
+    "validation_cumulative_reward": {
+      "0.1": 74.3362,
+      "0.3": 74.6612,
+      "1.0": 73.0662
+    },
+    "chosen": 0.3
+  },
+  "thompson": {
+    "validation_cumulative_reward": {
+      "0.1": 74.1837,
+      "0.3": 69.3687,
+      "1.0": 59.7637
+    },
+    "chosen": 0.1
+  },
+  "seconds": 7.5
+}

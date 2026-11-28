@@ -30,7 +30,7 @@ def pm(store, monkeypatch):
 
 
 def message(content, number, user=USER, private=True, robot=False):
-    return SimpleNamespace(content=content, id=number, author=SimpleNamespace(bot=robot, id=user),
+    return SimpleNamespace(content=content, id=number, author=SimpleNamespace(bot=robot, id=user), attachments=[],
                            guild=None, type=discord.MessageType.default,
                            created_at=datetime.fromisoformat(DAY).replace(hour=12, tzinfo=KST),
                            channel=SimpleNamespace(type=discord.ChannelType.private if private else discord.ChannelType.group,
@@ -120,7 +120,7 @@ def test_controls_stale_moves_and_quiz(pm):
         await dm(pm, "I studied for 12 minutes", 1)
         assert "water" not in (await dm(pm, "quiz me", 2)).lower()
         assert "Would you like" in await dm(pm, "answer #1 water and approve #1", 200)
-        assert "verified" in await dm(pm, "answer #1 water", 3)
+        assert "Correct! 물 means water" in await dm(pm, "answer #1 water", 3)
         assert "Vocabulary quiz: verified" in await dm(pm, "my progress", 4)
         await dm(pm, "finish tomorrow", 5)
         await dm(pm, "yes", 6)
@@ -271,12 +271,13 @@ def test_production_dm_followups_and_replays(pm, caplog):
         assert all(part in preview for part in ("20/30 phút", "mệt", "10 phút còn lại", TOMORROW, "xác nhận #2"))
         assert await dm(pm, VI_LIVE, 101) is None
         assert await dm(pm, VI_LIVE, 102) == preview
-        assert "xác nhận #2" in await dm(pm, "được chứ", 103)
-        assert pm.store.summary(USER, DAY)["minutes"] is None
-        proposal = await dm(pm, "xác nhận #2", 104)
+        # A plain "sure" now saves the pending draft...
+        proposal = await dm(pm, "được chứ", 103)
         assert all(part in proposal for part in ("Đã ghi 20 phút", "10 phút còn lại", TOMORROW, "40 phút", "đồng ý #1"))
-        assert await dm(pm, "xác nhận #2", 104) is None
+        assert pm.store.summary(USER, DAY)["minutes"] == 20
+        assert await dm(pm, "được chứ", 103) is None
         assert "Không tìm thấy" in await dm(pm, "xác nhận #2", 105)
+        # ...but never approves the plan change it proposes.
         assert "đồng ý #1" in await dm(pm, "được chứ", 106)
         assert pm.store.summary(USER, DAY)["target"] == 30
         assert pm.store.summary(USER, DAY)["verification_state"] == "reported"

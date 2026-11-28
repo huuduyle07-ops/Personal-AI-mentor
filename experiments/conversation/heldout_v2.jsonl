@@ -1,0 +1,45 @@
+{"id": "v2_01", "language": "en", "text": "knocked out 35 minutes of listening practice", "expected": [{"intent": "REPORT_PROGRESS", "minutes": 35}]}
+{"id": "v2_02", "language": "en", "text": "just wrapped up a 20 min session", "expected": [{"intent": "REPORT_PROGRESS", "minutes": 20}]}
+{"id": "v2_03", "language": "en", "text": "logged three hours at the library today", "expected": [{"intent": "REPORT_PROGRESS", "minutes": 180}]}
+{"id": "v2_04", "language": "en", "text": "only got 5 minutes in because my shift ran late", "expected": [{"intent": "REPORT_PROGRESS", "minutes": 5}, {"intent": "REPORT_OBSTACLE", "reason": "busy"}]}
+{"id": "v2_05", "language": "en", "text": "how's my progress looking", "expected": [{"intent": "QUERY_PROGRESS", "day": "today"}]}
+{"id": "v2_06", "language": "en", "text": "what was my total yesterday", "expected": [{"intent": "QUERY_PROGRESS", "day": "yesterday"}]}
+{"id": "v2_07", "language": "en", "text": "I can barely keep my eyes open", "expected": [{"intent": "REPORT_OBSTACLE", "reason": "tired"}]}
+{"id": "v2_08", "language": "en", "text": "I have a cold", "expected": [{"intent": "REPORT_OBSTACLE", "reason": "other"}]}
+{"id": "v2_09", "language": "en", "text": "can today's goal be smaller", "expected": [{"intent": "REQUEST_RECOVERY", "when": "today"}]}
+{"id": "v2_10", "language": "en", "text": "I'll finish the remaining part tomorrow", "expected": [{"intent": "REQUEST_RECOVERY", "when": "tomorrow"}]}
+{"id": "v2_11", "language": "en", "text": "drill me on a few words", "expected": [{"intent": "REQUEST_VERIFICATION"}]}
+{"id": "v2_12", "language": "en", "text": "pop quiz please", "expected": [{"intent": "REQUEST_VERIFICATION"}]}
+{"id": "v2_13", "language": "en", "text": "can I get a vocab check", "expected": [{"intent": "REQUEST_VERIFICATION"}]}
+{"id": "v2_14", "language": "en", "text": "hey there", "expected": [{"intent": "GENERAL_CONVERSATION"}]}
+{"id": "v2_15", "language": "en", "text": "appreciate it", "expected": [{"intent": "GENERAL_CONVERSATION"}]}
+{"id": "v2_16", "language": "en", "text": "who won the game last night", "expected": [{"intent": "CLARIFY"}]}
+{"id": "v2_17", "language": "en", "text": "I plan to do 45 minutes on Saturday", "expected": [{"intent": "CLARIFY"}]}
+{"id": "v2_18", "language": "en", "text": "set my daily goal to 60 minutes", "expected": [{"intent": "CLARIFY"}]}
+{"id": "v2_19", "language": "en", "text": "yes approve it", "expected": [{"intent": "CLARIFY"}]}
+{"id": "v2_20", "language": "en", "text": "studied a bit, not sure how long", "expected": [{"intent": "CLARIFY"}]}
+{"id": "v2_21", "language": "en", "text": "exhausted after work, can we make today's target lighter?", "expected": [{"intent": "REPORT_OBSTACLE", "reason": "tired"}, {"intent": "REQUEST_RECOVERY", "when": "today"}]}
+{"id": "v2_22", "language": "ko", "text": "출근 전에 15분 듣기 연습했어요", "expected": [{"intent": "REPORT_PROGRESS", "minutes": 15}]}
+{"id": "v2_23", "language": "ko", "text": "오늘 두 시간 공부했어요 진짜 힘들다", "expected": [{"intent": "REPORT_PROGRESS", "minutes": 120}, {"intent": "REPORT_OBSTACLE", "reason": "tired"}]}
+{"id": "v2_24", "language": "ko", "text": "오늘 진도 어떻게 돼요?", "expected": [{"intent": "QUERY_PROGRESS", "day": "today"}]}
+{"id": "v2_25", "language": "ko", "text": "야근 때문에 시간이 없어요", "expected": [{"intent": "REPORT_OBSTACLE", "reason": "busy"}]}
+{"id": "v2_26", "language": "ko", "text": "감기에 걸렸어요", "expected": [{"intent": "REPORT_OBSTACLE", "reason": "other"}]}
+{"id": "v2_27", "language": "ko", "text": "오늘은 조금만 하고 싶어요", "expected": [{"intent": "REQUEST_RECOVERY", "when": "today"}]}
+{"id": "v2_28", "language": "ko", "text": "나머지는 내일로 미룰게요", "expected": [{"intent": "REQUEST_RECOVERY", "when": "tomorrow"}]}
+{"id": "v2_29", "language": "ko", "text": "단어 퀴즈 하나 내 주세요", "expected": [{"intent": "REQUEST_VERIFICATION"}]}
+{"id": "v2_30", "language": "ko", "text": "안녕! 좋은 아침이에요", "expected": [{"intent": "GENERAL_CONVERSATION"}]}
+{"id": "v2_31", "language": "ko", "text": "주말에 영화 볼까?", "expected": [{"intent": "CLARIFY"}]}
+{"id": "v2_32", "language": "ko", "text": "목표를 45분으로 바꿔 주세요", "expected": [{"intent": "CLARIFY"}]}
+{"id": "v2_33", "language": "ko", "text": "좀 공부한 것 같아요", "expected": [{"intent": "CLARIFY"}]}
+{"id": "v2_34", "language": "vi", "text": "mình vừa học xong 30 phút ngữ pháp", "expected": [{"intent": "REPORT_PROGRESS", "minutes": 30}]}
+{"id": "v2_35", "language": "vi", "text": "tối qua mình học bao nhiêu phút vậy?", "expected": [{"intent": "QUERY_PROGRESS", "day": "yesterday"}]}
+{"id": "v2_36", "language": "vi", "text": "hôm nay mình tiến bộ thế nào rồi?", "expected": [{"intent": "QUERY_PROGRESS", "day": "today"}]}
+{"id": "v2_37", "language": "vi", "text": "mệt quá trời luôn", "expected": [{"intent": "REPORT_OBSTACLE", "reason": "tired"}]}
+{"id": "v2_38", "language": "vi", "text": "tuần này mình bận lắm", "expected": [{"intent": "REPORT_OBSTACLE", "reason": "busy"}]}
+{"id": "v2_39", "language": "vi", "text": "cho mình mục tiêu nhẹ hơn hôm nay nhé", "expected": [{"intent": "REQUEST_RECOVERY", "when": "today"}]}
+{"id": "v2_40", "language": "vi", "text": "để mai mình học nốt phần còn lại", "expected": [{"intent": "REQUEST_RECOVERY", "when": "tomorrow"}]}
+{"id": "v2_41", "language": "vi", "text": "kiểm tra mình vài từ mới đi", "expected": [{"intent": "REQUEST_VERIFICATION"}]}
+{"id": "v2_42", "language": "vi", "text": "chào bạn nha", "expected": [{"intent": "GENERAL_CONVERSATION"}]}
+{"id": "v2_43", "language": "vi", "text": "thời tiết mai thế nào?", "expected": [{"intent": "CLARIFY"}]}
+{"id": "v2_44", "language": "vi", "text": "đổi giờ nhắc nhở giúp mình", "expected": [{"intent": "CLARIFY"}]}
+{"id": "v2_45", "language": "vi", "text": "mình học 15 phút rồi nhưng bận quá", "expected": [{"intent": "REPORT_PROGRESS", "minutes": 15}, {"intent": "REPORT_OBSTACLE", "reason": "busy"}]}

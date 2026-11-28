@@ -1,0 +1,33 @@
+{
+  "model": "logistic_recall",
+  "version": 1,
+  "formula": "p = sigmoid(w . [sqrt(1+right), sqrt(1+wrong), 1, log(1+days_since_last_review)])",
+  "features": [
+    "sqrt_right",
+    "sqrt_wrong",
+    "bias",
+    "log1p_days"
+  ],
+  "weights": [
+    0.142816,
+    -0.422805,
+    2.42803,
+    -0.110462
+  ],
+  "trained_on": {
+    "source": {
+      "doi": "10.7910/DVN/N8XJME",
+      "file": "settles.acl16.learning_traces.13m.csv.gz",
+      "license": "CC BY-NC 4.0 (Duolingo)",
+      "citation": "Settles & Meeder (2016), ACL"
+    },
+    "sample_sha256": "7c9b42d7c9a344411db88927eda6fa0dc9955bb79bc725caee6e8e0033eb1481",
+    "rows": 1000000
+  },
+  "held_out_test": {
+    "mae": 0.1699,
+    "mse": 0.0705,
+    "auc": 0.5997
+  },
+  "attribution": "Derived from Duolingo learning traces (Settles & Meeder 2016), CC BY-NC 4.0. Noncommercial use only."
+}

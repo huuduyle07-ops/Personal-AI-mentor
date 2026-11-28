@@ -1,0 +1,42 @@
+{
+  "review_events": 2,
+  "correct": 2,
+  "hours_since_last_review": {
+    "median": 0.03,
+    "max": 0.05
+  },
+  "days_spanned": 0.0,
+  "note": "Priors are the Duolingo-trained population models. Too few reviews for conclusions.",
+  "logistic": {
+    "population": {
+      "n": 2,
+      "positive_rate": 1.0,
+      "mae": 0.1136,
+      "log_loss": 0.1206,
+      "auroc": null
+    },
+    "personalized": {
+      "n": 2,
+      "positive_rate": 1.0,
+      "mae": 0.1136,
+      "log_loss": 0.1206,
+      "auroc": null
+    }
+  },
+  "hlr": {
+    "population": {
+      "n": 2,
+      "positive_rate": 1.0,
+      "mae": 0.0,
+      "log_loss": 0.0,
+      "auroc": null
+    },
+    "personalized": {
+      "n": 2,
+      "positive_rate": 1.0,
+      "mae": 0.0,
+      "log_loss": 0.0,
+      "auroc": null
+    }
+  }
+}

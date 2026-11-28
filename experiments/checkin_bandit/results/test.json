@@ -1,0 +1,274 @@
+{
+  "protocol": {
+    "days": 120,
+    "decisions_per_day": 3,
+    "test": {
+      "seed": 3,
+      "learners": 100
+    }
+  },
+  "linucb": {
+    "cumulative_reward": 67.046,
+    "average_regret": 0.0554,
+    "unnecessary_nudge_rate": 0.5777,
+    "ignored_nudge_rate": 0.6552,
+    "nudges_per_day": 0.8815,
+    "nudges_when_tired_or_busy_rate": 0.2708,
+    "engagement_rate": 0.25,
+    "cumulative_reward_ci95": [
+      61.55,
+      72.29
+    ],
+    "regret_by_period": {
+      "days 1-30": 0.0744,
+      "days 31-60": 0.0535,
+      "days 61-120": 0.0469
+    },
+    "parameter": 0.3
+  },
+  "thompson": {
+    "cumulative_reward": 69.5335,
+    "average_regret": 0.052,
+    "unnecessary_nudge_rate": 0.6089,
+    "ignored_nudge_rate": 0.6708,
+    "nudges_per_day": 0.8173,
+    "nudges_when_tired_or_busy_rate": 0.301,
+    "engagement_rate": 0.2518,
+    "cumulative_reward_ci95": [
+      63.9,
+      74.75
+    ],
+    "regret_by_period": {
+      "days 1-30": 0.0698,
+      "days 31-60": 0.0526,
+      "days 61-120": 0.0428
+    },
+    "parameter": 0.1
+  },
+  "fixed_schedule": {
+    "cumulative_reward": 41.574,
+    "average_regret": 0.1318,
+    "unnecessary_nudge_rate": 0.6554,
+    "ignored_nudge_rate": 0.6676,
+    "nudges_per_day": 2.0,
+    "nudges_when_tired_or_busy_rate": 0.3684,
+    "engagement_rate": 0.2892,
+    "cumulative_reward_ci95": [
+      34.77,
+      47.83
+    ],
+    "regret_by_period": {
+      "days 1-30": 0.1262,
+      "days 31-60": 0.1383,
+      "days 61-120": 0.1314
+    },
+    "parameter": null
+  },
+  "random": {
+    "cumulative_reward": 39.19,
+    "average_regret": 0.139,
+    "unnecessary_nudge_rate": 0.6857,
+    "ignored_nudge_rate": 0.6737,
+    "nudges_per_day": 2.0067,
+    "nudges_when_tired_or_busy_rate": 0.3789,
+    "engagement_rate": 0.2853,
+    "cumulative_reward_ci95": [
+      32.35,
+      45.94
+    ],
+    "regret_by_period": {
+      "days 1-30": 0.1381,
+      "days 31-60": 0.1392,
+      "days 61-120": 0.1394
+    },
+    "parameter": null
+  },
+  "never_nudge": {
+    "cumulative_reward": 73.47,
+    "average_regret": 0.0441,
+    "unnecessary_nudge_rate": 0.0,
+    "ignored_nudge_rate": 0.0,
+    "nudges_per_day": 0.0,
+    "nudges_when_tired_or_busy_rate": 0.0,
+    "engagement_rate": 0.2041,
+    "cumulative_reward_ci95": [
+      68.04,
+      78.87
+    ],
+    "regret_by_period": {
+      "days 1-30": 0.0457,
+      "days 31-60": 0.0436,
+      "days 61-120": 0.0436
+    },
+    "parameter": null
+  },
+  "oracle": {
+    "cumulative_reward": 85.6075,
+    "average_regret": 0.0,
+    "unnecessary_nudge_rate": 0.0,
+    "ignored_nudge_rate": 0.4192,
+    "nudges_per_day": 1.1946,
+    "nudges_when_tired_or_busy_rate": 0.0,
+    "engagement_rate": 0.2975,
+    "cumulative_reward_ci95": [
+      79.06,
+      91.82
+    ],
+    "regret_by_period": {
+      "days 1-30": 0.0,
+      "days 31-60": 0.0,
+      "days 61-120": 0.0
+    },
+    "parameter": null
+  },
+  "paired_reward_difference": {
+    "linucb_minus_thompson": {
+      "mean": -2.49,
+      "ci95": [
+        -4.39,
+        -0.59
+      ],
+      "learners_better": 41
+    },
+    "linucb_minus_fixed_schedule": {
+      "mean": 25.47,
+      "ci95": [
+        22.37,
+        28.67
+      ],
+      "learners_better": 94
+    },
+    "linucb_minus_random": {
+      "mean": 27.86,
+      "ci95": [
+        24.82,
+        30.98
+      ],
+      "learners_better": 97
+    },
+    "linucb_minus_never_nudge": {
+      "mean": -6.42,
+      "ci95": [
+        -8.5,
+        -4.35
+      ],
+      "learners_better": 22
+    }
+  },
+  "nudge_cost_sensitivity": {
+    "0.05": {
+      "linucb": {
+        "cumulative_reward": 80.8205,
+        "average_regret": 0.0748,
+        "unnecessary_nudge_rate": 0.332,
+        "nudges_per_day": 1.4691
+      },
+      "thompson": {
+        "cumulative_reward": 78.775,
+        "average_regret": 0.0773,
+        "unnecessary_nudge_rate": 0.3572,
+        "nudges_per_day": 1.2932
+      },
+      "fixed_schedule": {
+        "cumulative_reward": 65.574,
+        "average_regret": 0.1181,
+        "unnecessary_nudge_rate": 0.4847,
+        "nudges_per_day": 2.0
+      },
+      "random": {
+        "cumulative_reward": 63.27,
+        "average_regret": 0.1253,
+        "unnecessary_nudge_rate": 0.4635,
+        "nudges_per_day": 2.0067
+      },
+      "never_nudge": {
+        "cumulative_reward": 73.47,
+        "average_regret": 0.0984,
+        "unnecessary_nudge_rate": 0.0,
+        "nudges_per_day": 0.0
+      },
+      "oracle": {
+        "cumulative_reward": 103.6455,
+        "average_regret": 0.0,
+        "unnecessary_nudge_rate": 0.0,
+        "nudges_per_day": 1.7661
+      }
+    },
+    "0.15": {
+      "linucb": {
+        "cumulative_reward": 67.046,
+        "average_regret": 0.0554,
+        "unnecessary_nudge_rate": 0.5777,
+        "nudges_per_day": 0.8815
+      },
+      "thompson": {
+        "cumulative_reward": 69.5335,
+        "average_regret": 0.052,
+        "unnecessary_nudge_rate": 0.6089,
+        "nudges_per_day": 0.8173
+      },
+      "fixed_schedule": {
+        "cumulative_reward": 41.574,
+        "average_regret": 0.1318,
+        "unnecessary_nudge_rate": 0.6554,
+        "nudges_per_day": 2.0
+      },
+      "random": {
+        "cumulative_reward": 39.19,
+        "average_regret": 0.139,
+        "unnecessary_nudge_rate": 0.6857,
+        "nudges_per_day": 2.0067
+      },
+      "never_nudge": {
+        "cumulative_reward": 73.47,
+        "average_regret": 0.0441,
+        "unnecessary_nudge_rate": 0.0,
+        "nudges_per_day": 0.0
+      },
+      "oracle": {
+        "cumulative_reward": 85.6075,
+        "average_regret": 0.0,
+        "unnecessary_nudge_rate": 0.0,
+        "nudges_per_day": 1.1946
+      }
+    },
+    "0.3": {
+      "linucb": {
+        "cumulative_reward": 65.42,
+        "average_regret": 0.0279,
+        "unnecessary_nudge_rate": 0.9268,
+        "nudges_per_day": 0.3473
+      },
+      "thompson": {
+        "cumulative_reward": 66.209,
+        "average_regret": 0.0242,
+        "unnecessary_nudge_rate": 0.9317,
+        "nudges_per_day": 0.3141
+      },
+      "fixed_schedule": {
+        "cumulative_reward": 5.574,
+        "average_regret": 0.194,
+        "unnecessary_nudge_rate": 0.944,
+        "nudges_per_day": 2.0
+      },
+      "random": {
+        "cumulative_reward": 3.07,
+        "average_regret": 0.2012,
+        "unnecessary_nudge_rate": 0.9491,
+        "nudges_per_day": 2.0067
+      },
+      "never_nudge": {
+        "cumulative_reward": 73.47,
+        "average_regret": 0.005,
+        "unnecessary_nudge_rate": 0.0,
+        "nudges_per_day": 0.0
+      },
+      "oracle": {
+        "cumulative_reward": 74.958,
+        "average_regret": 0.0,
+        "unnecessary_nudge_rate": 0.0,
+        "nudges_per_day": 0.2612
+      }
+    }
+  }
+}
