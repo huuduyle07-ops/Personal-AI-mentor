@@ -1,0 +1,48 @@
+{
+  "mode": "live",
+  "model": "cpu-qwen3-1.7b",
+  "timeout_seconds": 60.0,
+  "evidence_guard": true,
+  "prompt_sha256": "d6f2449c8b8e",
+  "scenarios": "heldout_v2.jsonl",
+  "count": 45,
+  "intent_set_accuracy": 0.7778,
+  "intent_set_accuracy_ci95": [
+    0.6444,
+    0.8889
+  ],
+  "action_accuracy": 0.8444,
+  "action_accuracy_ci95": [
+    0.7333,
+    0.9333
+  ],
+  "macro_f1": 0.808,
+  "rejection_reasons": {
+    "invalid_evidence": 4,
+    "invalid_schema": 2
+  },
+  "intent_accuracy_by_language": {
+    "en": 0.7619,
+    "ko": 0.8333,
+    "vi": 0.75
+  },
+  "slot_precision": 0.96,
+  "slot_recall": 0.8,
+  "invalid_action_rate_after_validation": 0.0,
+  "clarify_precision": 0.6,
+  "clarify_recall": 0.6,
+  "fallback_count": 6,
+  "safe_fallback_rate": 1.0,
+  "latency_ms": {
+    "median": 587.203,
+    "p95": 919.807
+  },
+  "backend_attempt_ms": {
+    "median": 587.17,
+    "p95": 919.75
+  },
+  "outcomes": {
+    "ollama": 39,
+    "unavailable_or_invalid": 6
+  }
+}

@@ -18,8 +18,9 @@ class CheckinScheduler:
     MAX_ATTEMPTS = 3
     CATCHUP = timedelta(hours=6)
 
-    def __init__(self, store, allowed_user_id, send):
+    def __init__(self, store, allowed_user_id, send, shadow=None):
         self.store, self.allowed_user_id, self.send = store, allowed_user_id, send
+        self.shadow = shadow  # optional checkin_policy.ShadowLearner: observes check-ins, never changes them
 
     def configure(self, user_id, *, enabled=True, midday="12:00", evening="21:00", now=None):
         self._authorize(user_id)
@@ -109,29 +110,54 @@ class CheckinScheduler:
             record(db, user_id, day, "checkin_attempt", {"slot": slot, "delivery_id": delivery_id}, "system")
             return delivery_id
 
-    async def tick(self, now=None):
-        now = self._now(now)
-        self._recover(now)
+    def _due(self, setting, slot, now):
+        """The scheduled time this slot is due for, if now is within its catch-up window.
+
+        The window may cross midnight (an evening slot at 23:30 can still go out at 01:00),
+        and the delivery belongs to the day the slot was scheduled on.
+        """
+        hour, minute = map(int, setting[slot].split(":"))
+        today = now.replace(hour=hour, minute=minute, second=0, microsecond=0)
+        for scheduled in (today, today - timedelta(days=1)):
+            if scheduled <= now <= scheduled + self.CATCHUP:
+                return scheduled
+        return None
+
+    def _active_settings(self):
         with self.store.connect() as db:
-            settings = db.execute("SELECT * FROM checkin_settings WHERE user_id=? AND enabled=1 AND paused=0",
-                                  (self.allowed_user_id,)).fetchall()
-        for setting in settings:
+            return db.execute("SELECT * FROM checkin_settings WHERE user_id=? AND enabled=1 AND paused=0",
+                              (self.allowed_user_id,)).fetchall()
+
+    def _message(self, user_id, day, slot):
+        if slot == "evening":
+            return ("Evening review (KST)\n" + daily_review(self.store.summary(user_id, day))
+                    + "\nHow did today go? You can reply here with your total or ask for a smaller target.")
+        return ("How is studying going today? Tell me your total so far, for example "
+                "“today's total is 20 minutes”. If something got in the way, you can tell me that too.")
+
+    def _finish(self, user_id, day, slot, delivery_id, status, code, retry_at, now):
+        with self.store.connect() as db:
+            db.execute("UPDATE checkin_deliveries SET status=?,updated_at=?,retry_at=?,error_code=? WHERE id=?",
+                       (status, now.isoformat(), retry_at, code, delivery_id))
+            record(db, user_id, day, "checkin_" + status,
+                   {"slot": slot, "delivery_id": delivery_id, "error_code": code}, "system")
+
+    async def tick(self, now=None):
+        # SQLite work runs in worker threads so a locked database never stalls the event loop.
+        now = self._now(now)
+        await asyncio.to_thread(self._recover, now)
+        for setting in await asyncio.to_thread(self._active_settings):
             for slot in sorted(("midday", "evening"), key=lambda key: setting[key]):
-                hour, minute = map(int, setting[slot].split(":"))
-                scheduled = now.replace(hour=hour, minute=minute, second=0, microsecond=0)
-                if not scheduled <= now <= scheduled + self.CATCHUP:
+                scheduled = self._due(setting, slot, now)
+                if scheduled is None:
                     continue
-                day, user_id = now.date().isoformat(), setting["user_id"]
-                delivery_id = self._claim(user_id, day, slot, scheduled, now)
+                day, user_id = scheduled.date().isoformat(), setting["user_id"]
+                delivery_id = await asyncio.to_thread(self._claim, user_id, day, slot, scheduled, now)
                 if delivery_id is None:
                     continue
                 code, retry_at = None, None
                 try:
-                    message = ("How is studying going today? Tell me your total so far, for example "
-                               "“today's total is 20 minutes”. If something got in the way, you can tell me that too.")
-                    if slot == "evening":
-                        message = ("Evening review (KST)\n" + daily_review(self.store.summary(user_id, day))
-                                   + "\nHow did today go? You can reply here with your total or ask for a smaller target.")
+                    message = await asyncio.to_thread(self._message, user_id, day, slot)
                     await asyncio.wait_for(self.send(user_id, message), timeout=20)
                     status = "delivered"
                 except DeliveryError as exc:
@@ -142,8 +168,9 @@ class CheckinScheduler:
                 except Exception:
                     # Never log exception text: it may contain private message content.
                     status, code = "unknown", "delivery_uncertain"
-                with self.store.connect() as db:
-                    db.execute("UPDATE checkin_deliveries SET status=?,updated_at=?,retry_at=?,error_code=? WHERE id=?",
-                               (status, now.isoformat(), retry_at, code, delivery_id))
-                    record(db, user_id, day, "checkin_" + status,
-                           {"slot": slot, "delivery_id": delivery_id, "error_code": code}, "system")
+                await asyncio.to_thread(self._finish, user_id, day, slot, delivery_id, status, code, retry_at, now)
+                if self.shadow and status == "delivered":
+                    await asyncio.to_thread(self.shadow.observe, user_id, slot, "nudge_study", now)
+        if self.shadow and self.allowed_user_id:
+            await asyncio.to_thread(self.shadow.observe_silence, self.allowed_user_id, now)
+            await asyncio.to_thread(self.shadow.resolve, self.allowed_user_id, now)

@@ -1,0 +1,39 @@
+{
+  "overall": {
+    "files": 3,
+    "gold_pairs": 16,
+    "predicted_pairs": 16,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "korean_only_precision": 1.0,
+    "korean_only_recall": 1.0
+  },
+  "by_file": {
+    "messy_handwritten.jpg": {
+      "predicted": 5,
+      "gold": 5,
+      "correct": 5,
+      "korean_correct": 5,
+      "missed": [],
+      "false_positives": []
+    },
+    "textbook_table.jpg": {
+      "predicted": 5,
+      "gold": 5,
+      "correct": 5,
+      "korean_correct": 5,
+      "missed": [],
+      "false_positives": []
+    },
+    "typed_list.jpg": {
+      "predicted": 6,
+      "gold": 6,
+      "correct": 6,
+      "korean_correct": 6,
+      "missed": [],
+      "false_positives": []
+    }
+  },
+  "vision_model": "qwen2.5vl:3b"
+}

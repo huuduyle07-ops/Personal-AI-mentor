@@ -1,0 +1,10 @@
+[server]
+address = "localhost"
+headless = true
+maxUploadSize = 8  # MB; the note importer accepts photos up to 8 MB
+
+[browser]
+gatherUsageStats = false
+
+[client]
+toolbarMode = "minimal"

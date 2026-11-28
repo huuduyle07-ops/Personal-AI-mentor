@@ -15,7 +15,7 @@ class Route(str, Enum):
     DEFER = "DEFER"
 
 
-STRUCTURED = {"setgoal", "report", "summary", "checkins", "quiz", "answer", "recover", "adjust", "history"}
+STRUCTURED = {"setgoal", "report", "summary", "checkins", "quiz", "answer", "recover", "adjust", "history", "recall", "policy", "focus"}
 
 
 @dataclass(frozen=True)

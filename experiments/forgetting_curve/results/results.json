@@ -1,0 +1,176 @@
+{
+  "data": {
+    "provenance": {
+      "doi": "10.7910/DVN/N8XJME",
+      "file": "settles.acl16.learning_traces.13m.csv.gz",
+      "license": "CC BY-NC 4.0 (Duolingo)",
+      "citation": "Settles & Meeder (2016), ACL",
+      "url": "https://dataverse.harvard.edu/api/access/datafile/3091087",
+      "rows": 1000000,
+      "compressed_bytes_read": 28970233,
+      "seconds": 9.2,
+      "sha256": "7c9b42d7c9a344411db88927eda6fa0dc9955bb79bc725caee6e8e0033eb1481"
+    },
+    "train": {
+      "rows": 698761,
+      "learners": 14173,
+      "mean_p_recall": 0.8941799976655941
+    },
+    "validation": {
+      "rows": 153890,
+      "learners": 3006,
+      "mean_p_recall": 0.8941879033450992
+    },
+    "test": {
+      "rows": 147349,
+      "learners": 3025,
+      "mean_p_recall": 0.8994290242775503
+    }
+  },
+  "selection_metric": "validation MAE",
+  "test": {
+    "constant_mean": {
+      "mae": 0.17354866762777824,
+      "mse": 0.07157702600313293,
+      "auc": 0.5
+    },
+    "leitner": {
+      "mae": 0.20557351947982794,
+      "mse": 0.14398162186202088,
+      "auc": 0.5569681407703184,
+      "half_life_spearman": -0.03611980538130814
+    },
+    "pimsleur": {
+      "mae": 0.4162932120479561,
+      "mse": 0.36653622179543927,
+      "auc": 0.5283555558728131,
+      "half_life_spearman": -0.03505081051700572
+    },
+    "hlr": {
+      "mae": 0.11066163960455815,
+      "mse": 0.08008075886896057,
+      "auc": 0.5466357205072759,
+      "half_life_spearman": 0.1600668349850382
+    },
+    "hlr_lexeme": {
+      "mae": 0.11076295701241069,
+      "mse": 0.08009072615692424,
+      "auc": 0.5466341086114072,
+      "half_life_spearman": 0.1581315098318883
+    },
+    "logistic_regression": {
+      "mae": 0.1698518540918306,
+      "mse": 0.07049912191883607,
+      "auc": 0.5997046939811675
+    }
+  },
+  "mae_contrasts_learner_bootstrap": {
+    "hlr_minus_constant_mean": {
+      "difference": -0.06288702802322009,
+      "ci95": [
+        -0.06432346845634428,
+        -0.061289060575148005
+      ],
+      "learners": 3025
+    },
+    "hlr_minus_leitner": {
+      "difference": -0.09491187987526979,
+      "ci95": [
+        -0.10058668885955535,
+        -0.08997358476135679
+      ],
+      "learners": 3025
+    },
+    "hlr_minus_pimsleur": {
+      "difference": -0.30563157244339795,
+      "ci95": [
+        -0.3188075575214743,
+        -0.2928886770906729
+      ],
+      "learners": 3025
+    },
+    "hlr_minus_hlr_lexeme": {
+      "difference": -0.00010131740785254695,
+      "ci95": [
+        -0.00011358959284534474,
+        -9.0387058675942e-05
+      ],
+      "learners": 3025
+    },
+    "hlr_minus_logistic_regression": {
+      "difference": -0.05919021448727245,
+      "ci95": [
+        -0.060389984440702926,
+        -0.05778431021522817
+      ],
+      "learners": 3025
+    }
+  },
+  "hlr_theta": {
+    "sqrt_right": 2.0027413481551677,
+    "sqrt_wrong": 2.1884872504844406,
+    "bias": 2.410689444519018
+  },
+  "hlr_calibration": [
+    {
+      "bin": "0.0-0.1",
+      "count": 0,
+      "mean_predicted": null,
+      "mean_observed": null
+    },
+    {
+      "bin": "0.1-0.2",
+      "count": 5,
+      "mean_predicted": 0.1994333366039462,
+      "mean_observed": 1.0
+    },
+    {
+      "bin": "0.2-0.3",
+      "count": 9,
+      "mean_predicted": 0.27230025042386297,
+      "mean_observed": 0.8296296296296667
+    },
+    {
+      "bin": "0.3-0.4",
+      "count": 48,
+      "mean_predicted": 0.3534488691549411,
+      "mean_observed": 0.8291666666666875
+    },
+    {
+      "bin": "0.4-0.5",
+      "count": 66,
+      "mean_predicted": 0.4657200039397105,
+      "mean_observed": 0.9098484848485
+    },
+    {
+      "bin": "0.5-0.6",
+      "count": 360,
+      "mean_predicted": 0.5562438761105452,
+      "mean_observed": 0.84102843915345
+    },
+    {
+      "bin": "0.6-0.7",
+      "count": 570,
+      "mean_predicted": 0.66068127155493,
+      "mean_observed": 0.8919423558897333
+    },
+    {
+      "bin": "0.7-0.8",
+      "count": 1165,
+      "mean_predicted": 0.7581588512482614,
+      "mean_observed": 0.8370841390369373
+    },
+    {
+      "bin": "0.8-0.9",
+      "count": 3020,
+      "mean_predicted": 0.8661250092506866,
+      "mean_observed": 0.8671888431656718
+    },
+    {
+      "bin": "0.9-1.0",
+      "count": 142106,
+      "mean_predicted": 0.9912362682890465,
+      "mean_observed": 0.9008230470375307
+    }
+  ]
+}

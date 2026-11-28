@@ -1,0 +1,1 @@
+cpu-tinyllama:latest    c379079e2e5f    739 MB    100% CPU     2048       llamacpp    4 minutes from now    

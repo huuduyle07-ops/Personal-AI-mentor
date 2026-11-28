@@ -2,9 +2,16 @@
 import sqlite3
 from contextlib import closing, contextmanager, nullcontext
 from pathlib import Path
+from typing import NamedTuple
 
+import chat_context
 from memory import migrate, record
 from time_utils import now_kst, valid_day, valid_minutes
+
+
+class ReportResult(NamedTuple):
+    report_id: int
+    changed: bool
 
 
 class GoalStore:
@@ -43,6 +50,16 @@ class GoalStore:
             connection.execute("BEGIN IMMEDIATE")
             yield connection
 
+    def get_state(self, key):
+        with self.connect() as db:
+            row = db.execute("SELECT value FROM app_state WHERE key=?", (key,)).fetchone()
+        return row["value"] if row else None
+
+    def set_state(self, key, value):
+        with self.connect() as db:
+            db.execute("INSERT INTO app_state(key,value) VALUES(?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value",
+                       (key, value))
+
     def set_goal(self, user_id, title, target_minutes, day=None):
         if not isinstance(title, str) or not 1 <= len(title.strip()) <= 200:
             raise ValueError("Goal title must contain 1 to 200 characters")
@@ -65,11 +82,21 @@ class GoalStore:
             record(db, user_id, day, "goal_set", {"previous": dict(old) if old else None,
                    "title": title, "target_minutes": target_minutes})
 
+    @staticmethod
+    def latest_report(db, user_id, day):
+        return db.execute("SELECT id,minutes FROM progress_events WHERE user_id=? AND day=? "
+                          "ORDER BY id DESC LIMIT 1", (user_id, day)).fetchone()
+
     def report(self, user_id, day, minutes, *, db=None):
+        """Record today's total. Repeating the current total is a no-op (changed=False),
+        so it doesn't add a duplicate report or detach a quiz result from the existing one."""
         valid_day(day)
         valid_minutes(minutes)
         with self.transaction(db) as db:
             self.plan(db, user_id, day)
+            latest = self.latest_report(db, user_id, day)
+            if latest is not None and latest["minutes"] == minutes:
+                return ReportResult(latest["id"], changed=False)
             db.execute(
                 """INSERT INTO reports VALUES(?,?,?) ON CONFLICT(user_id,day)
                 DO UPDATE SET minutes=excluded.minutes""", (user_id, day, minutes),
@@ -79,7 +106,7 @@ class GoalStore:
                 (user_id, day, minutes, now_kst().isoformat()),
             )
             record(db, user_id, day, "progress_reported", {"minutes": minutes, "report_id": result.lastrowid})
-            return result.lastrowid
+            return ReportResult(result.lastrowid, changed=True)
 
     def summary(self, user_id, day, *, db=None):
         valid_day(day)
@@ -97,6 +124,8 @@ class GoalStore:
                     """SELECT state FROM verification_attempts WHERE progress_id=? AND state!='pending'
                     ORDER BY id DESC LIMIT 1""", (report["id"],),
                 ).fetchone()
+            goal = db.execute("SELECT target_minutes FROM goals WHERE user_id=?", (user_id,)).fetchone()
+            streak = chat_context.streak(db, user_id, day, goal["target_minutes"])
             recoveries = [dict(row) for row in db.execute(
                 "SELECT id,reason,status,proposed_target FROM recovery_proposals WHERE user_id=? AND day=? ORDER BY id",
                 (user_id, day),
@@ -107,7 +136,7 @@ class GoalStore:
                 "status": "reported" if report else "not_reported",
                 "verification_state": verification["state"] if verification else ("reported" if report else "not_reported"),
                 "target_reached": minutes is not None and minutes >= plan["target"],
-                "recoveries": recoveries}
+                "recoveries": recoveries, "streak": streak}
 
 
 def daily_review(data):
@@ -118,6 +147,7 @@ def daily_review(data):
              f"Original daily target: {data['original_target']} min",
              f"Activity status: {data['status']}", f"Learning verification: {data['verification_state']}",
              f"Target reached (self-reported): {data['target_reached']}",
+             f"Streak: {data['streak']} day{'s' if data['streak'] != 1 else ''} in a row meeting your goal",
              "A quiz checks only the tested vocabulary; it does not prove study duration."]
     if data["minutes"] is None:
         lines.append("No response is recorded; no conclusion about effort or failure is made.")

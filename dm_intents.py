@@ -123,10 +123,34 @@ def check_report_evidence(actions, text):
         raise ValueError("Ask for an explicit duration")
 
 
+# Whole-message replies to the single pending draft or plan change. These are the user's literal
+# words, never model output. A plain "yes" confirms a draft but does not approve a plan change.
+YES = {"được chứ", "được", "yes", "yep", "yeah", "yup", "sure", "ok", "okay", "correct", "that's right",
+       "looks good", "sounds good", "right", "네", "예", "응", "좋아요", "맞아요", "có", "đúng", "đúng rồi", "ừ"}
+NO = {"no", "nope", "nah", "wrong", "not quite", "아니요", "아니", "아니에요", "không", "sai", "không phải"}
+BARE = {
+    APPROVE: {"approve", "approve it", "i approve", "đồng ý", "phê duyệt", "승인", "승인할게요", "승인해요"},
+    REJECT: {"reject", "reject it", "i reject", "từ chối", "거절", "거절할게요"},
+    "CONFIRM_DRAFT": {"confirm", "confirm it", "save it", "xác nhận", "확인"},
+    "DISCARD_DRAFT": {"discard", "discard it", "cancel", "hủy", "취소"},
+}
+
+
+DROP = re.compile(r"(?:drop|remove|delete|skip|bỏ|xóa|빼기|빼|삭제)\s+(#?\d{1,2}(?:\s*(?:,|and|&|\s)\s*#?\d{1,2})*)")
+
+
 def control(text):
-    """Numbered, full-message decisions cannot be inferred or mixed with other actions."""
-    if text.rstrip(".!? ") in {"được chứ", "được", "đồng ý", "yes", "네", "좋아요"}:
+    """Full-message decisions cannot be inferred or mixed with other actions."""
+    reply = text.rstrip(".!? ")
+    if match := DROP.fullmatch(reply):
+        return action("DROP_IMPORT_ITEMS", items=[int(n) for n in re.findall(r"\d+", match[1])])
+    if reply in YES:
         return action("PENDING_DECISION")
+    if reply in NO:
+        return action("PENDING_NO")
+    for kind, words in BARE.items():
+        if reply in words:
+            return action(kind, id=None)  # resolved to the single pending item for today
     for kind, verbs in (
         (APPROVE, "approve|i approve|đồng ý|phê duyệt|승인"),
         (REJECT, "reject|i reject|từ chối|거절"),
@@ -139,6 +163,27 @@ def control(text):
     match = re.fullmatch(r"(?:answer|trả lời|정답)\s+#?([1-9][0-9]{0,17})\s+([^\W\d_]{1,100})[.!]?", text)
     if match:
         return action("ANSWER_QUIZ", id=int(match[1]), answer=match[2])
+
+
+DONT_KNOW = {"i don't know", "i dont know", "idk", "no idea", "don't know", "dont know", "not sure",
+             "모르겠어요", "몰라요", "모르겠다", "không biết", "chịu"}
+ANSWER_PREFIX = (r"^(?:i think |maybe |hmm,? |um,? )?(?:it means |it's |it is |that's |is it |means |"
+                 r"the answer is |nghĩa là |là )?(?:a |an |the )?")
+
+
+# Words that make a short message a request, not an answer ("try quizzing me", "another one please").
+NOT_ANSWERS = {"quiz", "quizzing", "test", "testing", "me", "please", "again", "another", "next", "skip",
+               "word", "words", "vocab", "vocabulary", "try", "give", "ask", "one", "more", "stop"}
+
+
+def quiz_answer(text):
+    """A short reply such as "school", "it means school?" or "I don't know", or None."""
+    words = normalized(text).strip(" .!?\"'“”")
+    if words in DONT_KNOW:
+        return "(don't know)"
+    words = re.sub(ANSWER_PREFIX, "", words).strip()
+    if re.fullmatch(r"[^\W\d_]+(?: [^\W\d_]+)?", words) and not set(words.split()) & NOT_ANSWERS:
+        return words
 
 
 _MIN = r"(?P<minutes>[0-9]{1,4})"
